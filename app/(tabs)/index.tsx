@@ -1,8 +1,8 @@
 import type { Transaction } from "@/entities/transactions/types";
 import { TransactionGroup } from "@/entities/transactions/ui";
 import { range } from "@/shared/lib/utils";
+import { MainLayout } from "@/shared/ui";
 import { FlatList } from "react-native";
-
 
 const transactions: { transactions: Transaction[]; title: string }[] = [
   {
@@ -21,7 +21,7 @@ const transactions: { transactions: Transaction[]; title: string }[] = [
         transactions: [],
       },
       name: "Пицца",
-      created_at: "12 февраля",
+      created_at: "12 Февраля",
       type: 1,
       description: "Насрал в штаны",
     })),
@@ -42,13 +42,13 @@ const transactions: { transactions: Transaction[]; title: string }[] = [
         transactions: [],
       },
       name: "Пицца",
-      created_at: "12 февраля",
+      created_at: "12 Февраля",
       type: 1,
       description: "Насрал в штаны",
     })),
   },
   {
-    title: "5 Мар.",
+    title: "5 Марта",
     transactions: range(0, 2).map((value) => ({
       id: `sol-${value}`,
       amount: {
@@ -63,7 +63,7 @@ const transactions: { transactions: Transaction[]; title: string }[] = [
         transactions: [],
       },
       name: "Роллы",
-      created_at: "12 февраля",
+      created_at: "12 Февраля",
       type: 1,
       description: "Насрал в штаны",
     })),
@@ -72,7 +72,8 @@ const transactions: { transactions: Transaction[]; title: string }[] = [
 
 export default function Tab() {
   return (
-    <FlatList
+    <MainLayout>
+          <FlatList
       showsVerticalScrollIndicator={false}
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={{ gap: 15 }}
@@ -85,6 +86,7 @@ export default function Tab() {
         />
       )}
     />
+    </MainLayout>
   );
 }
 

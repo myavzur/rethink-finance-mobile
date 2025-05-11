@@ -18,3 +18,25 @@ export interface Transaction {
 	category: Category;
 	created_at: string;
 }
+
+interface Schedule {
+	type: 'monthly' | 'weekly' | 'daily' | 'yearly';
+	startDate: Date | string;
+	endDate?: Date | string | null; // null если бессрочно
+}
+
+interface MonthlySchedule extends Schedule {
+	type: "monthly";
+	dayOfMonth?: number; // для monthly (например 15)
+}
+
+interface WeeklySchedule extends Schedule {
+	type: "weekly";
+	dayOfWeek?: number; // для weekly (0-6)
+}
+
+export interface ScheduledTransaction {
+	transaction: Transaction;
+	schedule: MonthlySchedule | WeeklySchedule | Schedule;
+  isActive: boolean;
+}

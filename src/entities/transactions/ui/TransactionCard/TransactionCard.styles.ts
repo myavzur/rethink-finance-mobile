@@ -43,7 +43,7 @@ export const useStyles = (highlightColor: HighlightColor) => useThemeStyles((the
     },
     header__title: {
       fontSize: FontSizes.s14,
-      fontWeight: FontWeights.w600,
+      fontWeight: FontWeights.semiBold,
     },
     header__amount: {
       fontSize: FontSizes.s14,

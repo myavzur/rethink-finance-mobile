@@ -1,31 +1,16 @@
-import { useTheme } from "@/entities/themes/lib/hooks";
-import { TabBar } from "@/features/tab-bar/ui";
-import { Gaps } from "@/shared/const";
 import { Icon } from "@/shared/ui/Icon";
+import { TabBar } from "@/widgets/tab-bar/ui";
 import { Tabs } from "expo-router";
 import React from "react";
-import { View } from "react-native";
 
-const ICON_SIZE = 22;
+const ICON_SIZE = 23;
 
 export default function TabLayout() {
-  const theme = useTheme();
-
   return (
     <Tabs
       tabBar={(props) => <TabBar {...props} />}
-      screenLayout={({ children }) => (
-        <View
-          style={{
-            paddingHorizontal: Gaps.g20,
-            paddingBottom: 65,
-            backgroundColor: theme.colors.white[1000],
-          }}
-        >
-          {children}
-        </View>
-      )}
       screenOptions={{
+        animation: "shift",
         headerShown: false,
       }}
     >

@@ -8,7 +8,7 @@ import type { ThemedTextProps } from './ThemedText.props';
 
 export const ThemedText = <P extends keyof ColorPalette>({
   size = "s16",
-	weight = "w400",
+	weight = "regular",
   color,
   style,
   ...rest
