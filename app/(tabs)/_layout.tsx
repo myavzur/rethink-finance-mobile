@@ -35,7 +35,7 @@ export default function TabLayout() {
         options={{
           title: "History",
           tabBarIcon: ({ color }) => (
-            <Icon size={ICON_SIZE} name="server" color={color} />
+            <Icon size={ICON_SIZE} name="home" color={color} />
           ),
         }}
       />
@@ -44,8 +44,7 @@ export default function TabLayout() {
         options={{
           title: "Categories",
           tabBarIcon: ({ color }) => (
-            // Or maybe "box" is better?
-            <Icon size={ICON_SIZE} name="package" color={color} />
+            <Icon size={ICON_SIZE} name="box" color={color} />
           ),
         }}
       />
@@ -54,7 +53,7 @@ export default function TabLayout() {
         options={{
           title: "Analysis",
           tabBarIcon: ({ color }) => (
-            <Icon size={ICON_SIZE} name="activity" color={color} />
+            <Icon size={ICON_SIZE} name="airplay" color={color} />
           ),
         }}
       />
@@ -63,7 +62,7 @@ export default function TabLayout() {
         options={{
           title: "Profile",
           tabBarIcon: ({ color }) => (
-            <Icon size={ICON_SIZE} name="sliders" color={color} />
+            <Icon size={ICON_SIZE} name="settings" color={color} />
           ),
         }}
       />
