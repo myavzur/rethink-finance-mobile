@@ -1,4 +1,5 @@
 import { Amount } from "@/entities/amounts/ui";
+import { Icon } from "@/shared/ui";
 import type { FC } from "react";
 import { Pressable, Text, View } from "react-native";
 import { TransactionType } from "../../types";
@@ -6,7 +7,7 @@ import type { TransactionCardProps } from "./TransactionCard.props";
 import { useStyles } from "./TransactionCard.styles";
 
 export const TransactionCard: FC<TransactionCardProps> = ({ transaction, onPress }) => {
-  const styles = useStyles();
+  const styles = useStyles(transaction.category.highlightColor);
 
   const prefix = transaction.type === TransactionType.INCOME ? "+" : "-";
 
@@ -24,8 +25,15 @@ export const TransactionCard: FC<TransactionCardProps> = ({ transaction, onPress
         ]
       }}
     >
-      <View style={styles.image}>
-        <Text style={styles.image__text}>20</Text>
+      <View style={styles.icon}>
+        <Text style={styles.icon__inline}>
+          <Icon
+            name={
+              transaction.category.iconName
+            }
+            size={20}
+          />
+        </Text>
       </View>
 
       <View style={styles.transaction}>

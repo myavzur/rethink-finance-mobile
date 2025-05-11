@@ -1,6 +1,6 @@
 type WhiteShades = 1000;
 type GrayShades = 1100 | 1000;
-type AccentShades = 1000;
+type AccentShades = 1000 | "glassed-1000";
 
 export interface ColorPalette {
 	white: Record<WhiteShades, string>;

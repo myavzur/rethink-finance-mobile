@@ -15,10 +15,8 @@ const transactions: { transactions: Transaction[]; title: string }[] = [
       },
       category: {
         id: `342-${value}`,
-        config: {
-          highlight: "blue",
-          icon: "map",
-        },
+        highlightColor: "AMETHYST",
+        iconName: "activity",
         name: "Еда",
         transactions: [],
       },
@@ -38,10 +36,8 @@ const transactions: { transactions: Transaction[]; title: string }[] = [
       },
       category: {
         id: `342-${value}`,
-        config: {
-          highlight: "blue",
-          icon: "map",
-        },
+        highlightColor: "ROYAL_BLUE",
+        iconName: "bookmark",
         name: "Еда",
         transactions: [],
       },
@@ -61,10 +57,8 @@ const transactions: { transactions: Transaction[]; title: string }[] = [
       },
       category: {
         id: `342-${value}`,
-        config: {
-          highlight: "blue",
-          icon: "map",
-        },
+        highlightColor: "HOT_PINK",
+        iconName: "award",
         name: "Еда",
         transactions: [],
       },

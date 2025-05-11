@@ -4,7 +4,6 @@ import FeatherIcons from "@expo/vector-icons/Feather";
 import type { FC } from "react";
 import { type IconProps } from "./Icon.props";
 
-
 /**
  * An icon component that uses native SF Symbols on iOS, and Material Icons on Android and web.
  * This ensures a consistent look across platforms, and optimal resource usage.

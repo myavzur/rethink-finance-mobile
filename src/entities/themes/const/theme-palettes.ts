@@ -1,5 +1,8 @@
 import type { IThemePalettes } from "../types";
 
+const accentColor = "#F54298";
+const accentBackgroundColor = "#ff2c5e36";
+
 export const ThemePalettes: IThemePalettes = {
 	winter: {
 		white: {
@@ -10,7 +13,8 @@ export const ThemePalettes: IThemePalettes = {
 			1000: "#ADADAD",
 		},
 		accent: {
-			1000: "#F54298",
+			1000: accentColor,
+			"glassed-1000": accentBackgroundColor
 		}
 	},
 	eclipse: {
@@ -22,7 +26,8 @@ export const ThemePalettes: IThemePalettes = {
 			1000: "#ADADAD",
 		},
 		accent: {
-			1000: "#F54298",
+			1000: accentColor,
+			"glassed-1000": accentBackgroundColor
 		}
 	}
 } as const;
