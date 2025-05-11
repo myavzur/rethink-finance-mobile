@@ -4,9 +4,10 @@
     "strict": true,
     "paths": {
       "@/*": [
-        "./*"
+        "./src/*"
       ]
-    }
+    },
+    "verbatimModuleSyntax": true
   },
   "include": [
     "**/*.ts",

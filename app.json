@@ -1,11 +1,11 @@
 {
   "expo": {
     "name": "Rethink Finance",
-    "slug": "rethink-finance-mobile",
+    "slug": "rethink-finance",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "rethinkfinancemobile",
+    "scheme": "rethinkfinance",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -32,6 +32,108 @@
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
+        }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            {
+              "fontFamily": "Montserrat",
+              "fontDefinitions": [
+                {
+                  "path": "./assets/fonts/Montserrat-Black.otf",
+                  "weight": 900,
+                  "style": "normal"
+                },
+                {
+                  "path": "./assets/fonts/Montserrat-BlackItalic.otf",
+                  "weight": 900,
+                  "style": "italic"
+                },
+                {
+                  "path": "./assets/fonts/Montserrat-Bold.otf",
+                  "weight": 700,
+                  "style": "normal"
+                },
+                {
+                  "path": "./assets/fonts/Montserrat-BoldItalic.otf",
+                  "weight": 700,
+                  "style": "italic"
+                },
+                {
+                  "path": "./assets/fonts/Montserrat-ExtraBold.otf",
+                  "weight": 800,
+                  "style": "normal"
+                },
+                {
+                  "path": "./assets/fonts/Montserrat-ExtraBoldItalic.otf",
+                  "weight": 800,
+                  "style": "italic"
+                },
+                {
+                  "path": "./assets/fonts/Montserrat-ExtraLight.otf",
+                  "weight": 200,
+                  "style": "normal"
+                },
+                {
+                  "path": "./assets/fonts/Montserrat-ExtraLightItalic.otf",
+                  "weight": 200,
+                  "style": "italic"
+                },
+                {
+                  "path": "./assets/fonts/Montserrat-Italic.otf",
+                  "weight": 400,
+                  "style": "italic"
+                },
+                {
+                  "path": "./assets/fonts/Montserrat-Light.otf",
+                  "weight": 300,
+                  "style": "normal"
+                },
+                {
+                  "path": "./assets/fonts/Montserrat-LightItalic.otf",
+                  "weight": 300,
+                  "style": "italic"
+                },
+                {
+                  "path": "./assets/fonts/Montserrat-Medium.otf",
+                  "weight": 500,
+                  "style": "normal"
+                },
+                {
+                  "path": "./assets/fonts/Montserrat-MediumItalic.otf",
+                  "weight": 500,
+                  "style": "italic"
+                },
+                {
+                  "path": "./assets/fonts/Montserrat-Regular.otf",
+                  "weight": 400,
+                  "style": "normal"
+                },
+                {
+                  "path": "./assets/fonts/Montserrat-SemiBold.otf",
+                  "weight": 600,
+                  "style": "normal"
+                },
+                {
+                  "path": "./assets/fonts/Montserrat-SemiBoldItalic.otf",
+                  "weight": 600,
+                  "style": "italic"
+                },
+                {
+                  "path": "./assets/fonts/Montserrat-Thin.otf",
+                  "weight": 100,
+                  "style": "normal"
+                },
+                {
+                  "path": "./assets/fonts/Montserrat-ThinItalic.otf",
+                  "weight": 100,
+                  "style": "italic"
+                }
+              ]
+            }
+          ]
         }
       ]
     ],

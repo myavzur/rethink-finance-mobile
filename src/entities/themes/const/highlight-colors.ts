@@ -3,4 +3,4 @@ export const HighlightColors = {
 		primary: "#42B5F5",
 		dimmed: "#E3FAFD"
 	}
-};
+} as const;

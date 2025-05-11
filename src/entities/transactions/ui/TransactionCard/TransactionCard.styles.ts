@@ -1,11 +1,10 @@
-import { Borders } from "@/src/shared/const/Borders";
-import { Colors } from "@/src/shared/const/Colors";
-import { FontSizes } from "@/src/shared/const/FontSizes";
-import { Gaps } from "@/src/shared/const/Gaps";
-import { HighlightColors } from "@/src/shared/const/HighlightColors";
-import { StyleSheet } from "react-native";
+import { useThemeStyles } from "@/entities/themes/lib/hooks/use-theme-styles";
+import { Borders } from "@/shared/const/borders";
+import { FontSizes } from "@/shared/const/font-sizes";
+import { FontWeights } from "@/shared/const/font-weights";
+import { Gaps } from "@/shared/const/gaps";
 
-export const styles = StyleSheet.create({
+export const useStyles = () => useThemeStyles((theme) => ({
   card: {
     flexDirection: "row",
     flex: 1,
@@ -16,48 +15,40 @@ export const styles = StyleSheet.create({
     fontSize: FontSizes.s12,
     borderRadius: Borders.b10
   },
-
   card_active: {
-    backgroundColor: HighlightColors.blue.dimmed
+    backgroundColor: theme.highlights.blue.dimmed
   },
-
   image: {
     aspectRatio: "1 / 1",
     width: 40,
     height: "auto",
-    backgroundColor: HighlightColors.blue.dimmed,
+    backgroundColor: theme.highlights.blue.dimmed,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: Borders.full,
   },
-
   image__text: {
-    color: HighlightColors.blue.primary,
+    color: theme.highlights.blue.primary,
   },
-
   transaction: {
     flexGrow: 1,
   },
-
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
   },
-
   header__title: {
     fontSize: FontSizes.s14,
-    fontWeight: 600,
+    fontWeight: FontWeights.w600,
   },
-
   header__amount: {
     fontSize: FontSizes.s14,
     fontWeight: 500,
   },
-
   footer: {
     fontSize: FontSizes.s12,
-    color: Colors.gray1000,
+    color: theme.colors.gray[1000],
     marginTop: 1,
     fontWeight: 400,
   },
-});
+}));

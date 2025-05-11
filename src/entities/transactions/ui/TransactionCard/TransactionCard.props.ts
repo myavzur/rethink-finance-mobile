@@ -1,5 +1,5 @@
-import { Transaction } from "@/src/entities/transactions/types";
-import { ValueOf } from "@/src/shared/types/value-of";
+import { Transaction } from "@/entities/transactions/types";
+import { ValueOf } from "@/shared/types/util.types";
 
 export const TransactionType = {
 	EXPENSE: 0,
@@ -10,5 +10,5 @@ export type ITransactionType = ValueOf<typeof TransactionType>;
 
 export interface TransactionCardProps {
 	transaction: Transaction;
-	onClick: (transaction: Transaction) => void;
+	onPress: (transaction: Transaction) => void;
 }

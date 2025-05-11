@@ -1,4 +1,4 @@
-import { ValueOf } from "@/src/shared/types/value-of";
+import { ValueOf } from "@/shared/types/util.types";
 
 /** ISO 4217 */
 export const Currency = {

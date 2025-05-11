@@ -3,4 +3,4 @@ export const Gaps = {
 	g10: 10,
 	g15: 15,
 	g20: 20
-}
+} as const;

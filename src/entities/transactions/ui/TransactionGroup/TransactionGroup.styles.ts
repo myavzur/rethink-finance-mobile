@@ -1,24 +1,21 @@
-import { Colors } from "@/src/shared/const/Colors";
-import { FontSizes } from "@/src/shared/const/FontSizes";
-import { Gaps } from "@/src/shared/const/Gaps";
-import { StyleSheet } from "react-native";
+import { useThemeStyles } from "@/entities/themes/lib/hooks/use-theme-styles";
+import { FontSizes } from "@/shared/const/font-sizes";
+import { Gaps } from "@/shared/const/gaps";
 
-export const styles = StyleSheet.create({
+export const useStyles = () => useThemeStyles((theme) => ({
 	header: {
 		flex: 1,
 		flexDirection: "row",
 		justifyContent: "space-between",
 		marginBottom: Gaps.g10,
 	},
-
 	date: {
 		fontSize: FontSizes.s16,
 		fontWeight: 600,
 	},
-
 	amount: {
 		fontSize: FontSizes.s16,
 		fontWeight: 500,
-		color: Colors.gray1000
+		color: theme.colors.gray[1000]
 	},
-});
+}));

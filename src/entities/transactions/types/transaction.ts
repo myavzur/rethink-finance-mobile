@@ -1,6 +1,6 @@
-import { Amount } from "@/src/entities/amount/types";
-import { ValueOf } from "@/src/shared/types/value-of";
-import { Category } from "./category";
+import type { Amount } from "@/entities/amounts/types";
+import type { ValueOf } from "@/shared/types/util.types";
+import type { Category } from "./category";
 
 export const TransactionType = {
 	INCOME: 1,
