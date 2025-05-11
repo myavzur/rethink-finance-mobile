@@ -1,8 +1,5 @@
-import type { FC } from "react";
-import { Text, View } from "react-native";
+import { Text } from "react-native";
 
-export const transaction: FC = () => {
-	return (
-		<View><Text>Fuck</Text></View>
-	)
-};
+export default function TransactionScreen() {
+	return <Text>Transaction</Text>
+}

@@ -10,7 +10,7 @@ export const TransactionCard: FC<TransactionCardProps> = ({ transaction, onPress
   const styles = useStyles(transaction.category.highlightColor);
 
   const handlePress = () => {
-    onPress(transaction);
+    onPress?.(transaction);
   };
 
   return (

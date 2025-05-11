@@ -1,21 +1,11 @@
 import { useTheme } from "@/entities/themes/lib/hooks";
-import type { BottomTabNavigationOptions } from "@react-navigation/bottom-tabs";
 import { PlatformPressable, Text } from "@react-navigation/elements";
 import { useLinkBuilder } from "@react-navigation/native";
 import { useMemo, type FC } from "react";
 import { View } from "react-native";
+import { getTabLabelFromOptions } from "../../lib/utils";
 import type { TabBarProps } from "./TabBar.props";
 import { useStyles } from "./TabBar.styles";
-
-const getLabelFromOptions = (
-  options: BottomTabNavigationOptions,
-  fallback = "NONE"
-) => {
-  if (options.tabBarLabel !== undefined) return options.tabBarLabel;
-  if (options.title !== undefined) return options.title;
-
-  return fallback;
-};
 
 export const TabBar: FC<TabBarProps> = ({ state, descriptors, navigation }) => {
   const { buildHref } = useLinkBuilder();
@@ -37,7 +27,7 @@ export const TabBar: FC<TabBarProps> = ({ state, descriptors, navigation }) => {
         const { options } = descriptors[route.key];
 
         const isFocused = state.index === index;
-        const label = getLabelFromOptions(options, route.name);
+        const label = getTabLabelFromOptions(options, route.name);
 
         const handlePress = () => {
           const event = navigation.emit({

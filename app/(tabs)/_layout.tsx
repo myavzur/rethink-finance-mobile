@@ -1,6 +1,6 @@
 import { useTheme } from "@/entities/themes/lib/hooks";
+import { TabBar } from "@/features/tab-bar/ui";
 import { Gaps } from "@/shared/const";
-import { TabBar } from "@/shared/ui";
 import { Icon } from "@/shared/ui/Icon";
 import { Tabs } from "expo-router";
 import React from "react";
@@ -26,7 +26,6 @@ export default function TabLayout() {
         </View>
       )}
       screenOptions={{
-        tabBarActiveTintColor: theme.colors.accent[1000],
         headerShown: false,
       }}
     >

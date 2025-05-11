@@ -1,4 +1,5 @@
 import { Amount } from "@/entities/amounts/ui";
+import { useRouter } from "expo-router";
 import { type FC, useMemo } from "react";
 import { Text, View } from "react-native";
 import { TransactionType } from "../../types";
@@ -10,6 +11,7 @@ export const TransactionGroup: FC<TransactionGroupProps> = ({
   title,
   transactions,
 }) => {
+  const router = useRouter();
   const styles = useStyles();
 
   const deltaAmount = useMemo(() => {
@@ -26,6 +28,10 @@ export const TransactionGroup: FC<TransactionGroupProps> = ({
 
   const deltaAmountPrefix =
     deltaAmount > 0 ? "+" : deltaAmount < 0 ? "-" : null;
+
+    const handlePress = () => {
+      router.push("/transaction")
+    };
 
   return (
     <View>
@@ -49,7 +55,7 @@ export const TransactionGroup: FC<TransactionGroupProps> = ({
           <TransactionCard
             key={transaction.id}
             transaction={transaction}
-            onPress={console.log}
+            onPress={handlePress}
           />
         ))}
       </View>
