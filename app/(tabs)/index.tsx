@@ -73,20 +73,19 @@ const transactions: { transactions: Transaction[]; title: string }[] = [
 export default function Tab() {
   return (
     <MainLayout>
-          <FlatList
-      showsVerticalScrollIndicator={false}
-      showsHorizontalScrollIndicator={false}
-      contentContainerStyle={{ gap: 15 }}
-      data={transactions}
-      keyExtractor={(group) => group.title}
-      renderItem={(groups) => (
-        <TransactionGroup
-          title={groups.item.title}
-          transactions={groups.item.transactions}
-        />
-      )}
-    />
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={{ gap: 15 }}
+        data={transactions}
+        keyExtractor={(group) => group.title}
+        renderItem={(groups) => (
+          <TransactionGroup
+            title={groups.item.title}
+            transactions={groups.item.transactions}
+          />
+        )}
+      />
     </MainLayout>
   );
 }
-

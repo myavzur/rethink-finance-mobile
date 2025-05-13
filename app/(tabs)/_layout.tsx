@@ -1,3 +1,4 @@
+import { useTheme } from "@/entities/themes/lib/hooks";
 import { Icon } from "@/shared/ui/Icon";
 import { TabBar } from "@/widgets/tab-bar/ui";
 import { Tabs } from "expo-router";
@@ -6,11 +7,15 @@ import React from "react";
 const ICON_SIZE = 23;
 
 export default function TabLayout() {
+  const theme = useTheme();
+
   return (
     <Tabs
       tabBar={(props) => <TabBar {...props} />}
       screenOptions={{
-        animation: "shift",
+        sceneStyle: {
+          backgroundColor: theme.colors.white[1000],
+        },
         headerShown: false,
       }}
     >

@@ -9,7 +9,7 @@ export const useStyles = () => {
     layout: {
       minHeight: dimensions.height,
       paddingHorizontal: Gaps.g20,
-      paddingBottom: 120,
+      paddingBottom: 100,
       backgroundColor: theme.colors.white[1000],
     },
   }));
