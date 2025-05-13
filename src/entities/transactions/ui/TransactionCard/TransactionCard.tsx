@@ -6,29 +6,26 @@ import { getTransactionSymbol } from "../../lib/utils";
 import type { TransactionCardProps } from "./TransactionCard.props";
 import { useStyles } from "./TransactionCard.styles";
 
-export const TransactionCard: FC<TransactionCardProps> = ({ transaction, onPress }) => {
-  const styles = useStyles(transaction.category.highlightColor);
+export const TransactionCard: FC<TransactionCardProps> = ({
+  transaction,
+  onPress,
+}) => {
+  const styles = useStyles(transaction.category.highlight_color);
 
   const handlePress = () => {
-    onPress?.(transaction);
+    onPress?.();
   };
 
   return (
     <Pressable
       onPress={handlePress}
       style={({ pressed }) => {
-        return [
-          styles.card,
-          pressed && styles.card_active
-        ]
+        return [styles.card, pressed && styles.card_active];
       }}
     >
       <View style={styles.icon}>
         <Text style={styles.icon__inline}>
-          <Icon
-            name={transaction.category.iconName}
-            size={20}
-          />
+          <Icon name={transaction.category.icon_name} size={20} />
         </Text>
       </View>
 
@@ -39,7 +36,11 @@ export const TransactionCard: FC<TransactionCardProps> = ({ transaction, onPress
           <Text style={styles.header__amount}>
             {getTransactionSymbol(transaction.type)}
 
-            <Amount amount={transaction.amount} locale="ru-RU" />
+            <Amount
+              value={transaction.amount_value}
+              currency={transaction.amount_currency}
+              locale="ru-RU"
+            />
           </Text>
         </View>
 

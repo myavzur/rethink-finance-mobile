@@ -1,22 +1,19 @@
-import type { Amount } from "@/entities/amounts/types";
+import type { AmountValue, ICurrency } from "@/entities/amounts/types";
 import type { ValueOf } from "@/shared/types/util.types";
+import type { TransactionType } from "../const";
 import type { Category } from "./category";
-
-export const TransactionType = {
-	INCOME: 1,
-	EXPENSE: 0,
-} as const;
 
 export type ITransactionType = ValueOf<typeof TransactionType>;
 
 export interface Transaction {
 	id: string;
 	name: string;
+	created_at: string;
 	description?: string;
 	type: ITransactionType,
-	amount: Amount;
+	amount_value: AmountValue;
+	amount_currency: ICurrency;
 	category: Category;
-	created_at: string;
 }
 
 interface Schedule {

@@ -2,7 +2,7 @@ import { Amount } from "@/entities/amounts/ui";
 import { useRouter } from "expo-router";
 import { type FC, useMemo } from "react";
 import { Text, View } from "react-native";
-import { TransactionType } from "../../types";
+import { TransactionType } from "../../const";
 import { TransactionCard } from "../TransactionCard";
 import type { TransactionGroupProps } from "./TransactionGroup.props";
 import { useStyles } from "./TransactionGroup.styles";
@@ -17,9 +17,9 @@ export const TransactionGroup: FC<TransactionGroupProps> = ({
   const deltaAmount = useMemo(() => {
     return transactions.reduce((sum, cur) => {
       if (cur.type === TransactionType.INCOME) {
-        sum += cur.amount.amount;
+        sum += cur.amount_value;
       } else {
-        sum -= cur.amount.amount;
+        sum -= cur.amount_value;
       }
 
       return sum;
@@ -29,9 +29,9 @@ export const TransactionGroup: FC<TransactionGroupProps> = ({
   const deltaAmountPrefix =
     deltaAmount > 0 ? "+" : deltaAmount < 0 ? "-" : null;
 
-    const handlePress = () => {
-      router.push("/transaction")
-    };
+  const handlePress = () => {
+    router.push("/transaction");
+  };
 
   return (
     <View>
@@ -40,13 +40,7 @@ export const TransactionGroup: FC<TransactionGroupProps> = ({
         <Text style={styles.amount}>
           {deltaAmountPrefix}
 
-          <Amount
-            amount={{
-              amount: deltaAmount,
-              currency: "RUB",
-            }}
-            locale="ru-RU"
-          />
+          <Amount value={deltaAmount} currency="RUB" locale="ru-RU" />
         </Text>
       </View>
 

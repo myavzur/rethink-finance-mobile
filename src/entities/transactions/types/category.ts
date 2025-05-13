@@ -4,6 +4,6 @@ import type { IconName } from "@/shared/ui";
 export interface Category {
 	id: string;
 	name: string;
-	iconName: IconName;
-	highlightColor: HighlightColor;
+	icon_name: IconName;
+	highlight_color: HighlightColor;
 }

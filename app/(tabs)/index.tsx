@@ -9,14 +9,12 @@ const transactions: { transactions: Transaction[]; title: string }[] = [
     title: "Сегодня",
     transactions: range(0, 4).map((value) => ({
       id: `sol-${value}`,
-      amount: {
-        amount: 150 * value,
-        currency: "RUB",
-      },
+      amount_value: 15 * value,
+      amount_currency: "RUB",
       category: {
         id: `342-${value}`,
-        highlightColor: "AMETHYST",
-        iconName: "activity",
+        highlight_color: "AMETHYST",
+        icon_name: "activity",
         name: "Еда",
         transactions: [],
       },
@@ -30,14 +28,12 @@ const transactions: { transactions: Transaction[]; title: string }[] = [
     title: "Вчера",
     transactions: range(0, 3).map((value) => ({
       id: `sol-${value}`,
-      amount: {
-        amount: 15 * value,
-        currency: "RUB",
-      },
+      amount_value: 15 * value,
+      amount_currency: "RUB",
       category: {
         id: `342-${value}`,
-        highlightColor: "ROYAL_BLUE",
-        iconName: "bookmark",
+        highlight_color: "ROYAL_BLUE",
+        icon_name: "bookmark",
         name: "Еда",
         transactions: [],
       },
@@ -51,14 +47,12 @@ const transactions: { transactions: Transaction[]; title: string }[] = [
     title: "5 Марта",
     transactions: range(0, 2).map((value) => ({
       id: `sol-${value}`,
-      amount: {
-        amount: 15 * value,
-        currency: "RUB",
-      },
+      amount_value: 15 * value,
+      amount_currency: "RUB",
       category: {
         id: `342-${value}`,
-        highlightColor: "HOT_PINK",
-        iconName: "award",
+        highlight_color: "HOT_PINK",
+        icon_name: "award",
         name: "Еда",
         transactions: [],
       },
