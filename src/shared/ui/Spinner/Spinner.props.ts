@@ -1,3 +1,5 @@
+import type { ActivityIndicatorProps } from "react-native";
+
 export interface SpinnerProps {
-	size: "tiny" | "small" | "medium" | "large" | "giant";
+	size: ActivityIndicatorProps['size'];
 }

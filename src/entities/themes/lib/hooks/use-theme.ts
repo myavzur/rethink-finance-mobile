@@ -1,12 +1,12 @@
 import { useMemo } from "react";
-import { HighlightColors, ThemePalettes } from "../../const";
+import { HighlightColor, ThemePalettes } from "../../const";
 
 export const useTheme = () => {
 	const theme = useMemo(() => {
 		return {
 			name: "Winter",
 			colors: ThemePalettes["winter"],
-			highlights: HighlightColors
+			highlights: HighlightColor
 		};
 	}, []);
 

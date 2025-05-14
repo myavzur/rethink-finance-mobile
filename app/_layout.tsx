@@ -2,7 +2,7 @@ import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
 import { useDrizzleStudio } from "expo-drizzle-studio-plugin";
 import { Stack } from "expo-router";
 
-import { database, DATABASE_NAME, databaseStudio } from "@/shared/db/database";
+import { databaseRepository } from "@/shared/database/repositories/database.repository";
 import { SQLiteProvider } from "expo-sqlite";
 import { Suspense } from "react";
 import { ActivityIndicator, Text, View } from "react-native";
@@ -13,8 +13,8 @@ const STACK_OPTIONS = {
 };
 
 export default function RootLayout() {
-  const { success, error } = useMigrations(database, migrations);
-  useDrizzleStudio(databaseStudio);
+  const { success, error } = useMigrations(databaseRepository.db, migrations);
+  useDrizzleStudio(databaseRepository.expoDb);
 
   if (error) {
     return (
@@ -30,13 +30,14 @@ export default function RootLayout() {
   return (
     <Suspense fallback={<ActivityIndicator size="large" />}>
       <SQLiteProvider
-        databaseName={DATABASE_NAME}
+        databaseName={databaseRepository.DATABASE_NAME}
         options={{ enableChangeListener: true }}
         useSuspense={true}
       >
         <Stack>
           <Stack.Screen name="(tabs)" options={STACK_OPTIONS} />
           <Stack.Screen name="transaction" options={STACK_OPTIONS} />
+          <Stack.Screen name="admin" options={STACK_OPTIONS} />
           <Stack.Screen name="+not-found" />
         </Stack>
       </SQLiteProvider>

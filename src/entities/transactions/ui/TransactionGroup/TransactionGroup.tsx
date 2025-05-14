@@ -1,8 +1,8 @@
-import { Amount } from "@/entities/amounts/ui";
+import { TransactionType } from "@/shared/database/schemas/transactions.schema";
 import { useRouter } from "expo-router";
 import { type FC, useMemo } from "react";
 import { Text, View } from "react-native";
-import { TransactionType } from "../../const";
+import { Amount } from "../Amount";
 import { TransactionCard } from "../TransactionCard";
 import type { TransactionGroupProps } from "./TransactionGroup.props";
 import { useStyles } from "./TransactionGroup.styles";

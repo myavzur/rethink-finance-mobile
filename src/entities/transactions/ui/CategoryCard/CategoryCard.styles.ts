@@ -1,27 +1,33 @@
-import type { HighlightColor } from "@/entities/themes/const";
+import { HighlightColor, type IHighlightColor } from "@/entities/themes/const";
 import { useThemeStyles } from "@/entities/themes/lib/hooks";
-import { Borders, Gaps } from "@/shared/const";
+import { Borders, FontSizes, FontWeights, Gaps } from "@/shared/const";
 
-export const useStyles = (highlightColor: HighlightColor) => useThemeStyles((theme) => {
-	const highlight = theme.highlights[highlightColor] ?? "ELECTRIC_GREEN";
+export const useStyles = (highlightColor: IHighlightColor) => useThemeStyles((theme) => {
+  const highlight = theme.highlights[highlightColor] ?? HighlightColor.ELECTRIC_GREEN;
 
-	return {
-		card: {
-      gap: Gaps.g10,
+  return {
+    card: {
       flexDirection: "row",
+      flex: 1,
       alignItems: "center",
-		},
-    icon: {
-      aspectRatio: "1 / 1",
-      width: 40,
-      height: "auto",
-      backgroundColor: highlight.dimmed,
-      alignItems: "center",
-      justifyContent: "center",
-      borderRadius: Borders.full,
+      paddingHorizontal: Gaps.g15,
+      paddingVertical: Gaps.g10,
+      gap: Gaps.g10,
+      fontSize: FontSizes.s12,
+      borderRadius: Borders.b10
     },
-    icon__inline: {
-      color: highlight.primary,
+    card_active: {
+      backgroundColor: highlight.dimmed
     },
-	};
+    name: {
+      fontSize: FontSizes.s14,
+      fontWeight: FontWeights.regular
+    },
+    action: {
+      marginLeft: "auto"
+    },
+    action__icon: {
+      color: theme.highlights.FIRE_ENGINE_RED.primary,
+    }
+  }
 });

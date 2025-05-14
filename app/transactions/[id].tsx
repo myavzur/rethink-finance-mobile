@@ -1,6 +1,4 @@
-import type { FC } from "react";
-
-export const TransactionRoute: FC = () => {
+export default function TransactionScreen() {
 	return (
 		<div>[id]</div>
 	)

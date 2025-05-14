@@ -1,12 +1,12 @@
-import type { HighlightColor } from "@/entities/themes/const";
+import { HighlightColor, type IHighlightColor } from "@/entities/themes/const";
 import { useThemeStyles } from "@/entities/themes/lib/hooks/use-theme-styles";
 import { Borders } from "@/shared/const/borders";
 import { FontSizes } from "@/shared/const/font-sizes";
 import { FontWeights } from "@/shared/const/font-weights";
 import { Gaps } from "@/shared/const/gaps";
 
-export const useStyles = (highlightColor: HighlightColor) => useThemeStyles((theme) => {
-  const highlight = theme.highlights[highlightColor] ?? "ELECTRIC_GREEN";
+export const useStyles = (highlightColor: IHighlightColor) => useThemeStyles((theme) => {
+  const highlight = theme.highlights[highlightColor] ?? HighlightColor.ELECTRIC_GREEN;
 
   return {
     card: {
@@ -21,18 +21,6 @@ export const useStyles = (highlightColor: HighlightColor) => useThemeStyles((the
     },
     card_active: {
       backgroundColor: highlight.dimmed
-    },
-    icon: {
-      aspectRatio: "1 / 1",
-      width: 40,
-      height: "auto",
-      backgroundColor: highlight.dimmed,
-      alignItems: "center",
-      justifyContent: "center",
-      borderRadius: Borders.full,
-    },
-    icon__inline: {
-      color: highlight.primary,
     },
     transaction: {
       flexGrow: 1,

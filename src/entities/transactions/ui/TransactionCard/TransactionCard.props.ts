@@ -1,4 +1,3 @@
-import type { Transaction } from "@/entities/transactions/types";
 import type { ValueOf } from "@/shared/types/util.types";
 
 export const TransactionType = {
@@ -10,6 +9,7 @@ export type ITransactionType = ValueOf<typeof TransactionType>;
 
 export interface TransactionCardProps {
 	transaction: Transaction;
+
 	onLongPress?: () => void;
 	onPress?: () => void;
 }

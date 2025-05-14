@@ -1,0 +1,15 @@
+ORDER BY
+  CASE ID
+    WHEN 4 THEN 0
+    WHEN 3 THEN 1
+    WHEN 1 THEN 2
+    WHEN 5 THEN 3
+    WHEN 6 THEN 4
+  END
+
+
+ORDER BY ID=4 DESC,
+         ID=3 DESC,
+         ID=1 DESC,
+         ID=5 DESC,
+         ID=6 DESC

@@ -1,4 +1,4 @@
-export const HighlightColors = {
+export const HighlightColor = {
   ELECTRIC_GREEN: {
     primary: "#42F549",
     dimmed: "#E3FDF5",
@@ -77,4 +77,4 @@ export const HighlightColors = {
   },
 } as const;
 
-export type HighlightColor = keyof typeof HighlightColors;
+export type IHighlightColor = keyof typeof HighlightColor;

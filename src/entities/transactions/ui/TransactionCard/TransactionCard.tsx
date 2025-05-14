@@ -1,8 +1,8 @@
-import { Amount } from "@/entities/amounts/ui";
-import { Icon } from "@/shared/ui";
 import type { FC } from "react";
 import { Pressable, Text, View } from "react-native";
 import { getTransactionSymbol } from "../../lib/utils";
+import { Amount } from "../Amount";
+import { CategoryIcon } from "../CategoryIcon";
 import type { TransactionCardProps } from "./TransactionCard.props";
 import { useStyles } from "./TransactionCard.styles";
 
@@ -23,11 +23,10 @@ export const TransactionCard: FC<TransactionCardProps> = ({
         return [styles.card, pressed && styles.card_active];
       }}
     >
-      <View style={styles.icon}>
-        <Text style={styles.icon__inline}>
-          <Icon name={transaction.category.icon_name} size={20} />
-        </Text>
-      </View>
+      <CategoryIcon
+        iconName={transaction.category.icon_name}
+        highlightColor={transaction.category.highlight_color}
+      />
 
       <View style={styles.transaction}>
         <View style={styles.header}>
