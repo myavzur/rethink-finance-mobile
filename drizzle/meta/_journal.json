@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1747180606613,
+      "tag": "0000_brief_captain_stacy",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1747181772448,
+      "tag": "0001_striped_blob",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1747183383615,
+      "tag": "0002_handy_kat_farrell",
+      "breakpoints": true
+    }
+  ]
+}

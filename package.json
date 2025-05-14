@@ -3,7 +3,8 @@
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
-    "start": "expo start",
+    "drizzle:migrate": "npx drizzle-kit generate",
+    "start": "npm run drizzle:migrate && expo start",
     "reset-project": "node ./scripts/reset-project.js",
     "android": "expo start --android",
     "ios": "expo start --ios",
@@ -15,9 +16,12 @@
     "@react-navigation/bottom-tabs": "^7.3.10",
     "@react-navigation/elements": "^2.3.8",
     "@react-navigation/native": "^7.1.6",
+    "babel-plugin-inline-import": "^3.0.0",
+    "drizzle-orm": "^0.43.1",
     "expo": "~53.0.8",
     "expo-blur": "~14.1.4",
     "expo-constants": "~17.1.6",
+    "expo-drizzle-studio-plugin": "^0.1.2",
     "expo-font": "~13.3.1",
     "expo-haptics": "~14.1.4",
     "expo-image": "~2.1.7",
@@ -42,6 +46,7 @@
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@types/react": "~19.0.10",
+    "drizzle-kit": "^0.31.1",
     "eslint": "^9.25.0",
     "eslint-config-expo": "~9.2.0",
     "typescript": "~5.8.3"

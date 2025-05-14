@@ -1,7 +1,11 @@
 import type { Transaction } from "@/entities/transactions/types";
 import { TransactionGroup } from "@/entities/transactions/ui";
+import * as schema from "@/shared/db/schema";
 import { range } from "@/shared/lib/utils";
 import { MainLayout } from "@/shared/ui";
+import { drizzle } from "drizzle-orm/expo-sqlite";
+import { useSQLiteContext } from "expo-sqlite";
+import { useEffect } from "react";
 import { FlatList } from "react-native";
 
 const transactions: { transactions: Transaction[]; title: string }[] = [
@@ -65,6 +69,21 @@ const transactions: { transactions: Transaction[]; title: string }[] = [
 ];
 
 export default function Tab() {
+  const expoDb = useSQLiteContext();
+  const drizzleDb = drizzle(expoDb, {schema});
+
+  useEffect(() => {
+    const funk = async () => {
+      const r = await drizzleDb.query.categories.findMany();
+
+      for (const row of r) {
+        console.log(row);
+      }
+    }
+
+    funk();
+  }, []);
+
   return (
     <MainLayout>
       <FlatList
