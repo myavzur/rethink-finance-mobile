@@ -1,4 +1,4 @@
-import { FontSizes, FontWeights, Gaps } from "@/shared/const";
+import { Borders, FontSizes, FontWeights, Gaps } from "@/shared/const";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
@@ -8,11 +8,14 @@ export const styles = StyleSheet.create({
 	header: {
 		flexDirection: "row",
 		alignItems: "center",
-		gap: Gaps.g10
+		gap: Gaps.g10,
+		borderRadius: Borders.b10,
 	},
 	title: {
 		fontSize: FontSizes.s16,
 		fontWeight: FontWeights.bold
 	},
-	content: {}
+	content: {
+		marginTop: Gaps.g15
+	}
 });

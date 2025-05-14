@@ -1,13 +1,15 @@
 import type { ICurrency } from '@/entities/amounts/types';
+import type { HighlightColor } from '@/entities/themes/const';
 import type { ITransactionType } from '@/entities/transactions/ui';
 import * as t from 'drizzle-orm/sqlite-core';
 import { sqliteTable } from 'drizzle-orm/sqlite-core';
+import type { IconName } from '../ui';
 
 export const categories = sqliteTable('categories', {
 	id: t.integer().primaryKey({ autoIncrement: true }),
 	name: t.text().unique("category_name").notNull(),
-	icon_name: t.text().notNull(),
-	highlight_color: t.text().notNull(),
+	icon_name: t.text().notNull().$type<IconName>(),
+	highlight_color: t.text().notNull().$type<HighlightColor>(),
 });
 
 export const transactions = sqliteTable('transactions', {

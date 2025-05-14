@@ -1,9 +1,9 @@
-import { drizzle } from "drizzle-orm/expo-sqlite";
 import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
 import { useDrizzleStudio } from "expo-drizzle-studio-plugin";
 import { Stack } from "expo-router";
-import * as SQLite from "expo-sqlite";
 
+import { database, DATABASE_NAME, databaseStudio } from "@/shared/db/database";
+import { SQLiteProvider } from "expo-sqlite";
 import { Suspense } from "react";
 import { ActivityIndicator, Text, View } from "react-native";
 import migrations from "../drizzle/migrations";
@@ -12,14 +12,9 @@ const STACK_OPTIONS = {
   headerShown: false,
 };
 
-const DATABASE_NAME = "rethink.finances-1.0.0";
-
 export default function RootLayout() {
-  const expoDb = SQLite.openDatabaseSync(DATABASE_NAME);
-  const db = drizzle(expoDb);
-
-  const { success, error } = useMigrations(db, migrations);
-  useDrizzleStudio(expoDb);
+  const { success, error } = useMigrations(database, migrations);
+  useDrizzleStudio(databaseStudio);
 
   if (error) {
     return (
@@ -34,7 +29,7 @@ export default function RootLayout() {
 
   return (
     <Suspense fallback={<ActivityIndicator size="large" />}>
-      <SQLite.SQLiteProvider
+      <SQLiteProvider
         databaseName={DATABASE_NAME}
         options={{ enableChangeListener: true }}
         useSuspense={true}
@@ -44,7 +39,7 @@ export default function RootLayout() {
           <Stack.Screen name="transaction" options={STACK_OPTIONS} />
           <Stack.Screen name="+not-found" />
         </Stack>
-      </SQLite.SQLiteProvider>
+      </SQLiteProvider>
     </Suspense>
   );
 }

@@ -6,7 +6,7 @@ import type { Category } from "./category";
 export type ITransactionType = ValueOf<typeof TransactionType>;
 
 export interface Transaction {
-	id: string;
+	id: number;
 	name: string;
 	created_at: string;
 	description?: string;

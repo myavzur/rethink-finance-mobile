@@ -1,22 +1,18 @@
 import type { Transaction } from "@/entities/transactions/types";
 import { TransactionGroup } from "@/entities/transactions/ui";
-import * as schema from "@/shared/db/schema";
 import { range } from "@/shared/lib/utils";
 import { MainLayout } from "@/shared/ui";
-import { drizzle } from "drizzle-orm/expo-sqlite";
-import { useSQLiteContext } from "expo-sqlite";
-import { useEffect } from "react";
 import { FlatList } from "react-native";
 
 const transactions: { transactions: Transaction[]; title: string }[] = [
   {
     title: "Сегодня",
     transactions: range(0, 4).map((value) => ({
-      id: `sol-${value}`,
+      id: 1,
       amount_value: 15 * value,
       amount_currency: "RUB",
       category: {
-        id: `342-${value}`,
+        id: 1,
         highlight_color: "AMETHYST",
         icon_name: "activity",
         name: "Еда",
@@ -31,11 +27,11 @@ const transactions: { transactions: Transaction[]; title: string }[] = [
   {
     title: "Вчера",
     transactions: range(0, 3).map((value) => ({
-      id: `sol-${value}`,
+      id: 2,
       amount_value: 15 * value,
       amount_currency: "RUB",
       category: {
-        id: `342-${value}`,
+        id: 8765,
         highlight_color: "ROYAL_BLUE",
         icon_name: "bookmark",
         name: "Еда",
@@ -50,11 +46,11 @@ const transactions: { transactions: Transaction[]; title: string }[] = [
   {
     title: "5 Марта",
     transactions: range(0, 2).map((value) => ({
-      id: `sol-${value}`,
+      id: 4,
       amount_value: 15 * value,
       amount_currency: "RUB",
       category: {
-        id: `342-${value}`,
+        id: 6,
         highlight_color: "HOT_PINK",
         icon_name: "award",
         name: "Еда",
@@ -69,21 +65,6 @@ const transactions: { transactions: Transaction[]; title: string }[] = [
 ];
 
 export default function Tab() {
-  const expoDb = useSQLiteContext();
-  const drizzleDb = drizzle(expoDb, {schema});
-
-  useEffect(() => {
-    const funk = async () => {
-      const r = await drizzleDb.query.categories.findMany();
-
-      for (const row of r) {
-        console.log(row);
-      }
-    }
-
-    funk();
-  }, []);
-
   return (
     <MainLayout>
       <FlatList
