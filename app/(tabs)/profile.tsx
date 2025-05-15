@@ -5,5 +5,5 @@ export default function Tab() {
 		<View>
 			<Text>Profile!</Text>
 		</View>
-	)
+	);
 }

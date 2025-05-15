@@ -1,8 +1,8 @@
 # TO-DO
-- [ ] Configure and structure Drizzle ORM
-- - [ ] Make repositories for Category and Transaction
-- [ ] Configure Prettier
-- [ ] Configure Eslint
+- [x] Configure and structure Drizzle ORM
+- - [x] Make repositories for Category and Transaction
+- [x] Configure Prettier
+- [x] Configure Eslint
 - [ ] Keep doing things
 
 # Welcome to your Expo app 👋

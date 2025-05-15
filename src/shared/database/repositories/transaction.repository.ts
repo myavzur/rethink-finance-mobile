@@ -1,16 +1,17 @@
 import { desc, eq } from "drizzle-orm";
-import { transactions, type Transaction } from "../schemas";
+
+import { type Transaction, transactions } from "../schemas";
 import { databaseRepository } from "./database.repository";
 
 class TransactionRepository {
-  getAll = async () => {
-    return await databaseRepository.db.query.transactions.findMany({
+	getAll = async () => {
+		return await databaseRepository.db.query.transactions.findMany({
 			with: {
 				categories: true
 			},
 			orderBy: [desc(transactions.created_at)]
 		});
-  };
+	};
 
 	getById = async (id: Transaction["id"]) => {
 		const condition = eq(transactions.id, id);
@@ -19,19 +20,25 @@ class TransactionRepository {
 			with: {
 				categories: true
 			},
-			where: condition,
+			where: condition
 		});
 	};
 
-	create = async (transaction: Transaction) => {
-		return await databaseRepository.db.insert(transactions).values(transaction);
-	}
+	create = async (transaction: Partial<Transaction>) => {
+		try {
+			return await databaseRepository.db.insert(transactions).values({
+				...(transaction as Transaction)
+			});
+		} catch (e) {
+			console.log(e);
+		}
+	};
 
-  delete = async (id: Transaction["id"]) => {
-    const condition = eq(transactions.id, id);
+	delete = async (id: Transaction["id"]) => {
+		const condition = eq(transactions.id, id);
 
-    return await databaseRepository.db.delete(transactions).where(condition);
-  };
+		return await databaseRepository.db.delete(transactions).where(condition);
+	};
 }
 
 export const transactionRepository = new TransactionRepository();

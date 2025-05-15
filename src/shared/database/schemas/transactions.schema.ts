@@ -1,13 +1,15 @@
-import type { ValueOf } from '@/shared/types/util.types';
-import * as t from 'drizzle-orm/sqlite-core';
-import { sqliteTable } from 'drizzle-orm/sqlite-core';
+import { sql } from "drizzle-orm";
+import * as t from "drizzle-orm/sqlite-core";
+import { sqliteTable } from "drizzle-orm/sqlite-core";
 
-import { categories } from './categories.schema';
+import type { ValueOf } from "@/shared/types/util.types";
+
+import { categories } from "./categories.schema";
 
 // TransactionType
 export const TransactionType = {
 	INCOME: 1,
-	EXPENSE: 0,
+	EXPENSE: 0
 } as const;
 
 export type ITransactionType = ValueOf<typeof TransactionType>;
@@ -28,9 +30,12 @@ export const currencyOptions = [
 	{ value: Currency.EUR, label: "Евро" } as const
 ];
 
-export const transactions = sqliteTable('transactions', {
+export const transactions = sqliteTable("transactions", {
 	id: t.integer().primaryKey({ autoIncrement: true }),
-	created_at: t.integer({ mode: "timestamp_ms" }).notNull(),
+	created_at: t
+		.integer({ mode: "number" })
+		.notNull()
+		.default(sql`(unixepoch())`),
 
 	name: t.text().notNull(),
 	description: t.text(),
@@ -38,7 +43,7 @@ export const transactions = sqliteTable('transactions', {
 	amount_value: t.integer().notNull(),
 	amount_currency: t.text().notNull().$type<ICurrency>(),
 
-	category_id: t.integer().references(() => categories.id),
-})
+	category_id: t.integer().references(() => categories.id)
+});
 
 export type Transaction = typeof transactions.$inferSelect;

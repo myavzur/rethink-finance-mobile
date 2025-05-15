@@ -11,18 +11,18 @@ const getCpuUsage = () => {
 		const total = Object.values(cpu.times).reduce((acc, tv) => acc + tv, 0);
 		const usage = 100 - (100 * cpu.times.idle) / total;
 		return usage.toFixed(1);
-	})
-}
+	});
+};
 
 const getCpuTemp = async () => {
 	const { stdout } = await execAsync("vcgencmd measure_temp");
 
 	return parseFloat(stdout.replace("temp=", "").replace("'C", ""));
-}
+};
 
 const bytesToGb = (bytes: number) => {
 	return (bytes / (1024 * 1024 * 1024)).toFixed(2);
-}
+};
 
 export const getSystemDetails = async () => {
 	const cpuUsage = getCpuUsage();
@@ -42,5 +42,5 @@ export const getSystemDetails = async () => {
 			used: parseFloat(bytesToGb(usedMem)),
 			free: parseFloat(bytesToGb(freeMem))
 		}
-	}
-}
+	};
+};

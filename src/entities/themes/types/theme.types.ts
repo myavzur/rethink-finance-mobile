@@ -8,7 +8,10 @@ export interface ColorPalette {
 	accent: Record<AccentShades, string>;
 }
 
-export type ColorShade<P extends keyof ColorPalette> = Extract<keyof ColorPalette[P], number>;
+export type ColorShade<P extends keyof ColorPalette> = Extract<
+	keyof ColorPalette[P],
+	number
+>;
 export type ColorPath<P extends keyof ColorPalette> = `${P}-${ColorShade<P>}`;
 
 export interface IThemePalettes {

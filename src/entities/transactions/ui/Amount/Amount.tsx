@@ -1,5 +1,4 @@
 import type { FC } from "react";
-
 import { Text } from "react-native";
 
 import type { AmountProps } from "./Amount.props";

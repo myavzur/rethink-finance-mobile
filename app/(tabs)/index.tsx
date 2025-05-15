@@ -1,26 +1,23 @@
+import { useRouter } from "expo-router";
+
+import { TransactionList } from "@/features/transactions/ui";
+
 import { MainLayout } from "@/shared/ui";
-import { Link } from "expo-router";
+import { Button } from "@/shared/ui/Button/Button";
 
 export default function Tab() {
-  return (
-    <MainLayout>
-      <Link href="/admin">Admin</Link>
-    </MainLayout>
-  );
-}
+	const router = useRouter();
 
-/*
-  <FlatList
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ gap: 15 }}
-        data={transactions}
-        keyExtractor={(group) => group.title}
-        renderItem={(groups) => (
-          <TransactionGroup
-            title={groups.item.title}
-            transactions={groups.item.transactions}
-          />
-        )}
-      />
-      */
+	return (
+		<MainLayout>
+			<Button
+				kind="fill"
+				onPress={() => router.push("/admin")}
+			>
+				Admin Panel
+			</Button>
+
+			<TransactionList />
+		</MainLayout>
+	);
+}

@@ -1,5 +1,3 @@
 export default function TransactionScreen() {
-	return (
-		<div>[id]</div>
-	)
-};
+	return <div>[id]</div>;
+}

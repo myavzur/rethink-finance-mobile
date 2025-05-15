@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
-const CreateTransactionRoute = () => {
-	return (
-		<div>create</div>
-	)
-}
+const CreateTransactionScreen = () => {
+	return <div>create</div>;
+};
 
-export default CreateTransactionRoute
+export default CreateTransactionScreen;

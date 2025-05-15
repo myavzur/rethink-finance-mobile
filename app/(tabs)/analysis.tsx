@@ -5,5 +5,5 @@ export default function Tab() {
 		<View>
 			<Text>Analysis!</Text>
 		</View>
-	)
+	);
 }

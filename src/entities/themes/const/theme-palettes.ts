@@ -13,7 +13,7 @@ export const ThemePalettes: IThemePalettes = {
 		},
 		gray: {
 			1100: "#bbb5af",
-			1000: "#ADADAD",
+			1000: "#ADADAD"
 		},
 		accent: {
 			1000: accentColor,
@@ -26,7 +26,7 @@ export const ThemePalettes: IThemePalettes = {
 		},
 		gray: {
 			1100: "#bbb5af",
-			1000: "#ADADAD",
+			1000: "#ADADAD"
 		},
 		accent: {
 			1000: accentColor,

@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+
 import { HighlightColor, ThemePalettes } from "../../const";
 
 export const useTheme = () => {
@@ -11,6 +12,6 @@ export const useTheme = () => {
 	}, []);
 
 	return theme;
-}
+};
 
 export type UseThemeReturnType = ReturnType<typeof useTheme>;

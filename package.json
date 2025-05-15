@@ -5,10 +5,10 @@
   "scripts": {
     "drizzle:migrate": "npx drizzle-kit generate",
     "start": "npm run drizzle:migrate && expo start",
-    "reset-project": "node ./scripts/reset-project.js",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
+    "run:android": "expo start --android",
+    "run:ios": "expo start --ios",
+    "run:web": "expo start --web",
+    "format": "prettier --write \"src/**/*.{ts,tsx}\" \"app/**/*.{ts,tsx}\"",
     "lint": "expo lint"
   },
   "dependencies": {
@@ -21,7 +21,6 @@
     "expo": "~53.0.8",
     "expo-blur": "~14.1.4",
     "expo-constants": "~17.1.6",
-    "expo-drizzle-studio-plugin": "^0.1.2",
     "expo-font": "~13.3.1",
     "expo-haptics": "~14.1.4",
     "expo-image": "~2.1.7",
@@ -47,10 +46,12 @@
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/react": "~19.0.10",
     "drizzle-kit": "^0.31.1",
     "eslint": "^9.25.0",
-    "eslint-config-expo": "~9.2.0",
+    "eslint-plugin-react": "^7.37.5",
+    "prettier": "3.5.3",
     "typescript": "~5.8.3"
   },
   "private": true

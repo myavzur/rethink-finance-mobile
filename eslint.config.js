@@ -1,10 +1,24 @@
 // https://docs.expo.dev/guides/using-eslint/
-const { defineConfig } = require('eslint/config');
-const expoConfig = require('eslint-config-expo/flat');
+const { defineConfig } = require("eslint/config");
 
 module.exports = defineConfig([
-  expoConfig,
   {
-    ignores: ['dist/*'],
+    ignores: ["dist/*"],
+    plugins: {
+      "react": require("eslint-plugin-react"),
+    },
+    rules: {
+      // Запрещает `function`, требует стрелочную функцию
+      "react/function-component-definition": [
+        "error",
+        {
+          namedComponents: "arrow-function",
+          unnamedComponents: "arrow-function",
+        },
+      ],
+      "no-trailing-spaces": "error",
+      semi: ["error", "always"],
+      quotes: ["error", "double"],
+    },
   },
 ]);

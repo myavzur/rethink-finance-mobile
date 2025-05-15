@@ -1,5 +1,6 @@
-import { Borders, FontSizes, FontWeights, Gaps } from "@/shared/const";
 import { StyleSheet } from "react-native";
+
+import { Borders, FontSizes, FontWeights, Gaps } from "@/shared/const";
 
 export const styles = StyleSheet.create({
 	accordion: {
@@ -9,7 +10,7 @@ export const styles = StyleSheet.create({
 		flexDirection: "row",
 		alignItems: "center",
 		gap: Gaps.g10,
-		borderRadius: Borders.b10,
+		borderRadius: Borders.b10
 	},
 	title: {
 		fontSize: FontSizes.s16,
