@@ -1,3 +1,4 @@
+import type { Transaction } from "@/shared/database/schemas";
 import type { ValueOf } from "@/shared/types/util.types";
 
 export const TransactionType = {

@@ -4,8 +4,8 @@ import { type Category, categories } from "../schemas";
 import { databaseRepository } from "./database.repository";
 
 class CategoryRepository {
-	getAll = async () => {
-		return await databaseRepository.db.query.categories.findMany();
+	getAll = () => {
+		return databaseRepository.db.query.categories.findMany();
 	};
 
 	delete = async (id: Category["id"]) => {

@@ -1,27 +1,36 @@
-import { desc, eq } from "drizzle-orm";
+import { asc, eq, sql } from "drizzle-orm";
 
 import { type Transaction, transactions } from "../schemas";
 import { databaseRepository } from "./database.repository";
 
 class TransactionRepository {
-	getAll = async () => {
-		return await databaseRepository.db.query.transactions.findMany({
-			with: {
-				categories: true
-			},
-			orderBy: [desc(transactions.created_at)]
-		});
+	getAll = () => {
+		const order = asc(transactions.created_at);
+
+		return databaseRepository.db.select().from(transactions).orderBy(order);
 	};
 
-	getById = async (id: Transaction["id"]) => {
+	getById = (id: Transaction["id"]) => {
 		const condition = eq(transactions.id, id);
 
-		return await databaseRepository.db.query.transactions.findFirst({
+		return databaseRepository.db.query.transactions.findFirst({
 			with: {
 				categories: true
 			},
 			where: condition
 		});
+	};
+
+	getBetweenDates = (
+		startDate: Transaction["created_at"],
+		endDate: Transaction["created_at"]
+	) => {
+		const condition = sql`${transactions.created_at} BETWEEN ${startDate} AND ${endDate}`;
+
+		return databaseRepository.db
+			.select()
+			.from(transactions)
+			.where(condition);
 	};
 
 	create = async (transaction: Partial<Transaction>) => {

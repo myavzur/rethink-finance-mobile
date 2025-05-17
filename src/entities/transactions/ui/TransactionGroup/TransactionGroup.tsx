@@ -1,5 +1,5 @@
 import { useRouter } from "expo-router";
-import { type FC, useMemo } from "react";
+import { type FC } from "react";
 import { Text, View } from "react-native";
 
 import { TransactionType } from "@/shared/database/schemas/transactions.schema";
@@ -9,26 +9,9 @@ import { TransactionCard } from "../TransactionCard";
 import type { TransactionGroupProps } from "./TransactionGroup.props";
 import { useStyles } from "./TransactionGroup.styles";
 
-export const TransactionGroup: FC<TransactionGroupProps> = ({
-	title,
-	transactions
-}) => {
+export const TransactionGroup: FC<TransactionGroupProps> = ({ title, subtitle, transactions }) => {
 	const router = useRouter();
 	const styles = useStyles();
-
-	const deltaAmount = useMemo(() => {
-		return transactions.reduce((sum, cur) => {
-			if (cur.type === TransactionType.INCOME) {
-				sum += cur.amount_value;
-			} else {
-				sum -= cur.amount_value;
-			}
-
-			return sum;
-		}, 0);
-	}, [transactions]);
-
-	const deltaAmountPrefix = deltaAmount > 0 ? "+" : deltaAmount < 0 ? "-" : null;
 
 	const handlePress = () => {
 		router.push("/transaction");
@@ -38,12 +21,12 @@ export const TransactionGroup: FC<TransactionGroupProps> = ({
 		<View>
 			<View style={styles.header}>
 				<Text style={styles.date}>{title}</Text>
-				<Text style={styles.amount}>
-					{deltaAmountPrefix}
 
+				<Text style={styles.amount}>
 					<Amount
-						value={deltaAmount}
-						currency="RUB"
+						amount_value={1000}
+						amount_currency="RUB"
+						type={TransactionType.INCOME}
 						locale="ru-RU"
 					/>
 				</Text>

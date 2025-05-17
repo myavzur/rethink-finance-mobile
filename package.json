@@ -3,7 +3,7 @@
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
-    "drizzle:migrate": "npx drizzle-kit generate",
+    "drizzle:migrate": "drizzle-kit generate",
     "start": "npm run drizzle:migrate && expo start",
     "run:android": "expo start --android",
     "run:ios": "expo start --ios",
@@ -17,6 +17,7 @@
     "@react-navigation/elements": "^2.3.8",
     "@react-navigation/native": "^7.1.6",
     "babel-plugin-inline-import": "^3.0.0",
+    "dayjs": "^1.11.13",
     "drizzle-orm": "^0.43.1",
     "expo": "~53.0.8",
     "expo-blur": "~14.1.4",

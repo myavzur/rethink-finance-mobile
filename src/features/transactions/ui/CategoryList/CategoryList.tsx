@@ -4,8 +4,8 @@ import { FlatList, Text, View } from "react-native";
 
 import { CategoryCard } from "@/entities/transactions/ui/CategoryCard/CategoryCard";
 
-import { databaseRepository } from "@/shared/database/repositories/database.repository";
 
+import { categoryRepository } from "@/shared/database/repositories";
 import type { CategoryListProps } from "./CategoryList.props";
 import { useStyles } from "./CategoryList.styles";
 
@@ -13,7 +13,7 @@ export const CategoryList: FC<CategoryListProps> = ({ onSelect }) => {
 	const styles = useStyles();
 
 	const { data: categories } = useLiveQuery(
-		databaseRepository.db.query.categories.findMany()
+		categoryRepository.getAll()
 	);
 
 	return (

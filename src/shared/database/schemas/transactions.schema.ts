@@ -1,4 +1,4 @@
-import { sql } from "drizzle-orm";
+import { relations, sql } from "drizzle-orm";
 import * as t from "drizzle-orm/sqlite-core";
 import { sqliteTable } from "drizzle-orm/sqlite-core";
 
@@ -35,7 +35,7 @@ export const transactions = sqliteTable("transactions", {
 	created_at: t
 		.integer({ mode: "number" })
 		.notNull()
-		.default(sql`(unixepoch())`),
+		.default(sql`(unixepoch('subsec') * 1000)`),
 
 	name: t.text().notNull(),
 	description: t.text(),
@@ -43,7 +43,14 @@ export const transactions = sqliteTable("transactions", {
 	amount_value: t.integer().notNull(),
 	amount_currency: t.text().notNull().$type<ICurrency>(),
 
-	category_id: t.integer().references(() => categories.id)
+	category_id: t.integer().references(() => categories.id).notNull()
 });
+
+export const transactionsRelations = relations(transactions, ({ one }) => ({
+	category: one(categories, {
+		fields: [transactions.category_id],
+		references: [categories.id]
+	})
+}))
 
 export type Transaction = typeof transactions.$inferSelect;

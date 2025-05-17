@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "2f5817ea-eb27-4f72-8d1a-957a3cb80688",
+  "id": "e2597b7a-e0d7-4f25-b422-87bc246c075e",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "categories": {
@@ -36,7 +36,15 @@
           "autoincrement": false
         }
       },
-      "indexes": {},
+      "indexes": {
+        "category_name": {
+          "name": "category_name",
+          "columns": [
+            "name"
+          ],
+          "isUnique": true
+        }
+      },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
@@ -47,17 +55,18 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": true
         },
         "created_at": {
           "name": "created_at",
-          "type": "text",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": false,
+          "default": "(unixepoch('subsec') * 1000)"
         },
         "name": {
           "name": "name",
@@ -75,7 +84,7 @@
         },
         "type": {
           "name": "type",
-          "type": "integer",
+          "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -94,22 +103,22 @@
           "notNull": true,
           "autoincrement": false
         },
-        "categoryId": {
-          "name": "categoryId",
+        "category_id": {
+          "name": "category_id",
           "type": "integer",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": false
         }
       },
       "indexes": {},
       "foreignKeys": {
-        "transactions_categoryId_categories_id_fk": {
-          "name": "transactions_categoryId_categories_id_fk",
+        "transactions_category_id_categories_id_fk": {
+          "name": "transactions_category_id_categories_id_fk",
           "tableFrom": "transactions",
           "tableTo": "categories",
           "columnsFrom": [
-            "categoryId"
+            "category_id"
           ],
           "columnsTo": [
             "id"

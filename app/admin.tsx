@@ -2,30 +2,27 @@ import { useLiveQuery } from "drizzle-orm/expo-sqlite";
 import { useRouter } from "expo-router";
 import { ScrollView, Text } from "react-native";
 
-import { transactionRepository } from "@/shared/database/repositories";
-import { databaseRepository } from "@/shared/database/repositories/database.repository";
+import { formatCreatedAt } from "@/entities/transactions/lib/utils";
+import {
+	categoryRepository,
+	transactionRepository
+} from "@/shared/database/repositories";
 import { MainLayout } from "@/shared/ui";
 import { Button } from "@/shared/ui/Button/Button";
 
 export default function AdminScreen() {
 	const router = useRouter();
 
-	const { data: categories } = useLiveQuery(
-		databaseRepository.db.query.categories.findMany()
-	);
-
-	const { data: transactions } = useLiveQuery(
-		databaseRepository.db.query.transactions.findMany()
-	);
+	const { data: categories } = useLiveQuery(categoryRepository.getAll());
+	const { data: transactions } = useLiveQuery(transactionRepository.getAll());
 
 	const addTransaction = () => {
 		transactionRepository.create({
-			name: "Бургер",
-			amount_value: 69,
+			name: "ул. Зеленина 8",
+			amount_value: 5290,
 			amount_currency: "RUB",
-			description: "Курица",
 			type: 0,
-			category_id: 1
+			category_id: 2
 		});
 	};
 
@@ -51,7 +48,7 @@ export default function AdminScreen() {
 				{transactions?.map((transaction) => (
 					<Text key={transaction.id}>
 						{transaction.id} / {transaction.name} at{" "}
-						{transaction.created_at.toString()}
+						{formatCreatedAt(transaction.created_at)}
 					</Text>
 				))}
 
