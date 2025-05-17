@@ -1,5 +1,6 @@
-import { Button, MainLayout } from "@/shared/ui";
 import { useRouter } from "expo-router";
+
+import { Button, MainLayout } from "@/shared/ui";
 
 export default function Tab() {
 	const router = useRouter();

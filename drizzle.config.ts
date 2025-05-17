@@ -2,8 +2,8 @@ import type { Config } from "drizzle-kit";
 
 export default {
   schema: [
-    "./src/shared/database/schemas/categories.schema.ts",
-    "./src/shared/database/schemas/transactions.schema.ts"
+    "./src/shared/database/schema/categories.entity.ts",
+    "./src/shared/database/schema/transactions.entity.ts",
   ],
   out: "./drizzle",
   dialect: "sqlite",

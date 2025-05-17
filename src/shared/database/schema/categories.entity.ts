@@ -1,11 +1,12 @@
+import { relations } from "drizzle-orm";
 import * as t from "drizzle-orm/sqlite-core";
 import { sqliteTable } from "drizzle-orm/sqlite-core";
 
 import type { IHighlightColor } from "@/entities/themes/const";
 
 import type { IconName } from "@/shared/ui";
-import { relations } from "drizzle-orm";
-import { transactions } from "./transactions.schema";
+
+import { transactions } from "./transactions.entity";
 
 export const categories = sqliteTable("categories", {
 	id: t.integer().primaryKey({ autoIncrement: true }),
@@ -15,7 +16,5 @@ export const categories = sqliteTable("categories", {
 });
 
 export const categoriesRelations = relations(categories, ({ many }) => ({
-	transactions: many(transactions),
+	transactions: many(transactions)
 }));
-
-export type Category = typeof categories.$inferSelect;

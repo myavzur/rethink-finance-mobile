@@ -1,17 +1,17 @@
-import { asc, eq, sql } from "drizzle-orm";
+import { desc, eq, sql } from "drizzle-orm";
 
-import { type Transaction, transactions } from "../schemas";
+import { type Transaction, transactions } from "../schema";
 import { databaseRepository } from "./database.repository";
 
 class TransactionRepository {
-	getAll = () => {
-		const order = asc(transactions.created_at);
+	DEFAULT_ORDER_BY = desc(transactions.created_at);
 
+	getAll = () => {
 		return databaseRepository.db.query.transactions.findMany({
 			with: {
 				category: true
 			},
-			orderBy: order
+			orderBy: this.DEFAULT_ORDER_BY
 		});
 	};
 
@@ -36,7 +36,8 @@ class TransactionRepository {
 			with: {
 				category: true
 			},
-			where: condition
+			where: condition,
+			orderBy: this.DEFAULT_ORDER_BY
 		});
 	};
 

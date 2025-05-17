@@ -5,7 +5,7 @@ import { FlatList, Text, View } from "react-native";
 import { CategoryCard } from "@/entities/transactions/ui/CategoryCard/CategoryCard";
 
 import { categoryRepository } from "@/shared/database/repositories";
-import type { Category } from "@/shared/database/schemas";
+import type { Category } from "@/shared/database/schema";
 
 import type { CategoryListProps } from "./CategoryList.props";
 import { useStyles } from "./CategoryList.styles";

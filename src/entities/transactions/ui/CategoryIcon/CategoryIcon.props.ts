@@ -1,4 +1,4 @@
-import type { Category } from "@/shared/database/schemas";
+import type { Category } from "@/shared/database/schema";
 
 export interface CategoryIconProps {
 	iconName: Category["icon_name"];

@@ -11,7 +11,7 @@ CREATE TABLE `transactions` (
 	`created_at` integer DEFAULT (unixepoch('subsec') * 1000) NOT NULL,
 	`name` text NOT NULL,
 	`description` text,
-	`type` text NOT NULL,
+	`type` integer NOT NULL,
 	`amount_value` integer NOT NULL,
 	`amount_currency` text NOT NULL,
 	`category_id` integer NOT NULL,

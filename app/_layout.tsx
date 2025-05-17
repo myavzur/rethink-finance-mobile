@@ -1,8 +1,11 @@
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+import { PortalProvider } from "@gorhom/portal";
 import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
 import { Stack } from "expo-router";
 import { SQLiteProvider } from "expo-sqlite";
-import { Suspense } from "react";
+import React, { Suspense } from "react";
 import { ActivityIndicator, Text, View } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { databaseRepository } from "@/shared/database/repositories/database.repository";
 
@@ -27,30 +30,36 @@ export default function RootLayout() {
 	if (!success) return <ActivityIndicator size="large" />;
 
 	return (
-		<Suspense fallback={<ActivityIndicator size="large" />}>
-			<SQLiteProvider
-				databaseName={databaseRepository.DATABASE_NAME}
-				options={{ enableChangeListener: true }}
-				useSuspense={true}
-			>
-				<Stack>
-					<Stack.Screen
-						name="(tabs)"
-						options={STACK_OPTIONS}
-					/>
+		<GestureHandlerRootView>
+			<BottomSheetModalProvider>
+				<PortalProvider>
+					<Suspense fallback={<ActivityIndicator size="large" />}>
+						<SQLiteProvider
+							databaseName={databaseRepository.DATABASE_NAME}
+							options={{ enableChangeListener: true }}
+							useSuspense={true}
+						>
+							<Stack>
+								<Stack.Screen
+									name="(tabs)"
+									options={STACK_OPTIONS}
+								/>
 
-					<Stack.Screen
-						name="transaction"
-						options={STACK_OPTIONS}
-					/>
+								<Stack.Screen
+									name="transaction"
+									options={STACK_OPTIONS}
+								/>
 
-					<Stack.Screen
-						name="admin"
-						options={STACK_OPTIONS}
-					/>
-					<Stack.Screen name="+not-found" />
-				</Stack>
-			</SQLiteProvider>
-		</Suspense>
+								<Stack.Screen
+									name="admin"
+									options={STACK_OPTIONS}
+								/>
+								<Stack.Screen name="+not-found" />
+							</Stack>
+						</SQLiteProvider>
+					</Suspense>
+				</PortalProvider>
+			</BottomSheetModalProvider>
+		</GestureHandlerRootView>
 	);
 }

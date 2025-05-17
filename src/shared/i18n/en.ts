@@ -1,6 +1,6 @@
 const messages = {
 	today: "Today",
-	yesterday: "Yesterday",
+	yesterday: "Yesterday"
 };
 
 export default messages;

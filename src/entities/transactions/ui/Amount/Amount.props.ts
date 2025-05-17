@@ -1,4 +1,4 @@
-import type { Transaction } from "@/shared/database/schemas";
+import type { Transaction } from "@/shared/database/schema";
 
 export interface AmountProps {
 	locale: string;

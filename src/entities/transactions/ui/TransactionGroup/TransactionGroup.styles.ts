@@ -22,6 +22,6 @@ export const useStyles = () =>
 			color: theme.colors.gray[1000]
 		},
 		list: {
-			gap: Gaps.g10,
+			gap: Gaps.g10
 		}
 	}));

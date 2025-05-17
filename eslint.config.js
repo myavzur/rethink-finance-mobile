@@ -3,7 +3,7 @@ const { defineConfig } = require("eslint/config");
 
 module.exports = defineConfig([
   {
-    ignores: ["dist/*"],
+    ignores: ["dist/*", "drizzle/*"],
     plugins: {
       "react": require("eslint-plugin-react"),
     },

@@ -20,10 +20,7 @@ export const TransactionCard: FC<TransactionCardProps> = ({
 		<Pressable
 			onPress={handlePress}
 			style={({ pressed }) => {
-				return [
-					styles.card,
-					onPress && pressed && styles.card_active
-				];
+				return [styles.card, onPress && pressed && styles.card_active];
 			}}
 		>
 			<CategoryIcon

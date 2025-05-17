@@ -1,19 +1,13 @@
-import { ExpoSQLiteDatabase, drizzle } from "drizzle-orm/expo-sqlite";
+import { drizzle } from "drizzle-orm/expo-sqlite";
 import { SQLiteDatabase, openDatabaseSync } from "expo-sqlite";
 
-import { categories, categoriesRelations, transactions, transactionsRelations } from "../schemas";
+import { type DrizzleSQLiteDatabase, schema } from "../schema";
 
 class DatabaseRepository {
-	readonly DATABASE_NAME = "rethink.finances-3.1.0";
+	readonly DATABASE_NAME = "rethink.finances-3.1.4";
 
 	readonly expoDb: SQLiteDatabase;
-
-	readonly db: ExpoSQLiteDatabase<{
-		categories: typeof categories;
-		transactions: typeof transactions;
-		categoriesRelations: typeof categoriesRelations;
-		transactionsRelations: typeof transactionsRelations;
-	}>;
+	readonly db: DrizzleSQLiteDatabase;
 
 	constructor() {
 		this.expoDb = openDatabaseSync(this.DATABASE_NAME, {
@@ -21,12 +15,7 @@ class DatabaseRepository {
 		});
 
 		this.db = drizzle(this.expoDb, {
-			schema: {
-				categories,
-				categoriesRelations,
-				transactions,
-				transactionsRelations,
-			}
+			schema: schema
 		});
 	}
 }
