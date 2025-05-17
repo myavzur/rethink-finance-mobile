@@ -48,7 +48,8 @@ export default function AdminScreen() {
 				{transactions?.map((transaction) => (
 					<Text key={transaction.id}>
 						{transaction.id} / {transaction.name} at{" "}
-						{formatCreatedAt(transaction.created_at)}
+						{formatCreatedAt(transaction.created_at)}{" "}
+						category: ({transaction.type})
 					</Text>
 				))}
 

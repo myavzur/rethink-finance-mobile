@@ -1,7 +1,8 @@
-import type { Transaction } from "@/shared/database/schemas";
+import type { TransactionWithCategory } from "@/shared/database/schemas";
+import type { ReactNode } from "react";
 
 export interface TransactionGroupProps {
-	title: string;
-	subtitle: string;
-	transactions: Transaction[];
+	date: string;
+	subtitleElement: ReactNode;
+	transactions: TransactionWithCategory[];
 }

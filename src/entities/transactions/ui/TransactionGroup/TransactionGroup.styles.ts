@@ -20,5 +20,8 @@ export const useStyles = () =>
 			fontSize: FontSizes.s16,
 			fontWeight: 500,
 			color: theme.colors.gray[1000]
+		},
+		list: {
+			gap: Gaps.g10,
 		}
 	}));

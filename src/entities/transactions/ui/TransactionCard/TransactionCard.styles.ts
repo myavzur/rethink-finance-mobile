@@ -14,7 +14,6 @@ export const useStyles = (highlightColor: IHighlightColor) =>
 		return {
 			card: {
 				flexDirection: "row",
-				flex: 1,
 				alignItems: "center",
 				paddingHorizontal: Gaps.g15,
 				paddingVertical: Gaps.g10,

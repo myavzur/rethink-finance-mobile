@@ -3,6 +3,13 @@
 - - [x] Make repositories for Category and Transaction
 - [x] Configure Prettier
 - [x] Configure Eslint
+- [ ] Configure Storybook
+- [ ] Configure Jest
+  - [ ] Setup tests
+  - [ ] Write <Amount /> tests
+  - [ ] Write formatCreatedAt tests
+  - [ ] Write <TransactionList /> tests
+  - [ ] Write <TransactionCard /> tests
 - [ ] Keep doing things
 
 # Welcome to your Expo app 👋

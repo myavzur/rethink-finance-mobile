@@ -1,6 +1,4 @@
-import { eq } from "drizzle-orm";
-
-import { type Category, categories } from "../schemas";
+import { type Category } from "../schemas";
 import { databaseRepository } from "./database.repository";
 
 class CategoryRepository {
@@ -8,11 +6,7 @@ class CategoryRepository {
 		return databaseRepository.db.query.categories.findMany();
 	};
 
-	delete = async (id: Category["id"]) => {
-		const condition = eq(categories.id, id);
-
-		return await databaseRepository.db.delete(categories).where(condition);
-	};
+	delete = async (id: Category["id"]) => {};
 }
 
 export const categoryRepository = new CategoryRepository();

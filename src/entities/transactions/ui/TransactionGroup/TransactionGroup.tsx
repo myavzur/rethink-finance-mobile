@@ -2,42 +2,41 @@ import { useRouter } from "expo-router";
 import { type FC } from "react";
 import { Text, View } from "react-native";
 
-import { TransactionType } from "@/shared/database/schemas/transactions.schema";
 
-import { Amount } from "../Amount";
+import type { Transaction } from "@/shared/database/schemas";
 import { TransactionCard } from "../TransactionCard";
 import type { TransactionGroupProps } from "./TransactionGroup.props";
 import { useStyles } from "./TransactionGroup.styles";
 
-export const TransactionGroup: FC<TransactionGroupProps> = ({ title, subtitle, transactions }) => {
+export const TransactionGroup: FC<TransactionGroupProps> = ({ date, subtitleElement, transactions }) => {
 	const router = useRouter();
 	const styles = useStyles();
 
-	const handlePress = () => {
-		router.push("/transaction");
+	const handleTransactionPress = (transaction: Transaction) => {
+		router.push({
+			pathname: "/transactions/[id]",
+			params: {
+				id: transaction.id
+			}
+		})
 	};
 
 	return (
 		<View>
 			<View style={styles.header}>
-				<Text style={styles.date}>{title}</Text>
+				<Text style={styles.date}>{date}</Text>
 
 				<Text style={styles.amount}>
-					<Amount
-						amount_value={1000}
-						amount_currency="RUB"
-						type={TransactionType.INCOME}
-						locale="ru-RU"
-					/>
+					{subtitleElement}
 				</Text>
 			</View>
 
-			<View>
+			<View style={styles.list}>
 				{transactions.map((transaction) => (
 					<TransactionCard
 						key={transaction.id}
 						transaction={transaction}
-						onPress={handlePress}
+						onPress={handleTransactionPress}
 					/>
 				))}
 			</View>

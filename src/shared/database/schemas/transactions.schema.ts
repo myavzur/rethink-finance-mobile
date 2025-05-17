@@ -4,12 +4,12 @@ import { sqliteTable } from "drizzle-orm/sqlite-core";
 
 import type { ValueOf } from "@/shared/types/util.types";
 
-import { categories } from "./categories.schema";
+import { categories, type Category } from "./categories.schema";
 
 // TransactionType
 export const TransactionType = {
+	EXPENSE: 0,
 	INCOME: 1,
-	EXPENSE: 0
 } as const;
 
 export type ITransactionType = ValueOf<typeof TransactionType>;
@@ -43,7 +43,7 @@ export const transactions = sqliteTable("transactions", {
 	amount_value: t.integer().notNull(),
 	amount_currency: t.text().notNull().$type<ICurrency>(),
 
-	category_id: t.integer().references(() => categories.id).notNull()
+	category_id: t.integer().notNull().references(() => categories.id)
 });
 
 export const transactionsRelations = relations(transactions, ({ one }) => ({
@@ -54,3 +54,7 @@ export const transactionsRelations = relations(transactions, ({ one }) => ({
 }))
 
 export type Transaction = typeof transactions.$inferSelect;
+
+export interface TransactionWithCategory extends Transaction {
+	category: Category;
+}

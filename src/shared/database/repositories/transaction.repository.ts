@@ -7,7 +7,12 @@ class TransactionRepository {
 	getAll = () => {
 		const order = asc(transactions.created_at);
 
-		return databaseRepository.db.select().from(transactions).orderBy(order);
+		return databaseRepository.db.query.transactions.findMany({
+			with: {
+				category: true
+			},
+			orderBy: order
+		});
 	};
 
 	getById = (id: Transaction["id"]) => {
@@ -15,7 +20,7 @@ class TransactionRepository {
 
 		return databaseRepository.db.query.transactions.findFirst({
 			with: {
-				categories: true
+				category: true
 			},
 			where: condition
 		});
@@ -27,10 +32,12 @@ class TransactionRepository {
 	) => {
 		const condition = sql`${transactions.created_at} BETWEEN ${startDate} AND ${endDate}`;
 
-		return databaseRepository.db
-			.select()
-			.from(transactions)
-			.where(condition);
+		return databaseRepository.db.query.transactions.findMany({
+			with: {
+				category: true
+			},
+			where: condition
+		});
 	};
 
 	create = async (transaction: Partial<Transaction>) => {

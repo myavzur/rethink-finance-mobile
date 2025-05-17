@@ -14,17 +14,15 @@ export const Amount: FC<AmountProps> = ({ amount_value, amount_currency, type, l
 	});
 
 	const amountPrefix = useMemo(() => {
-		switch(type) {
-			case TransactionType.INCOME: {
-				return "+";
-			}
-			case TransactionType.EXPENSE: {
-				return "-";
-			}
-			default: {
-				return null;
-			}
+		if (type === TransactionType.INCOME) {
+			return "+";
 		}
+
+		if (type === TransactionType.EXPENSE) {
+			return "-";
+		}
+
+		return null;
 	}, [type, amount_value]);
 
 	return <Text style={styles.amount}>{amountPrefix}{localeValue}</Text>;

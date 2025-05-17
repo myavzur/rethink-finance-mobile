@@ -1,4 +1,4 @@
-import type { Transaction } from "@/shared/database/schemas";
+import type { Transaction, TransactionWithCategory } from "@/shared/database/schemas";
 import type { ValueOf } from "@/shared/types/util.types";
 
 export const TransactionType = {
@@ -9,8 +9,7 @@ export const TransactionType = {
 export type ITransactionType = ValueOf<typeof TransactionType>;
 
 export interface TransactionCardProps {
-	transaction: Transaction;
-
+	transaction: TransactionWithCategory;
 	onLongPress?: () => void;
-	onPress?: () => void;
+	onPress?: (transaction: Transaction) => void;
 }
