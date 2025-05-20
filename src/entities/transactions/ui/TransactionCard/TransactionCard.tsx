@@ -1,8 +1,8 @@
 import type { FC } from "react";
 import { Pressable, Text, View } from "react-native";
 
+import { CategoryIcon } from "../../../categories/ui/CategoryIcon";
 import { Amount } from "../Amount";
-import { CategoryIcon } from "../CategoryIcon";
 import type { TransactionCardProps } from "./TransactionCard.props";
 import { useStyles } from "./TransactionCard.styles";
 

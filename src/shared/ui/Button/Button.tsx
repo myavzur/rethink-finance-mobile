@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { Pressable, Text } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 
 import type { ButtonProps } from "./Button.props";
 import { useStyles } from "./Button.styles";
@@ -8,13 +8,11 @@ export const Button: FC<ButtonProps> = ({ kind, children, onPress }) => {
 	const styles = useStyles(kind);
 
 	return (
-		<Pressable
-			style={({ pressed }) => [styles.button, pressed && styles.button_pressed]}
+		<TouchableOpacity
+			style={styles.button}
 			onPress={onPress}
 		>
-			{({ pressed }) => (
-				<Text style={[styles.text, pressed && styles.text_pressed]}>{children}</Text>
-			)}
-		</Pressable>
+			<Text style={styles.text}>{children}</Text>
+		</TouchableOpacity>
 	);
 };

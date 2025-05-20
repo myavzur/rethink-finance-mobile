@@ -7,8 +7,7 @@ import {
 	categoryRepository,
 	transactionRepository
 } from "@/shared/database/repositories";
-import { MainLayout } from "@/shared/ui";
-import { Button } from "@/shared/ui/Button/Button";
+import { Button, MainLayout } from "@/shared/ui";
 
 export default function AdminScreen() {
 	const { data: categories } = useLiveQuery(categoryRepository.getAll());

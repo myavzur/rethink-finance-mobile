@@ -4,7 +4,7 @@ export const initialCategories: Omit<Category, "id">[] = [
 	// Basic expenses
 	{ name: "Жилье", icon_name: "home", highlight_color: "ROYAL_BLUE" },
 	{
-		name: "Коммунальные услуги",
+		name: "ЖКУ",
 		icon_name: "droplet",
 		highlight_color: "AQUA_BLUE"
 	},
@@ -54,7 +54,7 @@ export const initialCategories: Omit<Category, "id">[] = [
 	{ name: "Питомцы", icon_name: "github", highlight_color: "SUNSET_ORANGE" },
 	{ name: "Благотворительность", icon_name: "heart", highlight_color: "RUBY_RED" },
 	{
-		name: "Неожиданные расходы",
+		name: "Другое",
 		icon_name: "alert-circle",
 		highlight_color: "ASH_GRAY"
 	},

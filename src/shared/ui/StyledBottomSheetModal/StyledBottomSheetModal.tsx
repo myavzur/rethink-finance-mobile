@@ -3,17 +3,27 @@ import {
 	BottomSheetModal,
 	BottomSheetView
 } from "@gorhom/bottom-sheet";
-import { forwardRef, useCallback } from "react";
+import { Portal } from "@gorhom/portal";
+import { forwardRef, useCallback, useMemo } from "react";
 
-import type { StyledBottomSheetModalProps } from "./StyledBottomSheetModal.props";
+import type {
+	SnapPoints,
+	StyledBottomSheetModalProps
+} from "./StyledBottomSheetModal.props";
 import { styles } from "./StyledBottomSheetModal.styles";
 
-const snapPoints = ["75%", "100%"];
+const snapPoints: SnapPoints[] = ["50%", "75%", "100%"];
 
 export const StyledBottomSheetModal = forwardRef<
 	BottomSheetModal,
 	StyledBottomSheetModalProps
 >((props, bottomSheetRef) => {
+	const { portalHostName, snapPoint = "50%" } = props;
+
+	const snapIndex = useMemo(() => {
+		return snapPoints.findIndex((point) => point === snapPoint);
+	}, [snapPoint]);
+
 	const renderBackdrop = useCallback((props: any) => {
 		return (
 			<BottomSheetBackdrop
@@ -25,16 +35,18 @@ export const StyledBottomSheetModal = forwardRef<
 	}, []);
 
 	return (
-		<BottomSheetModal
-			ref={bottomSheetRef}
-			index={0}
-			snapPoints={snapPoints}
-			backdropComponent={renderBackdrop}
-		>
-			<BottomSheetView style={styles.contentContainer}>
-				{props.children}
-			</BottomSheetView>
-		</BottomSheetModal>
+		<Portal hostName={portalHostName}>
+			<BottomSheetModal
+				ref={bottomSheetRef}
+				snapPoints={snapPoints}
+				index={snapIndex}
+				backdropComponent={renderBackdrop}
+			>
+				<BottomSheetView style={styles.contentContainer}>
+					{props.children}
+				</BottomSheetView>
+			</BottomSheetModal>
+		</Portal>
 	);
 });
 

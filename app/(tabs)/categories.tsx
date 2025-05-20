@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native";
 
-import { CategoryList } from "@/features/transactions/ui/CategoryList/CategoryList";
+import { CategoryList } from "@/entities/categories/ui/CategoryList/CategoryList";
 
 import { Gaps } from "@/shared/const";
 import { MainLayout } from "@/shared/ui";

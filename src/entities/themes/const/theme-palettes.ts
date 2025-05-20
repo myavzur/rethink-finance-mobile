@@ -1,10 +1,7 @@
 import type { IThemePalettes } from "../types";
 
-// const accentColor = "#F54298";
-// const accentBackgroundColor = "#ff2c5e36";
-
-const accentColor = "#F58242";
-const accentBackgroundColor = "#FDEFE3";
+const accentColor = "#7A9E7E"; // Приглушенный зелено-серый
+const accentBackgroundColor = "#F2F7F2"; // Очень светлый зеленовато-белый
 
 export const ThemePalettes: IThemePalettes = {
 	winter: {

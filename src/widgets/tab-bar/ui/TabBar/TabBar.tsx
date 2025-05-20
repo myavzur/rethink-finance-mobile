@@ -1,7 +1,7 @@
 import { type FC } from "react";
 import { View } from "react-native";
 
-import { CreateTransactionButton } from "@/features/transactions/ui";
+import { CreateTransactionButton } from "@/features/create-transaction-button/ui";
 
 import { Tab } from "./Tab";
 import type { TabBarProps } from "./TabBar.props";

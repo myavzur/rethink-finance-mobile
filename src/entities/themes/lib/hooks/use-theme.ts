@@ -14,8 +14,6 @@ export const useTheme = () => {
 		};
 	}, [themeName]);
 
-	console.log(theme);
-
 	return theme;
 };
 

@@ -5,7 +5,7 @@ import { TabBar } from "@/widgets/tab-bar/ui";
 
 import { useTheme } from "@/entities/themes/lib/hooks";
 
-import { Icon } from "@/shared/ui/Icon";
+import { Icon } from "@/shared/ui";
 
 const ICON_SIZE = 23;
 
@@ -55,7 +55,7 @@ export default function TabLayout() {
 					tabBarIcon: ({ color }) => (
 						<Icon
 							size={ICON_SIZE}
-							name="airplay"
+							name="clipboard"
 							color={color}
 						/>
 					)

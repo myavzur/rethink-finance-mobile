@@ -1,5 +1,5 @@
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
-import { PortalProvider } from "@gorhom/portal";
+import { PortalHost, PortalProvider } from "@gorhom/portal";
 import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
 import { Stack } from "expo-router";
 import { SQLiteProvider } from "expo-sqlite";
@@ -7,6 +7,7 @@ import React, { Suspense } from "react";
 import { ActivityIndicator, Text, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
+import { PortalHostName } from "@/shared/const";
 import { databaseRepository } from "@/shared/database/repositories/database.repository";
 
 import migrations from "../drizzle/migrations";
@@ -33,6 +34,9 @@ export default function RootLayout() {
 		<GestureHandlerRootView>
 			<BottomSheetModalProvider>
 				<PortalProvider>
+					<PortalHost name={PortalHostName.CREATE_NEW_TRANSACTION_BOTTOM_SHEET} />
+					<PortalHost name={PortalHostName.FAST_ACTIONS_BOTTOM_SHEET} />
+
 					<Suspense fallback={<ActivityIndicator size="large" />}>
 						<SQLiteProvider
 							databaseName={databaseRepository.DATABASE_NAME}
