@@ -2,6 +2,9 @@ import type { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { forwardRef } from "react";
 import { Text } from "react-native";
 
+import { SelectHighlightColor } from "@/features/select-hightlight-color/ui";
+import { SelectIcon } from "@/features/select-icon/ui/SelectIcon";
+
 import { PortalHostName } from "@/shared/const";
 import { StyledBottomSheetModal } from "@/shared/ui";
 
@@ -20,6 +23,10 @@ export const CreateTransactionBottomSheet = forwardRef<
 			portalHostName={PortalHostName.CREATE_NEW_TRANSACTION_BOTTOM_SHEET}
 		>
 			<Text>Создать !{type}</Text>
+
+			<SelectHighlightColor onSelect={console.log} />
+
+			<SelectIcon onSelect={console.log} />
 		</StyledBottomSheetModal>
 	);
 });
