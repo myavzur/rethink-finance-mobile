@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-import { Borders, FontSizes, FontWeights, Gaps } from "@/shared/const";
+import { Borders, Font, Gaps } from "@/shared/const";
 
 export const styles = StyleSheet.create({
 	accordion: {
@@ -13,8 +13,8 @@ export const styles = StyleSheet.create({
 		borderRadius: Borders.b10
 	},
 	title: {
-		fontSize: FontSizes.s16,
-		fontWeight: FontWeights.bold
+		fontSize: Font.size.s16,
+		fontWeight: Font.weight.bold
 	},
 	content: {
 		marginTop: Gaps.g15

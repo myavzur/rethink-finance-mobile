@@ -1,6 +1,6 @@
 import { useThemeStyles } from "@/entities/themes/lib/hooks";
 
-import { Borders, FontSizes, FontWeights, Gaps } from "@/shared/const";
+import { Borders, Font, Gaps } from "@/shared/const";
 
 export const useStyles = () =>
 	useThemeStyles((theme) => ({
@@ -18,8 +18,8 @@ export const useStyles = () =>
 			alignItems: "center"
 		},
 		label: {
-			fontSize: FontSizes.s11,
-			fontWeight: FontWeights.semiBold,
+			fontSize: Font.size.s11,
+			fontWeight: Font.weight.semiBold,
 			textAlign: "center"
 		}
 	}));

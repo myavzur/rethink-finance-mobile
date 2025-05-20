@@ -2,7 +2,7 @@ import type { TextStyle, ViewStyle } from "react-native";
 
 import { useThemeStyles } from "@/entities/themes/lib/hooks";
 
-import { Borders, FontSizes, FontWeights, Gaps } from "@/shared/const";
+import { Borders, Font, Gaps } from "@/shared/const";
 import { borderStyle } from "@/shared/lib/utils";
 
 import type { ButtonKind } from "./Button.props";
@@ -23,8 +23,8 @@ export const useStyles = (kind: ButtonKind) =>
 				paddingVertical: Gaps.g15
 			},
 			text: {
-				fontSize: FontSizes.s14,
-				fontWeight: FontWeights.bold
+				fontSize: Font.size.s14,
+				fontWeight: Font.weight.bold
 			}
 		};
 

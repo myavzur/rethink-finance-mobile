@@ -1,7 +1,7 @@
 import { HighlightColor, type IHighlightColor } from "@/entities/themes/const";
 import { useThemeStyles } from "@/entities/themes/lib/hooks";
 
-import { Borders, FontSizes, FontWeights, Gaps } from "@/shared/const";
+import { Borders, Font, Gaps } from "@/shared/const";
 
 export const useStyles = (highlightColor: IHighlightColor) =>
 	useThemeStyles((theme) => {
@@ -23,8 +23,8 @@ export const useStyles = (highlightColor: IHighlightColor) =>
 			},
 			label: {
 				color: highlight.primary,
-				fontWeight: FontWeights.medium,
-				fontSize: FontSizes.s16
+				fontWeight: Font.weight.medium,
+				fontSize: Font.size.s16
 			}
 		};
 	});
