@@ -13,7 +13,7 @@ export const useStyles = (highlightColor: IHighlightColor) =>
 				flexDirection: "row",
 				flex: 1,
 				alignItems: "center",
-				paddingHorizontal: Gaps.g15,
+				// paddingHorizontal: Gaps.g15,
 				paddingVertical: Gaps.g10,
 				gap: Gaps.g10,
 				fontSize: Font.size.s12,

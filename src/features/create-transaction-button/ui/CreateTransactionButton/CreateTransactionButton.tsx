@@ -28,7 +28,7 @@ export const CreateTransactionButton: FC = () => {
 			>
 				<Icon
 					size={28}
-					name="plus"
+					name="plus-circle"
 					color={theme.colors.white[1000]}
 				/>
 			</TouchableOpacity>
