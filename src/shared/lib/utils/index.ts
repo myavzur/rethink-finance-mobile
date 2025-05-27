@@ -1,2 +1,2 @@
-export * from "./borderStyle";
+export * from "./border-style";
 export * from "./range";
