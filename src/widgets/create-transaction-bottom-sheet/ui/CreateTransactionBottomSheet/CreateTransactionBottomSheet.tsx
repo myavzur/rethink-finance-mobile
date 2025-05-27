@@ -4,7 +4,7 @@ import { Text, TouchableOpacity, View } from "react-native";
 
 import { PortalHostName } from "@/shared/const";
 import { TransactionType } from "@/shared/database/schema";
-import { Icon, StyledBottomSheetModal } from "@/shared/ui";
+import { Icon, StyledBottomSheetModal, TextField } from "@/shared/ui";
 
 import type { CreateTransactionBottomSheetProps } from "./CreateTransactionBottomSheet.props.";
 import { useStyles } from "./CreateTransactionBottomSheet.styles";
@@ -41,6 +41,10 @@ export const CreateTransactionBottomSheet = forwardRef<
 			</View>
 
 			<View style={styles.section}>
+				<TextField label="Сумма" />
+				<TextField label="Дата" />
+				<TextField label="Комментарий" />
+
 				<Text>Последние категории</Text>
 				<Text>Список всех категорий</Text>
 			</View>

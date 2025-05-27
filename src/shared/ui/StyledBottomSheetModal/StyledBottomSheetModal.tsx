@@ -10,7 +10,7 @@ import type {
 	SnapPoints,
 	StyledBottomSheetModalProps
 } from "./StyledBottomSheetModal.props";
-import { styles } from "./StyledBottomSheetModal.styles";
+import { useStyles } from "./StyledBottomSheetModal.styles";
 
 const snapPoints: SnapPoints[] = ["50%", "75%", "100%"];
 
@@ -19,6 +19,8 @@ export const StyledBottomSheetModal = forwardRef<
 	StyledBottomSheetModalProps
 >((props, bottomSheetRef) => {
 	const { portalHostName, snapPoint = "50%" } = props;
+
+	const styles = useStyles();
 
 	const snapIndex = useMemo(() => {
 		return snapPoints.findIndex((point) => point === snapPoint);
@@ -41,10 +43,10 @@ export const StyledBottomSheetModal = forwardRef<
 				snapPoints={snapPoints}
 				index={snapIndex}
 				backdropComponent={renderBackdrop}
+				backgroundStyle={styles.sheetBackground}
+				handleIndicatorStyle={styles.sheetHandleIndicator}
 			>
-				<BottomSheetView style={styles.contentContainer}>
-					{props.children}
-				</BottomSheetView>
+				<BottomSheetView style={styles.content} >{props.children}</BottomSheetView>
 			</BottomSheetModal>
 		</Portal>
 	);

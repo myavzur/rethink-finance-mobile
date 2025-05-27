@@ -5,12 +5,11 @@ const accentBackgroundColor = "#F2F7F2"; // Очень светлый зелен
 
 export const ThemePalettes: IThemePalettes = {
 	winter: {
-		white: {
-			1000: "#ffffff"
-		},
-		gray: {
-			1100: "#bbb5af",
-			1000: "#ADADAD"
+		background: "#ffffff",
+		"text-on-background": "#000000",
+		"text-on-background-secondary": "#adadad",
+		primary: {
+			900: "#bbb5af",
 		},
 		accent: {
 			1000: accentColor,
@@ -18,12 +17,11 @@ export const ThemePalettes: IThemePalettes = {
 		}
 	},
 	eclipse: {
-		white: {
-			1000: "#ffffff"
-		},
-		gray: {
-			1100: "#bbb5af",
-			1000: "#ADADAD"
+		background: "#333333",
+		"text-on-background": "#FFFFFF",
+		"text-on-background-secondary": "#adadad",
+		primary: {
+			900: "#bbb5af",
 		},
 		accent: {
 			1000: accentColor,

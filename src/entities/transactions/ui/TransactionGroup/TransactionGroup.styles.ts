@@ -12,13 +12,14 @@ export const useStyles = () =>
 			marginBottom: Gaps.g10
 		},
 		date: {
+			color: theme.colors["text-on-background"],
 			fontSize: Font.size.s16,
-			fontWeight: 600
+			fontWeight: 600,
 		},
 		amount: {
 			fontSize: Font.size.s16,
 			fontWeight: 500,
-			color: theme.colors.gray[1000]
+			color: theme.colors["text-on-background-secondary"],
 		},
 		list: {
 			gap: Gaps.g10

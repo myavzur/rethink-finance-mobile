@@ -36,13 +36,13 @@ export const useStyles = (kind: ButtonKind) =>
 				},
 				text: {
 					...stylesShared.text,
-					color: theme.colors.white[1000]
+					color: theme.colors.background
 				}
 			},
 			outline: {
 				button: {
 					...stylesShared.button,
-					backgroundColor: theme.colors.white[1000],
+					backgroundColor: theme.colors.background,
 					...borderStyle(2, theme.colors.accent[1000])
 				},
 				text: {

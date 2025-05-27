@@ -10,7 +10,7 @@ export const useStyles = () =>
 			position: "absolute",
 			bottom: Gaps.g15,
 			marginHorizontal: Gaps.g15,
-			backgroundColor: theme.colors.white[1000],
+			backgroundColor: theme.colors.background,
 			borderRadius: Borders.b20,
 			boxShadow: "0px 0px 15px rgba(0, 0, 0, 0.2)"
 		},

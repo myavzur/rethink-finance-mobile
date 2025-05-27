@@ -17,7 +17,7 @@ export default function TabLayout() {
 			tabBar={(props) => <TabBar {...props} />}
 			screenOptions={{
 				sceneStyle: {
-					backgroundColor: theme.colors.white[1000]
+					backgroundColor: theme.colors.background
 				},
 				headerShown: false
 			}}

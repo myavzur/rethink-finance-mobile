@@ -14,7 +14,7 @@ export const useStyles = () => {
 			marginTop: getStatusBarHeight(),
 			paddingHorizontal: Gaps.g20,
 			paddingBottom: 110,
-			backgroundColor: theme.colors.white[1000]
+			backgroundColor: theme.colors.background
 		}
 	}));
 };

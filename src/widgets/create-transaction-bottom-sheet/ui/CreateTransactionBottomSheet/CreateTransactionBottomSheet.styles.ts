@@ -7,12 +7,13 @@ export const useStyles = () =>
 		layout: {},
 		header: {
 			flexDirection: "row",
-			alignItems: "center"
+			alignItems: "center",
 		},
 		back: {
 			padding: Gaps.g5
 		},
 		title: {
+			color: theme.colors["text-on-background"],
 			fontSize: Font.size.s16,
 			fontWeight: Font.weight.bold
 		},

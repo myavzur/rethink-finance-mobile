@@ -25,7 +25,7 @@ export const Tab: FC<TabProps> = ({
 
 	const colors = useMemo(() => {
 		return {
-			idle: theme.colors.gray[1100],
+			idle: theme.colors.primary[900],
 			active: theme.colors.accent[1000],
 			activeBackground: theme.colors.accent["glassed-1000"]
 		};

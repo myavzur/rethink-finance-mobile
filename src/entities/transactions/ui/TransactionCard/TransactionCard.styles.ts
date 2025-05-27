@@ -27,19 +27,22 @@ export const useStyles = (highlightColor: IHighlightColor) =>
 			},
 			header: {
 				flexDirection: "row",
-				justifyContent: "space-between"
+				justifyContent: "space-between",
 			},
 			header__title: {
+				flex: 1,
+				color: theme.colors["text-on-background"],
 				fontSize: Font.size.s14,
 				fontWeight: Font.weight.semiBold
 			},
 			header__amount: {
+				color: theme.colors["text-on-background"],
 				fontSize: Font.size.s14,
 				fontWeight: 500
 			},
 			footer: {
 				fontSize: Font.size.s12,
-				color: theme.colors.gray[1000],
+				color: theme.colors["text-on-background-secondary"],
 				marginTop: 1,
 				fontWeight: 400
 			}

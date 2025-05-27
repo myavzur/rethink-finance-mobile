@@ -4,3 +4,4 @@ export * from "./Icon";
 export * from "./MainLayout";
 export * from "./Spinner";
 export * from "./StyledBottomSheetModal";
+export * from "./TextField";

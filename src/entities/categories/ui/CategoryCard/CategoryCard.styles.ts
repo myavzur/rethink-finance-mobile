@@ -23,6 +23,7 @@ export const useStyles = (highlightColor: IHighlightColor) =>
 				backgroundColor: highlight.dimmed
 			},
 			name: {
+				color: theme.colors["text-on-background"],
 				fontSize: Font.size.s14,
 				fontWeight: Font.weight.regular
 			},
