@@ -1,10 +1,25 @@
 import { type BottomSheetModal, useBottomSheetModal } from "@gorhom/bottom-sheet";
-import { forwardRef } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import dayjs from "dayjs";
+import { forwardRef, useRef, useState } from "react";
+import { Controller, type SubmitHandler, useForm } from "react-hook-form";
+import { Alert, Text, TouchableOpacity, View } from "react-native";
+
+import { AmountField } from "@/features/amount-field";
+
+import { LatestCategories } from "@/entities/categories";
+import { useTheme } from "@/entities/themes/lib/hooks";
+import type { CreateTransactionForm } from "@/entities/transactions";
 
 import { PortalHostName } from "@/shared/const";
 import { TransactionType } from "@/shared/database/schema";
-import { Icon, StyledBottomSheetModal, TextField } from "@/shared/ui";
+import {
+	Accordion,
+	Button,
+	DateField,
+	Icon,
+	StyledBottomSheetModal,
+	TextField
+} from "@/shared/ui";
 
 import type { CreateTransactionBottomSheetProps } from "./CreateTransactionBottomSheet.props.";
 import { useStyles } from "./CreateTransactionBottomSheet.styles";
@@ -16,14 +31,43 @@ export const CreateTransactionBottomSheet = forwardRef<
 	const { type } = props;
 	const { dismiss } = useBottomSheetModal();
 
+	const theme = useTheme();
+
+	const {
+		control,
+		formState: { errors, isValid },
+		handleSubmit
+	} = useForm<CreateTransactionForm>({
+		mode: "onBlur",
+		defaultValues: {
+			type,
+			amount_value: 0,
+			amount_currency: "RUB",
+			category_id: undefined,
+			comment: undefined
+		}
+	});
+
+	const todayDate = useRef(dayjs(new Date()).format("YYYY-MM-DD"));
+	const [selectedDate, setSelectedDate] = useState(
+		dayjs(new Date()).format("YYYY-MM-DD")
+	);
+
 	const styles = useStyles();
 
 	const typeMessage = type === TransactionType.INCOME ? "доходы" : "расходы";
 
+	const handleSubmitTransaction: SubmitHandler<CreateTransactionForm> = (
+		transaction
+	) => {
+		if (!isValid) return;
+		Alert.alert(`Success ${transaction.amount_value}`);
+	};
+
 	return (
 		<StyledBottomSheetModal
 			ref={ref}
-			snapPoint="75%"
+			snapPoint="100%"
 			portalHostName={PortalHostName.CREATE_NEW_TRANSACTION_BOTTOM_SHEET}
 		>
 			<View style={styles.header}>
@@ -41,12 +85,74 @@ export const CreateTransactionBottomSheet = forwardRef<
 			</View>
 
 			<View style={styles.section}>
-				<TextField label="Сумма" />
-				<TextField label="Дата" />
-				<TextField label="Комментарий" />
+				<View style={styles.sectionFields}>
+					<Controller
+						render={({ field, fieldState }) => (
+							<AmountField
+								autoFocus={true}
+								errorMessage={fieldState.error?.message}
+								onBlur={field.onBlur}
+								onChangeText={field.onChange}
+								value={field.value.toString()}
+							/>
+						)}
+						rules={{
+							required: "Сумма является обязательной",
+							min: {
+								value: 0,
+								message: "Сумма не может быть меньше 0"
+							}
+						}}
+						name="amount_value"
+						control={control}
+					/>
 
-				<Text>Последние категории</Text>
-				<Text>Список всех категорий</Text>
+					<TextField label="Дата" />
+
+					<DateField
+						errorMessage={undefined}
+						value={"134"}
+						onChangeText={() => {
+							return;
+						}}
+					/>
+
+					<Controller
+						render={({ field, fieldState }) => (
+							<TextField
+								label="Комментарий"
+								errorMessage={fieldState.error?.message}
+								onBlur={field.onBlur}
+								onChangeText={field.onChange}
+								value={field.value}
+							/>
+						)}
+						name="comment"
+						control={control}
+					/>
+				</View>
+			</View>
+
+			<View style={styles.section}>
+				<Accordion title="Последние категории">
+					<LatestCategories onSelectCategory={console.log} />
+				</Accordion>
+			</View>
+
+			<View style={styles.section}>
+				<Accordion title="Список всех категорий">
+					{/*<CategoryList withHeader={false} onSelectCategory={console.log} />*/}
+					<Text>Red</Text>
+				</Accordion>
+			</View>
+
+			<View style={styles.submitButtons}>
+				<Button
+					kind="fill"
+					onPress={handleSubmit(handleSubmitTransaction)}
+				>
+					Добавить
+				</Button>
 			</View>
 		</StyledBottomSheetModal>
 	);

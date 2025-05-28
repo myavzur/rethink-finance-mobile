@@ -8,6 +8,9 @@ export const ThemePalettes: IThemePalettes = {
 		background: "#ffffff",
 		"text-on-background": "#000000",
 		"text-on-background-secondary": "#adadad",
+		utility: {
+			error: "#B00020"
+		},
 		primary: {
 			900: "#bbb5af",
 		},
@@ -20,6 +23,9 @@ export const ThemePalettes: IThemePalettes = {
 		background: "#333333",
 		"text-on-background": "#FFFFFF",
 		"text-on-background-secondary": "#adadad",
+		utility: {
+			error: "#B00020"
+		},
 		primary: {
 			900: "#bbb5af",
 		},

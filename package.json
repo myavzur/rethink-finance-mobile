@@ -10,7 +10,7 @@
     "run:web": "expo start --web",
     "format": "prettier --write \"src/**/*.{ts,tsx}\" \"app/**/*.{ts,tsx}\"",
     "lint": "expo lint",
-    "test": "jest "
+    "test": "jest"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
@@ -38,14 +38,15 @@
     "expo-web-browser": "~14.1.6",
     "react": "19.0.0",
     "react-dom": "19.0.0",
+    "react-hook-form": "^7.56.4",
     "react-i18next": "^15.5.1",
     "react-native": "0.79.2",
-    "react-native-calendars": "^1.1312.0",
     "react-native-gesture-handler": "~2.24.0",
     "react-native-reanimated": "~3.17.4",
     "react-native-safe-area-context": "5.4.0",
     "react-native-screens": "~4.10.0",
     "react-native-sortables": "^1.6.0",
+    "react-native-ui-datepicker": "^3.1.2",
     "react-native-web": "~0.20.0",
     "react-native-webview": "13.13.5",
     "zustand": "^5.0.4"

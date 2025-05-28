@@ -42,7 +42,7 @@ export const TransactionCard: FC<TransactionCardProps> = ({
 					</Text>
 				</View>
 
-				<Text style={styles.footer}>{transaction.name}</Text>
+				<Text style={styles.footer}>{transaction.comment}</Text>
 			</View>
 		</Pressable>
 	);

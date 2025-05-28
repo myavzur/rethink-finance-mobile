@@ -18,6 +18,12 @@ export const useStyles = () =>
 			fontWeight: Font.weight.bold
 		},
 		section: {
-			paddingTop: Gaps.g20
+			paddingTop: Gaps.g25
+		},
+		sectionFields: {
+			gap: Gaps.g15
+		},
+		submitButtons: {
+			marginTop: "auto",
 		}
 	}));

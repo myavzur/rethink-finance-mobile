@@ -9,32 +9,31 @@ import type { Category } from "@/shared/database/schema";
 
 import type { CategoryListProps } from "./CategoryList.props";
 import { useStyles } from "./CategoryList.styles";
+import { Gaps } from "@/shared/const";
 
-export const CategoryList: FC<CategoryListProps> = ({ onSelect }) => {
+export const CategoryList: FC<CategoryListProps> = ({ withHeader, onSelectCategory }) => {
 	const styles = useStyles();
 
 	const { data: categories } = useLiveQuery(categoryRepository.getAll());
 
-	const handleCategorySelect = (category: Category) => {
-		onSelect(category);
-	};
-
 	return (
 		<View>
-			<View style={styles.header}>
-				<Text style={styles.date}>Категории</Text>
-				<Text style={styles.amount}>{categories.length}</Text>
-			</View>
+			{withHeader && (
+				<View style={styles.header}>
+					<Text style={styles.date}>Категории</Text>
+					<Text style={styles.amount}>{categories.length}</Text>
+				</View>
+			)}
 
 			<FlatList
 				showsHorizontalScrollIndicator={false}
 				showsVerticalScrollIndicator={false}
-				contentContainerStyle={{ gap: 10 }}
+				contentContainerStyle={{ gap: Gaps["category-and-transaction-list"] }}
 				data={categories}
 				keyExtractor={(category) => category.id.toString()}
 				renderItem={(category) => (
 					<CategoryCard
-						onPress={() => handleCategorySelect(category.item)}
+						onPress={() => onSelectCategory(category.item)}
 						category={category.item}
 					/>
 				)}

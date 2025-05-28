@@ -6,6 +6,10 @@ export interface ColorPalette {
 	"text-on-background": string;
 	"text-on-background-secondary": string;
 
+	utility: {
+		error: string;
+	}
+
 	primary: Record<PrimaryShades, string>;
 	accent: Record<AccentShades, string>;
 }

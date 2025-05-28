@@ -9,7 +9,7 @@ export default function Tab() {
 	return (
 		<MainLayout>
 			<View style={styles.categories}>
-				<CategoryList onSelect={console.log} />
+				<CategoryList onSelectCategory={console.log} />
 			</View>
 		</MainLayout>
 	);

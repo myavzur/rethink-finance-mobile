@@ -1,6 +1,5 @@
 import type { Category } from "@/shared/database/schema";
 
-export interface CategoryListProps {
-	withHeader: boolean;
+export interface LatestCategoriesProps {
 	onSelectCategory: (category: Category) => void;
 }

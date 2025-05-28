@@ -10,7 +10,6 @@ export const useStyles = (highlightColor: IHighlightColor) =>
 		return {
 			icon: {
 				aspectRatio: "1 / 1",
-				width: 40,
 				height: "auto",
 				backgroundColor: highlight.dimmed,
 				alignItems: "center",
@@ -19,6 +18,6 @@ export const useStyles = (highlightColor: IHighlightColor) =>
 			},
 			icon__inline: {
 				color: highlight.primary
-			}
+			},
 		};
 	});

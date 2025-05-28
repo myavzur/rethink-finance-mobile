@@ -1,26 +1,36 @@
 import { useThemeStyles } from "@/entities/themes/lib/hooks";
-import { Font, Gaps } from "@/shared/const";
+
+
+
+import { Borders, Font, Gaps } from "@/shared/const";
+
+
+
+
 
 export const useStyles = () => useThemeStyles((theme => ({
 	field: {
-		borderColor: '#B9C4CA',
+		borderColor: theme.colors["text-on-background-secondary"],
 		borderWidth: 1,
-		borderRadius: 4,
+		borderRadius: Borders.b10,
 	},
 	labelContainer: {
 		position: "absolute",
-		left: 16,
-		top: -6,
-		paddingHorizontal: Gaps.g10,
-		backgroundColor: "white"
-	},
-	label: {
-		fontSize: Font.size.s12
+		left: Gaps.g15,
+		paddingHorizontal: Gaps.g5,
+		backgroundColor: theme.colors.background
 	},
 	endIcon: {
 
 	},
 	nativeInput: {
-		paddingHorizontal: Gaps.g10,
+		height: 50,
+		paddingHorizontal: Gaps.g15,
+	},
+	error: {
+		marginTop: Gaps.g5,
+		marginLeft: Gaps.g15,
+		fontSize: Font.size.s11,
+		color: theme.colors.utility.error,
 	}
 })));

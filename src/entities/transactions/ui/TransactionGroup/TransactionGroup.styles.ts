@@ -22,6 +22,6 @@ export const useStyles = () =>
 			color: theme.colors["text-on-background-secondary"],
 		},
 		list: {
-			gap: Gaps.g10
+			gap: Gaps["category-and-transaction-list"]
 		}
 	}));

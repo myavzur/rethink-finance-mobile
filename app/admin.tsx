@@ -15,7 +15,7 @@ export default function AdminScreen() {
 
 	const addTransaction = () => {
 		transactionRepository.create({
-			name: "ул. Зеленина 8",
+			comment: "ул. Зеленина 8",
 			amount_value: 5290,
 			amount_currency: "RUB",
 			type: 1,
@@ -54,7 +54,7 @@ export default function AdminScreen() {
 
 				{transactions?.map((transaction) => (
 					<Text key={transaction.id}>
-						{transaction.id} / {transaction.name} at{" "}
+						{transaction.id} / {transaction.comment} at{" "}
 						{formatCreatedAt(transaction.created_at)} category: ({transaction.type})
 					</Text>
 				))}
