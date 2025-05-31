@@ -1,6 +1,11 @@
-const messages = {
-	today: "Today",
-	yesterday: "Yesterday",
+import type { Dictionary } from "@/shared/i18n/dictionary.type";
+
+const messages: Dictionary = {
+	dates: {
+		today: "Today",
+		yesterday: "Yesterday",
+		tomorrow: "Tomorrow",
+	},
 
 	tabbar: {
 		home: "History",
@@ -11,6 +16,6 @@ const messages = {
 
 	expenses: "Expenses",
 	income: "Income"
-};
+} as const;
 
 export default messages;

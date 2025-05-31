@@ -1,21 +1,19 @@
 import { type BottomSheetModal, useBottomSheetModal } from "@gorhom/bottom-sheet";
-import dayjs from "dayjs";
-import { forwardRef, useRef, useState } from "react";
-import { Controller, type SubmitHandler, useForm } from "react-hook-form";
-import { Alert, Text, TouchableOpacity, View } from "react-native";
+import { forwardRef } from "react";
+import { Controller } from "react-hook-form";
+import { Text, TouchableOpacity, View } from "react-native";
+
+import { useTransactionForm } from "@/widgets/create-transaction-bottom-sheet/lib/hooks";
 
 import { AmountField } from "@/features/amount-field";
 
 import { LatestCategories } from "@/entities/categories";
-import { useTheme } from "@/entities/themes/lib/hooks";
-import type { CreateTransactionForm } from "@/entities/transactions";
 
 import { PortalHostName } from "@/shared/const";
 import { TransactionType } from "@/shared/database/schema";
 import {
 	Accordion,
 	Button,
-	DateField,
 	Icon,
 	StyledBottomSheetModal,
 	TextField
@@ -31,38 +29,11 @@ export const CreateTransactionBottomSheet = forwardRef<
 	const { type } = props;
 	const { dismiss } = useBottomSheetModal();
 
-	const theme = useTheme();
-
-	const {
-		control,
-		formState: { errors, isValid },
-		handleSubmit
-	} = useForm<CreateTransactionForm>({
-		mode: "onBlur",
-		defaultValues: {
-			type,
-			amount_value: 0,
-			amount_currency: "RUB",
-			category_id: undefined,
-			comment: undefined
-		}
-	});
-
-	const todayDate = useRef(dayjs(new Date()).format("YYYY-MM-DD"));
-	const [selectedDate, setSelectedDate] = useState(
-		dayjs(new Date()).format("YYYY-MM-DD")
-	);
-
 	const styles = useStyles();
 
-	const typeMessage = type === TransactionType.INCOME ? "доходы" : "расходы";
+	const { control, handleCreateTransaction } = useTransactionForm(type);
 
-	const handleSubmitTransaction: SubmitHandler<CreateTransactionForm> = (
-		transaction
-	) => {
-		if (!isValid) return;
-		Alert.alert(`Success ${transaction.amount_value}`);
-	};
+	const typeMessage = type === TransactionType.INCOME ? "доходы" : "расходы";
 
 	return (
 		<StyledBottomSheetModal
@@ -109,14 +80,6 @@ export const CreateTransactionBottomSheet = forwardRef<
 
 					<TextField label="Дата" />
 
-					<DateField
-						errorMessage={undefined}
-						value={"134"}
-						onChangeText={() => {
-							return;
-						}}
-					/>
-
 					<Controller
 						render={({ field, fieldState }) => (
 							<TextField
@@ -135,7 +98,15 @@ export const CreateTransactionBottomSheet = forwardRef<
 
 			<View style={styles.section}>
 				<Accordion title="Последние категории">
-					<LatestCategories onSelectCategory={console.log} />
+					<Controller
+						render={({ field }) => (
+							<LatestCategories
+								selectedCategoryId={field.value}
+								onSelectCategory={(category) => field.onChange(category.id)}
+							/>
+						)}
+						name="category_id"
+					/>
 				</Accordion>
 			</View>
 
@@ -149,7 +120,7 @@ export const CreateTransactionBottomSheet = forwardRef<
 			<View style={styles.submitButtons}>
 				<Button
 					kind="fill"
-					onPress={handleSubmit(handleSubmitTransaction)}
+					onPress={handleCreateTransaction}
 				>
 					Добавить
 				</Button>

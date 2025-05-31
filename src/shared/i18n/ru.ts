@@ -1,6 +1,9 @@
 const messages = {
-	today: "Сегодня",
-	yesterday: "Вчера",
+	dates: {
+		today: "Сегодня",
+		yesterday: "Вчера",
+		tomorrow: "Завтра",
+	},
 
 	tabbar: {
 		home: "Главная",
@@ -11,6 +14,6 @@ const messages = {
 
 	expenses: "Расходы",
 	incomes: "Доходы"
-};
+} as const;
 
 export default messages;
