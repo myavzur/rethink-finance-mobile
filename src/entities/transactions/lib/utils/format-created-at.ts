@@ -11,16 +11,16 @@ dayjs.extend(isYesterday);
 
 export const formatCreatedAt = (
 	createdAt: Transaction["created_at"],
-	locale = "ru"
+	locale = "ru" as const
 ) => {
 	const date = dayjs(createdAt).locale(locale);
 
 	if (date.isToday()) {
-		return messages.today;
+		return messages.dates.today;
 	}
 
 	if (date.isYesterday()) {
-		return messages.yesterday;
+		return messages.dates.yesterday;
 	}
 
 	return dayjs(createdAt).format("D MMM");

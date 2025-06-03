@@ -1,21 +1,15 @@
 import type { Dictionary } from "@/shared/i18n/dictionary.type";
 
-const messages: Dictionary = {
-	dates: {
-		today: "Today",
-		yesterday: "Yesterday",
-		tomorrow: "Tomorrow",
-	},
+export const en: Dictionary = {
+	dates_today: "Today",
+	dates_yesterday: "Yesterday",
+	dates_tomorrow: "Tomorrow",
 
-	tabbar: {
-		home: "History",
-		categories: "Categories",
-		analysis: "Analysis",
-		profile: "Profile"
-	},
+	tabbar_home: "History",
+	tabbar_categories: "Categories",
+	tabbar_analysis: "Analysis",
+	tabbar_profile: "Profile",
 
 	expenses: "Expenses",
 	income: "Income"
 } as const;
-
-export default messages;

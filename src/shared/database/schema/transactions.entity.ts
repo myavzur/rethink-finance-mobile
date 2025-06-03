@@ -28,7 +28,7 @@ export const currencyOptions = [
 	{ value: Currency.RUB, label: "Рубль" } as const,
 	{ value: Currency.USD, label: "Доллар" } as const,
 	{ value: Currency.EUR, label: "Евро" } as const
-];
+] as const;
 
 export const transactions = sqliteTable("transactions", {
 	id: t.integer().primaryKey({ autoIncrement: true }),

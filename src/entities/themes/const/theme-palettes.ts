@@ -1,8 +1,5 @@
 import type { IThemePalettes } from "../types";
 
-const accentColor = "#7A9E7E"; // Приглушенный зелено-серый
-const accentBackgroundColor = "#F2F7F2"; // Очень светлый зеленовато-белый
-
 export const ThemePalettes: IThemePalettes = {
 	winter: {
 		background: "#ffffff",
@@ -15,8 +12,8 @@ export const ThemePalettes: IThemePalettes = {
 			900: "#bbb5af",
 		},
 		accent: {
-			1000: accentColor,
-			"glassed-1000": accentBackgroundColor
+			1000: "#7A9E7E",
+			"glassed-1000": "#F2F7F2"
 		}
 	},
 	eclipse: {
@@ -30,8 +27,8 @@ export const ThemePalettes: IThemePalettes = {
 			900: "#bbb5af",
 		},
 		accent: {
-			1000: accentColor,
-			"glassed-1000": accentBackgroundColor
+			1000: "#7A9E7E",
+			"glassed-1000": "#444644"
 		}
 	}
 } as const;

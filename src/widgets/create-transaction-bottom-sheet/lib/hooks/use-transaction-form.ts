@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import { Alert } from "react-native";
 
 import type { CreateTransactionForm } from "@/entities/transactions";
 
@@ -18,6 +17,7 @@ export const useTransactionForm = (type: Transaction["type"]) => {
 			amount_value: 0,
 			amount_currency: "RUB",
 			category_id: undefined,
+			created_at: Date.now(),
 			comment: undefined
 		}
 	});

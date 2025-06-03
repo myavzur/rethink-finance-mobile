@@ -1,17 +1,17 @@
 export interface Dictionary {
-	dates: {
-		today: string;
-		yesterday: string;
-		tomorrow: string;
-	};
+	dates_today: string;
+	dates_yesterday: string;
+	dates_tomorrow: string;
 
-	tabbar: {
-		home: string;
-		categories: string;
-		analysis: string;
-		profile: string;
-	};
+	tabbar_home: string;
+	tabbar_categories: string;
+	tabbar_analysis: string;
+	tabbar_profile: string;
 
 	expenses: string;
 	income: string;
+
+	/* Обход для того, чтобы библиотека react-intl могла сожрать объект
+	 * типа Dictionary в пропе messages */
+	[key: string]: string;
 }

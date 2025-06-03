@@ -1,19 +1,15 @@
-const messages = {
-	dates: {
-		today: "Сегодня",
-		yesterday: "Вчера",
-		tomorrow: "Завтра",
-	},
+import type { Dictionary } from "@/shared/i18n/dictionary.type";
 
-	tabbar: {
-		home: "Главная",
-		categories: "Категории",
-		analysis: "Анализ",
-		profile: "Профиль"
-	},
+export const ru: Dictionary = {
+	dates_today: "Сегодня",
+	dates_yesterday: "Вчера",
+	dates_tomorrow: "Завтра",
+
+	tabbar_home: "Главная",
+	tabbar_categories: "Категории",
+	tabbar_analysis: "Анализ",
+	tabbar_profile: "Профиль",
 
 	expenses: "Расходы",
-	incomes: "Доходы"
+	income: "Доходы"
 } as const;
-
-export default messages;

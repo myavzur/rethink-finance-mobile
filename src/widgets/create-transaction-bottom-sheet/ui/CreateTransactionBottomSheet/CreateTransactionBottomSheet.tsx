@@ -21,6 +21,7 @@ import {
 
 import type { CreateTransactionBottomSheetProps } from "./CreateTransactionBottomSheet.props.";
 import { useStyles } from "./CreateTransactionBottomSheet.styles";
+import { formatCreatedAt } from "@/entities/transactions";
 
 export const CreateTransactionBottomSheet = forwardRef<
 	BottomSheetModal,
@@ -78,7 +79,21 @@ export const CreateTransactionBottomSheet = forwardRef<
 						control={control}
 					/>
 
-					<TextField label="Дата" />
+					<Controller
+						render={({ field, fieldState }) => (
+							<TextField
+								label="Дата"
+								errorMessage={fieldState.error?.message}
+								onBlur={field.onBlur}
+								onChangeText={(text) => {
+									field.onChange(Date.now())
+								}}
+								value={formatCreatedAt(field.value)}
+							/>
+						)}
+						name="created_at"
+						control={control}
+					/>
 
 					<Controller
 						render={({ field, fieldState }) => (
@@ -106,6 +121,7 @@ export const CreateTransactionBottomSheet = forwardRef<
 							/>
 						)}
 						name="category_id"
+						control={control}
 					/>
 				</Accordion>
 			</View>
