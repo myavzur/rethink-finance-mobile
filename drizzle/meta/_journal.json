@@ -8,6 +8,13 @@
       "when": 1748456062229,
       "tag": "0000_old_mister_sinister",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1748986018703,
+      "tag": "0001_supreme_senator_kelly",
+      "breakpoints": true
     }
   ]
 }

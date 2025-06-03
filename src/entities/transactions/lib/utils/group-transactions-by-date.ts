@@ -1,7 +1,9 @@
 import type { Transaction, TransactionWithCategory } from "@/shared/database/schema";
+import { Locale, type ILocale } from "@/shared/stores";
 
 import { TransactionType } from "../../ui";
 import { formatCreatedAt } from "./format-created-at";
+import type { IntlShape } from "react-intl";
 
 interface TransactionGroup {
 	amount: Transaction["amount_value"];
@@ -16,7 +18,8 @@ type TransactionGroupMap = {
 type TransactionGroupMapEntries = [date: string, TransactionGroup][];
 
 export const groupTransactionsByDate = (
-	transactions: TransactionWithCategory[]
+	transactions: TransactionWithCategory[],
+	intl: IntlShape
 ): TransactionGroupMapEntries => {
 	const groups: TransactionGroupMap = {};
 
@@ -25,7 +28,7 @@ export const groupTransactionsByDate = (
 		const { type, created_at, amount_value } = transaction;
 
 		const amountModifier = type === TransactionType.EXPENSE ? -1 : 1;
-		const date = formatCreatedAt(created_at);
+		const date = formatCreatedAt(created_at, intl);
 
 		const group = groups[date];
 

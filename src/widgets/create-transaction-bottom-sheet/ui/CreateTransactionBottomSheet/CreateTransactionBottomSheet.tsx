@@ -1,6 +1,7 @@
 import { type BottomSheetModal, useBottomSheetModal } from "@gorhom/bottom-sheet";
 import { forwardRef } from "react";
 import { Controller } from "react-hook-form";
+import { useIntl } from "react-intl";
 import { Text, TouchableOpacity, View } from "react-native";
 
 import { useTransactionForm } from "@/widgets/create-transaction-bottom-sheet/lib/hooks";
@@ -8,6 +9,7 @@ import { useTransactionForm } from "@/widgets/create-transaction-bottom-sheet/li
 import { AmountField } from "@/features/amount-field";
 
 import { LatestCategories } from "@/entities/categories";
+import { formatCreatedAt } from "@/entities/transactions";
 
 import { PortalHostName } from "@/shared/const";
 import { TransactionType } from "@/shared/database/schema";
@@ -21,20 +23,24 @@ import {
 
 import type { CreateTransactionBottomSheetProps } from "./CreateTransactionBottomSheet.props.";
 import { useStyles } from "./CreateTransactionBottomSheet.styles";
-import { formatCreatedAt } from "@/entities/transactions";
 
 export const CreateTransactionBottomSheet = forwardRef<
 	BottomSheetModal,
 	CreateTransactionBottomSheetProps
 >((props, ref) => {
+	const intl = useIntl();
+
 	const { type } = props;
 	const { dismiss } = useBottomSheetModal();
 
 	const styles = useStyles();
 
-	const { control, handleCreateTransaction } = useTransactionForm(type);
+	const { control, handleCreateTransaction } = useTransactionForm(type, {
+		afterSubmit: dismiss
+	});
 
-	const typeMessage = type === TransactionType.INCOME ? "доходы" : "расходы";
+	const typeMessageId = type === TransactionType.INCOME ? "income" : "expenses";
+	const typeMessage = intl.formatMessage({ id: typeMessageId });
 
 	return (
 		<StyledBottomSheetModal
@@ -86,9 +92,9 @@ export const CreateTransactionBottomSheet = forwardRef<
 								errorMessage={fieldState.error?.message}
 								onBlur={field.onBlur}
 								onChangeText={(text) => {
-									field.onChange(Date.now())
+									field.onChange(Date.now());
 								}}
-								value={formatCreatedAt(field.value)}
+								value={formatCreatedAt(field.value, intl)}
 							/>
 						)}
 						name="created_at"

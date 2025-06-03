@@ -4,9 +4,13 @@ import {
 	AppBottomSheetProvider,
 	AppDrizzleProvider,
 	AppI18nProvider,
-	AppPortalsProvider
-} from "@/app/providers";
-import { AppStackProvider } from "@/app/providers/AppStackProvider";
+	AppPortalsProvider,
+	AppStackProvider
+} from "@/app-fsd/providers";
+
+const STACK_OPTIONS = {
+	headerShown: false
+};
 
 export default function RootLayout() {
 	return (

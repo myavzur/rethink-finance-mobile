@@ -1,5 +1,5 @@
-import React, { type FC, type PropsWithChildren } from "react";
 import { Stack } from "expo-router";
+import React, { type FC } from "react";
 
 const STACK_OPTIONS = {
 	headerShown: false
@@ -20,5 +20,5 @@ export const AppStackProvider: FC = () => {
 
 			<Stack.Screen name="+not-found" />
 		</Stack>
-	)
-}
+	);
+};

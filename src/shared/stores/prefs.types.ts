@@ -3,7 +3,7 @@ import type { ICurrency } from "@/shared/database/schema";
 
 export const Locale = {
 	RUSSIAN: "ru-RU",
-	ENGLISH: "en-US",
+	ENGLISH: "en-US"
 } as const;
 
 export type ILocale = ValueOf<typeof Locale>;

@@ -8,8 +8,11 @@ import {
 	transactionRepository
 } from "@/shared/database/repositories";
 import { Button, MainLayout } from "@/shared/ui";
+import { useIntl } from "react-intl";
 
 export default function AdminScreen() {
+	const intl = useIntl();
+
 	const { data: categories } = useLiveQuery(categoryRepository.getAll());
 	const { data: transactions } = useLiveQuery(transactionRepository.getAll());
 
@@ -55,7 +58,7 @@ export default function AdminScreen() {
 				{transactions?.map((transaction) => (
 					<Text key={transaction.id}>
 						{transaction.id} / {transaction.comment} at{" "}
-						{formatCreatedAt(transaction.created_at)} category: ({transaction.type})
+						{formatCreatedAt(transaction.created_at, intl)} category: ({transaction.type})
 					</Text>
 				))}
 			</ScrollView>

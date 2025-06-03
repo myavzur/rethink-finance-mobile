@@ -30,7 +30,11 @@ class TransactionRepository {
 		startDate: Transaction["created_at"],
 		endDate: Transaction["created_at"]
 	) => {
-		const condition = sql`${transactions.created_at} BETWEEN ${startDate} AND ${endDate}`;
+		const condition = sql`${transactions.created_at}
+		BETWEEN
+		${startDate}
+		AND
+		${endDate}`;
 
 		return databaseRepository.db.query.transactions.findMany({
 			with: {

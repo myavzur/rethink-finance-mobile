@@ -10,6 +10,7 @@ import { transactionRepository } from "@/shared/database/repositories";
 import { TransactionType } from "@/shared/database/schema";
 
 import type { TransactionListProps } from "./TransactionList.props";
+import { useIntl } from "react-intl";
 
 const startDate = new Date("2020-01-01").getTime();
 const endDate = new Date("2030-01-01").getTime();
@@ -17,12 +18,14 @@ const endDate = new Date("2030-01-01").getTime();
 export const TransactionList: FC<TransactionListProps> = ({
 	onTransactionPress
 }) => {
+	const intl = useIntl();
+
 	const { data: transactions } = useLiveQuery(
 		transactionRepository.getBetweenDates(startDate, endDate)
 	);
 
 	const transactionGroups = useMemo(() => {
-		return groupTransactionsByDate(transactions);
+		return groupTransactionsByDate(transactions, intl);
 	}, [transactions]);
 
 	if (!transactionGroups.length) return;

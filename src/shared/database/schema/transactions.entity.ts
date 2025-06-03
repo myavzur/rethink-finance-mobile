@@ -37,10 +37,10 @@ export const transactions = sqliteTable("transactions", {
 		.notNull()
 		.default(sql`(unixepoch('subsec') * 1000)`),
 
-	comment: t.text().notNull(),
 	type: t.integer().notNull().$type<ITransactionType>(),
 	amount_value: t.integer().notNull(),
 	amount_currency: t.text().notNull().$type<ICurrency>(),
+	comment: t.text(),
 
 	category_id: t
 		.integer()
