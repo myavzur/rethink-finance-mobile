@@ -44,7 +44,9 @@ describe("Сервис MathExpression", () => {
 		it.each([
 			["234.", ".", "234."],
 			["234", ".", "234."],
-			["523-", ".", "523-"]
+			["523-", ".", "523-"],
+			["53.23", ".", "53.23"],
+			["352.23+14.345*24.146", ".", "352.23+14.345*24.146"]
 		])(`"%s" and "%s" => "%s"`, (input, sep, expected) => {
 			expect(service.tryInsertSeparator(input, sep)).toBe(expected);
 		});

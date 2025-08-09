@@ -151,9 +151,9 @@ const MathKeyboardComponent: FC<MathKeyboardProps> = ({ onExpressionChange, onDo
 					</KeyboardButton>
 				))}
 
-				{/*<KeyboardButton onPress={() => handleAction(decimalAction())}>*/}
-				{/*	,*/}
-				{/*</KeyboardButton>*/}
+				<KeyboardButton onPress={() => handleAction(decimalAction())}>
+					,
+				</KeyboardButton>
 			</View>
 
 			<View style={styles.keyboard__column}>

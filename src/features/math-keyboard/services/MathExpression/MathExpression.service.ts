@@ -1,6 +1,7 @@
+import * as mathjs from "mathjs";
+
 import { type IMathOperator } from "@/features/math-keyboard/lib/utils";
 import { CharValidatorService } from "@/features/math-keyboard/services";
-import * as mathjs from "mathjs";
 
 export class MathExpressionService {
 	private readonly charValidatorService = new CharValidatorService();
@@ -25,7 +26,8 @@ export class MathExpressionService {
 		if (isLastDigit) return expression + digit;
 
 		// "234." and 5 => "234.5"
-		const isLastDecimalSeparator = this.charValidatorService.isDecimalSeparator(lastChar);
+		const isLastDecimalSeparator =
+			this.charValidatorService.isDecimalSeparator(lastChar);
 		if (isLastDecimalSeparator) return expression + digit;
 
 		return expression;
@@ -52,7 +54,8 @@ export class MathExpressionService {
 		}
 
 		// "234." and "+" => "234+"
-		const isLastDecimalSeparator = this.charValidatorService.isDecimalSeparator(lastChar);
+		const isLastDecimalSeparator =
+			this.charValidatorService.isDecimalSeparator(lastChar);
 		if (isLastDecimalSeparator) {
 			return this.charValidatorService.replaceLastChar(expression, operator);
 		}
@@ -67,11 +70,19 @@ export class MathExpressionService {
 		const isSameSeparator = lastChar === separator;
 		if (isSameSeparator) return expression;
 
-		// "234" and "." => "234."
-		const isLastDigit = this.charValidatorService.isDigit(lastChar);
-		if (isLastDigit) return expression + separator;
+		// "50+" and "." => "50+"
+		const isLastOperator = this.charValidatorService.isOperator(lastChar);
+		if (isLastOperator) return expression;
 
-		return expression;
+		// Найти последнее число после последнего арифметического знака (+ - * / %).
+		const lastNumberMatch = expression.match(/[^+\-*\/%]*$/) ?? [];
+		const isLastNumberContainsSeparator = lastNumberMatch[0]
+			? lastNumberMatch[0].includes(separator)
+			: false;
+
+		if (isLastNumberContainsSeparator) return expression;
+
+		return expression + separator;
 	};
 
 	public deleteLastChar = (expression: string) => {
@@ -80,8 +91,7 @@ export class MathExpressionService {
 
 	public evaluate = (expression: string) => {
 		const answer = mathjs.evaluate(expression);
-		const answerPrecise = mathjs.format(answer, {precision: 14});
+		const answerPrecise = mathjs.format(answer, { precision: 14 });
 		return parseFloat(answerPrecise);
-	}
+	};
 }
-
