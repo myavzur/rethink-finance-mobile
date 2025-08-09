@@ -1,13 +1,17 @@
-import type { Transaction, TransactionWithCategory } from "@/shared/database/schema";
-import { Locale, type ILocale } from "@/shared/stores";
-
-import { TransactionType } from "../../ui";
-import { formatCreatedAt } from "./format-created-at";
 import type { IntlShape } from "react-intl";
+
+import {
+	type ITransactionType,
+	type Transaction,
+	TransactionType,
+	type TransactionWithCategory
+} from "@/shared/database/schema";
+
+import { formatCreatedAt } from "./format-created-at";
 
 interface TransactionGroup {
 	amount: Transaction["amount_value"];
-	type: Transaction["type"];
+	type: ITransactionType;
 	transactions: TransactionWithCategory[];
 }
 
@@ -38,6 +42,7 @@ export const groupTransactionsByDate = (
 			// Если сумма транзакции больше нуля, то это приход, иначе расход
 			const groupType =
 				group.amount > 0 ? TransactionType.INCOME : TransactionType.EXPENSE;
+
 			group.type = groupType;
 
 			group.transactions.push(transaction);

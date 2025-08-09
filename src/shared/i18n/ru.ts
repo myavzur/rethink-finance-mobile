@@ -9,5 +9,6 @@ export const ru = {
 	tabbar_analysis: "Анализ",
 	tabbar_settings: "Конфиг",
 	expenses: "Расходы",
-	income: "Доходы"
+	income: "Доходы",
+	amount: "Сумма",
 } as const satisfies Dictionary;

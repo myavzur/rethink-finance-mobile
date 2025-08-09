@@ -42,7 +42,7 @@ describe("Сервис CharValidator", () => {
 
 			it.each(cases)("%s => false", (digit) => {
 				expect(service.isDigit(digit)).toBe(false);
-			})
+			});
 		});
 	});
 
@@ -58,7 +58,7 @@ describe("Сервис CharValidator", () => {
 				["-", false]
 			];
 
-			it.each(cases)('"%s" => %s', (char, expected) => {
+			it.each(cases)("\"%s\" => %s", (char, expected) => {
 				expect(service.isDecimalSeparator(char)).toBe(expected);
 			});
 		});
@@ -77,5 +77,26 @@ describe("Сервис CharValidator", () => {
 		it("Должен корректно работать с одним символом", () => {
 			expect(service.getLastChar("x")).toBe("x");
 		});
+	});
+
+	describe("Метод replaceLastChar", () => {
+		describe("Должен вернуть строку с замененным последним символом", () => {
+			const cases: [string, string | number, string][] = [
+				["123", 4, "124"],
+				["123", "4", "124"],
+				["123+", "-", "123-"],
+				["245+ ", "6", "245+6"]
+			];
+
+			it.each(cases)("%s and %p => %s", (expr, char, expected) => {
+				expect(service.replaceLastChar(expr, char)).toBe(expected);
+			});
+		});
+
+		describe("Должен корректно заменять последний символ при многократном вызове", () => {
+			for (let i = 0; i <= 30; i++) {
+				expect(service.replaceLastChar("10+15-5*20/15+", "*")).toBe("10+15-5*20/15*");
+			}
+		})
 	});
 });

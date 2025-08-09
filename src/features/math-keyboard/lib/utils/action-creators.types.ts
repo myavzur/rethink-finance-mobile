@@ -10,7 +10,7 @@ export const MathAction = {
 	CLEAR: "clear",
 	BACKSPACE: "backspace",
 	DONE: "done",
-	DECIMAL: "decimal"  // Добавили новое действие
+	DECIMAL: "decimal" // Добавили новое действие
 } as const;
 
 export const MathOperator = {
@@ -27,7 +27,7 @@ export interface IAction<T extends string> {
 	type: T;
 }
 
-export interface IDigitAction extends IAction<typeof MathAction.DIGIT>{
+export interface IDigitAction extends IAction<typeof MathAction.DIGIT> {
 	payload: {
 		digit: number;
 	};
@@ -37,38 +37,38 @@ type IDecimalSeparator = "," | ".";
 
 export interface IDecimalAction extends IAction<typeof MathAction.DECIMAL> {
 	payload: {
-		separator: IDecimalSeparator;  // Учитываем разные форматы десятичных разделителей
+		separator: IDecimalSeparator; // Учитываем разные форматы десятичных разделителей
 	};
 }
 
 export interface IAddAction extends IAction<typeof MathAction.ADD> {
 	payload: {
-		operator: "+"
-	}
+		operator: "+";
+	};
 }
 
 export interface ISubAction extends IAction<typeof MathAction.SUB> {
 	payload: {
-		operator: "-"
-	}
+		operator: "-";
+	};
 }
 
 export interface IDivideAction extends IAction<typeof MathAction.DIVIDE> {
 	payload: {
-		operator: "/"
-	}
+		operator: "/";
+	};
 }
 
 export interface IMultiplyAction extends IAction<typeof MathAction.MULTIPLY> {
 	payload: {
-		operator: "*"
-	}
+		operator: "*";
+	};
 }
 
 export interface IPercentAction extends IAction<typeof MathAction.PERCENT> {
 	payload: {
-		operator: "%"
-	}
+		operator: "%";
+	};
 }
 
 export type IClearAction = IAction<typeof MathAction.CLEAR>;

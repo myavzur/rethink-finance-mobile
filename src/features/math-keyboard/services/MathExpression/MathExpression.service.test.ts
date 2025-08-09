@@ -24,12 +24,13 @@ describe("Сервис MathExpression", () => {
 		it.each([
 			["234+", MathOperator.ADD, "234+"],
 			["234", MathOperator.MULTIPLY, "234*"],
-			["234-", MathOperator.ADD, "234+"],
-			["100*", MathOperator.DIVIDE, "100/"],
-			["100/", MathOperator.SUB, "100-"],
+			["234*", MathOperator.DIVIDE, "234/"],
+			["234/", MathOperator.SUB, "234-"],
 			["23.", MathOperator.ADD, "23+"],
 			["0.", MathOperator.SUB, "0-"],
-			["100.5", MathOperator.SUB, "100.5-"]
+			["100.5", MathOperator.SUB, "100.5-"],
+			["15+24*23-34/231", MathOperator.ADD, "15+24*23-34/231+"],
+			["10*30/15+25*", MathOperator.DIVIDE, "10*30/15+25/"],
 		])(`"%s" and %s => "%s"`, (expr, operator, expected) => {
 			expect(service.tryInsertOrReplaceOperator(expr, operator)).toBe(expected);
 		});

@@ -46,10 +46,15 @@ export class MathExpressionService {
 
 		// "234-" and "+" => "234+"
 		const isLastOperator = this.charValidatorService.isOperator(lastChar);
-		if (isLastOperator) return expression.replace(lastChar, operator);
+		if (isLastOperator) {
+			return this.charValidatorService.replaceLastChar(expression, operator);
+		}
 
+		// "234." and "+" => "234+"
 		const isLastDecimalSeparator = this.charValidatorService.isDecimalSeparator(lastChar);
-		if (isLastDecimalSeparator) return expression.replace(lastChar, operator);
+		if (isLastDecimalSeparator) {
+			return this.charValidatorService.replaceLastChar(expression, operator);
+		}
 
 		return expression;
 	};

@@ -5,10 +5,26 @@ import { ScrollView, Text, View } from "react-native";
 
 import { TransactionKeyboard } from "@/widgets/transaction-keyboard/ui";
 
+import { useThemeStyles } from "@/entities/themes/lib/hooks";
+
+import { Font, Gaps } from "@/shared/const";
 import { type ITransactionType, TransactionType } from "@/shared/database/schema";
 import { MainLayout, TextField } from "@/shared/ui";
 
-import { useStyles } from "./type.styles";
+export const useStyles = () =>
+	useThemeStyles(() => ({
+		header: {
+			fontSize: Font.size.s16,
+			fontWeight: Font.weight.semiBold
+		},
+		fields: {
+			flexDirection: "column",
+			gap: 12
+		},
+		keyboard: {
+			paddingBottom: Gaps.mainLayoutVertical
+		}
+	}));
 
 export default function Route() {
 	const intl = useIntl();

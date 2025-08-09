@@ -6,23 +6,21 @@ import { MathKeyboard } from "@/features/math-keyboard/ui";
 import { TextField } from "@/shared/ui";
 
 import type { TransactionKeyboardProps } from "./TransactionKeyboard.props";
-import type { IMathAction } from "@/features/math-keyboard/lib/utils";
+import { styles } from "./TransactionKeyboard.styles";
 
 export const TransactionKeyboard: FC<TransactionKeyboardProps> = ({}) => {
 	const [expression, setExpression] = useState("");
 
-	const handleKeyboardCommand = (action: IMathAction) => {
-		console.log(action);
-	};
-
 	return (
-		<View>
+		<View style={styles.group}>
 			<TextField
 				label={"Сумма"}
-				value={""}
+				value={expression}
+				showSoftInputOnFocus={false}
+				editable={false}
 			/>
 
-			<MathKeyboard onAction={handleKeyboardCommand} />
+			<MathKeyboard onExpressionChange={setExpression} />
 		</View>
 	);
 };

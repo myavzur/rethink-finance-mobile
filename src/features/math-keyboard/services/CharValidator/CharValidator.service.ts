@@ -25,4 +25,8 @@ export class CharValidatorService {
 	public getLastChar = (str: string) => {
 		return str.at(-1) ?? "";
 	};
+
+	public replaceLastChar = (str: string, char: string | number) => {
+		return str.replace(/.$/, String(char));
+	}
 }

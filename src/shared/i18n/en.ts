@@ -9,5 +9,6 @@ export const en = {
 	tabbar_analysis: "Analysis",
 	tabbar_settings: "Settings",
 	expenses: "Expenses",
-	income: "Income"
+	income: "Income",
+	amount: "Amount"
 } as const satisfies Dictionary;

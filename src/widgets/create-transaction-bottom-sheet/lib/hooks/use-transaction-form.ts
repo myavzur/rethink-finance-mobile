@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import type { CreateTransactionForm } from "@/entities/transactions";
 
 import { transactionRepository } from "@/shared/database/repositories";
-import type { Transaction } from "@/shared/database/schema";
+import { type Transaction, Currency } from "@/shared/database/schema";
 import { useEffect } from "react";
 
 export const useTransactionForm = (type: Transaction["type"], options: { afterSubmit: () => void }) => {
@@ -18,7 +18,7 @@ export const useTransactionForm = (type: Transaction["type"], options: { afterSu
 		defaultValues: {
 			type,
 			amount_value: 0,
-			amount_currency: "RUB",
+			amount_currency: Currency.RUB,
 			category_id: undefined,
 			created_at: Date.now(),
 			comment: undefined

@@ -1,9 +1,9 @@
 import { type FC, useMemo } from "react";
 import { Text } from "react-native";
 
-import { TransactionType } from "../TransactionCard";
 import type { AmountProps } from "./Amount.props";
 import { styles } from "./Amount.styles";
+import { TransactionType } from "@/shared/database/schema";
 
 export const Amount: FC<AmountProps> = ({
 	amount_value,

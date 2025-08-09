@@ -1,9 +1,11 @@
-import type { FC } from "react";
+import { type FC, memo, useState } from "react";
 import { View } from "react-native";
 
 import { Icon } from "@/shared/ui";
 
 import {
+	type IMathAction,
+	MathAction,
 	addAction,
 	backspaceAction,
 	clearAction,
@@ -12,23 +14,79 @@ import {
 	divideAction,
 	doneAction,
 	multiplyAction,
-	percentAction,
 	subAction
 } from "../../lib/utils";
+import { MathExpressionService } from "../../services";
 import { KeyboardButton } from "../KeyboardButton";
 import type { MathKeyboardProps } from "./MathKeyboard.props";
 import { useStyles } from "./MathKeyboard.styles";
 
-const DECIMAL_SEPARATOR = ",";
+const mathExpressionService = new MathExpressionService();
 
-export const MathKeyboard: FC<MathKeyboardProps> = ({ onAction }) => {
+const MathKeyboardComponent: FC<MathKeyboardProps> = ({ onExpressionChange }) => {
 	const styles = useStyles();
+	const [expression, setExpression] = useState("");
+
+	const handleAction = (action: IMathAction) => {
+		switch (action.type) {
+			case MathAction.DIGIT: {
+				setExpression((prevExpression) => {
+					const nextExpression = mathExpressionService.tryInsertDigit(
+						prevExpression,
+						action.payload.digit
+					);
+					onExpressionChange(nextExpression);
+					return nextExpression;
+				});
+				break;
+			}
+			case MathAction.BACKSPACE: {
+				setExpression((prevExpression) => {
+					const nextExpression =
+						mathExpressionService.deleteLastChar(prevExpression);
+					onExpressionChange(nextExpression);
+					return nextExpression;
+				});
+				break;
+			}
+			case MathAction.DECIMAL: {
+				setExpression((prevExpression) => {
+					const nextExpression = mathExpressionService.tryInsertSeparator(
+						prevExpression,
+						action.payload.separator
+					);
+					onExpressionChange(nextExpression);
+					return nextExpression;
+				});
+				break;
+			}
+			case MathAction.CLEAR: {
+				setExpression("");
+				onExpressionChange("");
+				break;
+			}
+			case MathAction.DONE: {
+				console.log("done");
+				break;
+			}
+			default: {
+				setExpression((prevExpression) => {
+					const nextExpression = mathExpressionService.tryInsertOrReplaceOperator(
+						prevExpression,
+						action.payload.operator
+					);
+					onExpressionChange(nextExpression);
+					return nextExpression;
+				});
+			}
+		}
+	};
 
 	return (
 		<View style={styles.keyboard}>
 			<View style={styles.keyboard__column}>
 				<KeyboardButton
-					onPress={() => onAction(clearAction())}
+					onPress={() => handleAction(clearAction())}
 					kind={"secondary"}
 				>
 					C
@@ -37,20 +95,20 @@ export const MathKeyboard: FC<MathKeyboardProps> = ({ onAction }) => {
 				{[7, 4, 1].map((digit) => (
 					<KeyboardButton
 						key={digit}
-						onPress={() => onAction(digitAction(digit))}
+						onPress={() => handleAction(digitAction(digit))}
 					>
 						{digit}
 					</KeyboardButton>
 				))}
 
-				<KeyboardButton onPress={() => onAction(percentAction())}>
-					<Icon name="percent" />
-				</KeyboardButton>
+				{/*<KeyboardButton onPress={() => handleAction(percentAction())}>*/}
+				{/*	<Icon name="percent" />*/}
+				{/*</KeyboardButton>*/}
 			</View>
 
 			<View style={styles.keyboard__column}>
 				<KeyboardButton
-					onPress={() => onAction(divideAction())}
+					onPress={() => handleAction(divideAction())}
 					kind={"secondary"}
 				>
 					<Icon name="divide" />
@@ -59,7 +117,7 @@ export const MathKeyboard: FC<MathKeyboardProps> = ({ onAction }) => {
 				{[8, 5, 2, 0].map((digit) => (
 					<KeyboardButton
 						key={digit}
-						onPress={() => onAction(digitAction(digit))}
+						onPress={() => handleAction(digitAction(digit))}
 					>
 						{digit}
 					</KeyboardButton>
@@ -68,7 +126,7 @@ export const MathKeyboard: FC<MathKeyboardProps> = ({ onAction }) => {
 
 			<View style={styles.keyboard__column}>
 				<KeyboardButton
-					onPress={() => onAction(multiplyAction())}
+					onPress={() => handleAction(multiplyAction())}
 					kind={"secondary"}
 				>
 					<Icon name="x" />
@@ -77,42 +135,42 @@ export const MathKeyboard: FC<MathKeyboardProps> = ({ onAction }) => {
 				{[9, 6, 3].map((digit) => (
 					<KeyboardButton
 						key={digit}
-						onPress={() => onAction(digitAction(digit))}
+						onPress={() => handleAction(digitAction(digit))}
 					>
 						{digit}
 					</KeyboardButton>
 				))}
 
-				<KeyboardButton onPress={() => onAction(decimalAction(DECIMAL_SEPARATOR))}>
-					{DECIMAL_SEPARATOR}
-				</KeyboardButton>
+				{/*<KeyboardButton onPress={() => handleAction(decimalAction())}>*/}
+				{/*	,*/}
+				{/*</KeyboardButton>*/}
 			</View>
 
 			<View style={styles.keyboard__column}>
 				<KeyboardButton
-					onPress={() => onAction(backspaceAction())}
-					onLongPress={() => onAction(clearAction())}
+					onPress={() => handleAction(backspaceAction())}
+					onLongPress={() => handleAction(clearAction())}
 					kind={"secondary"}
 				>
 					<Icon name="chevrons-left" />
 				</KeyboardButton>
 
 				<KeyboardButton
-					onPress={() => onAction(subAction())}
+					onPress={() => handleAction(subAction())}
 					kind={"secondary"}
 				>
 					<Icon name="minus" />
 				</KeyboardButton>
 
 				<KeyboardButton
-					onPress={() => onAction(addAction())}
+					onPress={() => handleAction(addAction())}
 					kind={"secondary"}
 				>
 					<Icon name="plus" />
 				</KeyboardButton>
 
 				<KeyboardButton
-					onPress={() => onAction(doneAction())}
+					onPress={() => handleAction(doneAction())}
 					kind={"primary"}
 					takes={2}
 				>
@@ -122,3 +180,5 @@ export const MathKeyboard: FC<MathKeyboardProps> = ({ onAction }) => {
 		</View>
 	);
 };
+
+export const MathKeyboard = memo(MathKeyboardComponent);
