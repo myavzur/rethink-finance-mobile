@@ -1,10 +1,9 @@
 import type { BottomSheetModal } from "@gorhom/bottom-sheet";
-import { forwardRef, useCallback, useRef, useState } from "react";
+import { useRouter } from "expo-router";
+import { forwardRef, useCallback } from "react";
 import { Image, View } from "react-native";
 
-import { CreateTransactionBottomSheet } from "@/widgets/create-transaction-bottom-sheet/ui";
-
-import { PortalHostName } from "@/shared/const";
+import { PortalHostName, UI_ICONS } from "@/shared/const";
 import { type ITransactionType, TransactionType } from "@/shared/database/schema";
 import { StyledBottomSheetModal } from "@/shared/ui";
 
@@ -12,17 +11,31 @@ import { FastAction } from "../FastAction/FastAction";
 import { styles } from "./FastActionsBottomSheet.styles";
 
 export const FastActionsBottomSheet = forwardRef<BottomSheetModal>((props, ref) => {
-	const bottomSheetRef = useRef<BottomSheetModal>(null);
-	const [transactionType, setTransactionType] = useState<ITransactionType>(0);
+	const router = useRouter();
+
+	const closeBottomSheet = useCallback(() => {
+		if (typeof ref === "function" || !ref?.current) return;
+		ref.current.close();
+	}, []);
+
+	const handleCreateByScreenshot = useCallback((type: ITransactionType) => {
+		closeBottomSheet();
+		router.push("/transaction/screenshot")
+	}, []);
+
+	const handleCreateByVoice = useCallback(() => {
+		closeBottomSheet();
+		router.push("/transaction/voice")
+	}, []);
 
 	const handleCreateExpense = useCallback(() => {
-		setTransactionType(TransactionType.EXPENSE);
-		bottomSheetRef.current?.present();
+		closeBottomSheet();
+		router.push(`/transaction/type/${TransactionType.EXPENSE}`);
 	}, []);
 
 	const handleCreateIncome = useCallback(() => {
-		setTransactionType(TransactionType.INCOME);
-		bottomSheetRef.current?.present();
+		closeBottomSheet();
+		router.push(`/transaction/type/${TransactionType.INCOME}`);
 	}, []);
 
 	return (
@@ -35,16 +48,30 @@ export const FastActionsBottomSheet = forwardRef<BottomSheetModal>((props, ref) 
 				<View style={styles.list}>
 					<FastAction
 						highlightColor="EMERALD_GREEN"
-						icon="sunrise"
-						label="Добавить новые доходы"
+						icon={UI_ICONS.transaction_income}
+						label="Записать доход"
 						onPress={handleCreateIncome}
 					/>
 
 					<FastAction
 						highlightColor="SUNSET_ORANGE"
-						icon="sunset"
-						label="Добавить новые расходы"
+						icon={UI_ICONS.transaction_expense}
+						label="Записать расход"
 						onPress={handleCreateExpense}
+					/>
+
+					<FastAction
+						highlightColor="ASH_GRAY"
+						icon={UI_ICONS.transactions_by_voice}
+						label="Записать голосом"
+						onPress={handleCreateByVoice}
+					/>
+
+					<FastAction
+						highlightColor="ASH_GRAY"
+						icon={UI_ICONS.transactions_by_screenshot}
+						label="Записать из скриншота"
+						onPress={handleCreateByVoice}
 					/>
 
 					<View style={styles.placeholder}>
@@ -55,11 +82,6 @@ export const FastActionsBottomSheet = forwardRef<BottomSheetModal>((props, ref) 
 					</View>
 				</View>
 			</StyledBottomSheetModal>
-
-			<CreateTransactionBottomSheet
-				ref={bottomSheetRef}
-				type={transactionType}
-			/>
 		</>
 	);
 });

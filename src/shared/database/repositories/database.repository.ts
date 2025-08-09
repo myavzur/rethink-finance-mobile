@@ -4,7 +4,7 @@ import { SQLiteDatabase, openDatabaseSync } from "expo-sqlite";
 import { type DrizzleSQLiteDatabase, schema } from "../schema";
 
 class DatabaseRepository {
-	readonly DATABASE_NAME = "rethink.finances-3.5.0";
+	readonly DATABASE_NAME = "rethink.finances-3.7.0";
 
 	readonly expoDb: SQLiteDatabase;
 	readonly db: DrizzleSQLiteDatabase;

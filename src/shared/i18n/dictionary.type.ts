@@ -6,7 +6,7 @@ export interface Dictionary {
 	tabbar_home: string;
 	tabbar_categories: string;
 	tabbar_analysis: string;
-	tabbar_profile: string;
+	tabbar_settings: string;
 
 	expenses: string;
 	income: string;

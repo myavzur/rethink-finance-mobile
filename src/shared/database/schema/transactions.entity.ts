@@ -8,8 +8,8 @@ import { categories } from "./categories.entity";
 
 // TransactionType
 export const TransactionType = {
-	EXPENSE: 0,
-	INCOME: 1
+	EXPENSE: "expense",
+	INCOME: "income"
 } as const;
 
 export type ITransactionType = ValueOf<typeof TransactionType>;
@@ -17,9 +17,9 @@ export type ITransactionType = ValueOf<typeof TransactionType>;
 // Currency
 /** ISO 4217 */
 export const Currency = {
-	RUB: "RUB",
-	USD: "USD",
-	EUR: "EUR"
+	RUB: "rub",
+	USD: "usd",
+	EUR: "eur"
 } as const;
 
 export type ICurrency = ValueOf<typeof Currency>;

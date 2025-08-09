@@ -18,8 +18,8 @@ export const useStyles = () =>
 			alignItems: "center"
 		},
 		label: {
-			fontSize: Font.size.s11,
-			fontWeight: Font.weight.semiBold,
+			fontSize: Font.size.s9,
+			fontWeight: Font.weight.medium,
 			textAlign: "center"
 		}
 	}));

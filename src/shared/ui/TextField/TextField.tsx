@@ -1,4 +1,5 @@
-import { type FC, useEffect, useMemo, useRef, useState } from "react";
+import type { FC } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
 	Animated,
 	Easing,
@@ -17,6 +18,10 @@ import { Icon } from "@/shared/ui";
 import type { TextFieldProps } from "./TextField.props";
 import { useStyles } from "./TextField.styles";
 
+
+
+
+
 export const TextField: FC<TextFieldProps> = ({
 	endIcon,
 	label,
@@ -34,22 +39,27 @@ export const TextField: FC<TextFieldProps> = ({
 
 	const color = useMemo(() => {
 		if (errorMessage) {
-			return theme.colors.utility.error;
+			return {
+				border: theme.colors.utility.error,
+				label: theme.colors.utility.error
+			};
 		}
 
 		if (isFocused) {
-			return theme.colors["text-on-background"];
+			return {
+				border: theme.colors["text-on-background"],
+				label: theme.colors["text-on-background"]
+			};
 		}
 
-		return theme.colors["text-on-background-secondary"];
+		return {
+			border: theme.colors.inputBorder, // фиксированный светло-серый
+			label: theme.colors.inputPlaceholder // тёмно-серый для плейсхолдера
+		};
 	}, [isFocused, errorMessage]);
 
 	const focusAnimation = useAnimatedValue(0);
 
-	/*
-	 ** This effect will trigger the animation every
-	 ** time `isFocused` value changes.
-	 */
 	useEffect(() => {
 		const isActiveState = isFocused || Boolean(value);
 
@@ -77,9 +87,7 @@ export const TextField: FC<TextFieldProps> = ({
 				<View
 					style={[
 						styles.field,
-						{
-							borderColor: color
-						}
+						{ borderColor: color.border, backgroundColor: "#FFFFFF" }
 					]}
 				>
 					<TextInput
@@ -89,6 +97,7 @@ export const TextField: FC<TextFieldProps> = ({
 						onBlur={handleBlur}
 						style={styles.nativeInput}
 						ref={inputRef}
+						placeholderTextColor="#9E9E9E"
 					/>
 
 					<Animated.View
@@ -99,19 +108,19 @@ export const TextField: FC<TextFieldProps> = ({
 									{
 										scale: focusAnimation.interpolate({
 											inputRange: [0, 1],
-											outputRange: [1, 0.73]
+											outputRange: [1, 0.85]
 										})
 									},
 									{
 										translateY: focusAnimation.interpolate({
 											inputRange: [0, 1],
-											outputRange: [14, -16]
+											outputRange: [18, -10]
 										})
 									},
 									{
 										translateX: focusAnimation.interpolate({
 											inputRange: [0, 1],
-											outputRange: [0, -16]
+											outputRange: [0, -4]
 										})
 									}
 								]
@@ -121,7 +130,8 @@ export const TextField: FC<TextFieldProps> = ({
 						<Text
 							style={{
 								fontSize: Font.size.s15,
-								color
+								fontWeight: "500",
+								color: color.label
 							}}
 						>
 							{label}
@@ -129,12 +139,7 @@ export const TextField: FC<TextFieldProps> = ({
 						</Text>
 					</Animated.View>
 
-					{endIcon && (
-						<Icon
-							style={styles.endIcon}
-							name={endIcon}
-						/>
-					)}
+					{endIcon && <Icon name={endIcon} />}
 				</View>
 
 				{Boolean(errorMessage) && <Text style={styles.error}>{errorMessage}</Text>}

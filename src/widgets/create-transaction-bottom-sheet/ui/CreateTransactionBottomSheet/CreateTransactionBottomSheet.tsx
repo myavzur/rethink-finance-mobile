@@ -8,7 +8,7 @@ import { useTransactionForm } from "@/widgets/create-transaction-bottom-sheet/li
 
 import { AmountField } from "@/features/amount-field";
 
-import { LatestCategories } from "@/entities/categories";
+import { CategoryList, LatestCategories } from "@/entities/categories";
 import { formatCreatedAt } from "@/entities/transactions";
 
 import { PortalHostName } from "@/shared/const";
@@ -23,6 +23,7 @@ import {
 
 import type { CreateTransactionBottomSheetProps } from "./CreateTransactionBottomSheet.props.";
 import { useStyles } from "./CreateTransactionBottomSheet.styles";
+import { MathKeyboard } from "@/features/math-keyboard/ui";
 
 export const CreateTransactionBottomSheet = forwardRef<
 	BottomSheetModal,
@@ -108,7 +109,7 @@ export const CreateTransactionBottomSheet = forwardRef<
 								errorMessage={fieldState.error?.message}
 								onBlur={field.onBlur}
 								onChangeText={field.onChange}
-								value={field.value}
+								value={field.value!}
 							/>
 						)}
 						name="comment"
@@ -130,23 +131,16 @@ export const CreateTransactionBottomSheet = forwardRef<
 						control={control}
 					/>
 				</Accordion>
-			</View>
 
-			<View style={styles.section}>
-				<Accordion title="Список всех категорий">
-					{/*<CategoryList withHeader={false} onSelectCategory={console.log} />*/}
+				<Accordion title="Список всех категорий" preventBorderTop={true}>
+					<CategoryList withHeader={false} onSelectCategory={console.log} />
 					<Text>Red</Text>
 				</Accordion>
 			</View>
 
-			<View style={styles.submitButtons}>
-				<Button
-					kind="fill"
-					onPress={handleCreateTransaction}
-				>
-					Добавить
-				</Button>
-			</View>
+			{/*<View style={styles.submitButtons}>*/}
+			{/*	<MathKeyboard />*/}
+			{/*</View>*/}
 		</StyledBottomSheetModal>
 	);
 });

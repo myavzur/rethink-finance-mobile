@@ -8,8 +8,8 @@ export const useStyles = () =>
 			flexDirection: "row",
 			alignItems: "center",
 			position: "absolute",
-			bottom: Gaps.g15,
-			marginHorizontal: Gaps.g15,
+			bottom: Gaps.mainLayoutVertical,
+			marginHorizontal: Gaps.mainLayoutHorizontal,
 			backgroundColor: theme.colors.background,
 			borderRadius: Borders.b20,
 			boxShadow: "0px 0px 15px rgba(0, 0, 0, 0.2)"

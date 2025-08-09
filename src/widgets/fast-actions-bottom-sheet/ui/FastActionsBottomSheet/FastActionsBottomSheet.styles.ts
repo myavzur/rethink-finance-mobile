@@ -1,18 +1,16 @@
 import { StyleSheet } from "react-native";
 
-import { Gaps } from "@/shared/const";
-
 export const styles = StyleSheet.create({
 	list: {
 		flex: 1,
-		gap: Gaps.g10
+		gap: 4
 	},
 	placeholder: {
 		alignItems: "center"
 	},
 	sticker: {
-		transform: [{ rotate: "-60deg" }],
-		width: 150,
-		height: 130
+		transform: [{ rotate: "0deg" }],
+		width: 100,
+		height: 120
 	}
 });

@@ -4,7 +4,9 @@ export const ThemePalettes: IThemePalettes = {
 	winter: {
 		background: "#ffffff",
 		"text-on-background": "#000000",
-		"text-on-background-secondary": "#adadad",
+		"text-on-background-secondary": "#E0E0E0",
+		inputPlaceholder: "#585758",
+		inputBorder: "#E0E0E0",
 		utility: {
 			error: "#B00020"
 		},
@@ -20,6 +22,8 @@ export const ThemePalettes: IThemePalettes = {
 		background: "#333333",
 		"text-on-background": "#FFFFFF",
 		"text-on-background-secondary": "#adadad",
+		inputPlaceholder: "#585758",
+		inputBorder: "#E0E0E0",
 		utility: {
 			error: "#B00020"
 		},

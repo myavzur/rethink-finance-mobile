@@ -14,7 +14,7 @@ export const useStyles = (highlightColor: IHighlightColor) =>
 				backgroundColor: highlight.dimmed,
 				alignItems: "center",
 				justifyContent: "center",
-				borderRadius: Borders.full
+				borderRadius: Borders.b15,
 			},
 			icon__inline: {
 				color: highlight.primary

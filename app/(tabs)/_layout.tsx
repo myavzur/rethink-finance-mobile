@@ -6,11 +6,14 @@ import { TabBar } from "@/widgets/tab-bar/ui";
 import { useTheme } from "@/entities/themes/lib/hooks";
 
 import { Icon } from "@/shared/ui";
+import { UI_ICONS } from "@/shared/const";
+import { useIntl } from "react-intl";
 
 const ICON_SIZE = 23;
 
-export default function TabLayout() {
+export default function Layout() {
 	const theme = useTheme();
+	const intl = useIntl();
 
 	return (
 		<Tabs
@@ -25,11 +28,11 @@ export default function TabLayout() {
 			<Tabs.Screen
 				name="index"
 				options={{
-					title: "History",
+					title: intl.formatMessage({ id: "tabbar_home" }),
 					tabBarIcon: ({ color }) => (
 						<Icon
 							size={ICON_SIZE}
-							name="home"
+							name={UI_ICONS.tabbar_history}
 							color={color}
 						/>
 					)
@@ -38,11 +41,11 @@ export default function TabLayout() {
 			<Tabs.Screen
 				name="categories"
 				options={{
-					title: "Categories",
+					title: intl.formatMessage({ id: "tabbar_categories" }),
 					tabBarIcon: ({ color }) => (
 						<Icon
 							size={ICON_SIZE}
-							name="box"
+							name={UI_ICONS.tabbar_categories}
 							color={color}
 						/>
 					)
@@ -51,24 +54,24 @@ export default function TabLayout() {
 			<Tabs.Screen
 				name="analysis"
 				options={{
-					title: "Analysis",
+					title: intl.formatMessage({ id: "tabbar_analysis" }),
 					tabBarIcon: ({ color }) => (
 						<Icon
 							size={ICON_SIZE}
-							name="clipboard"
+							name={UI_ICONS.tabbar_analysis}
 							color={color}
 						/>
 					)
 				}}
 			/>
 			<Tabs.Screen
-				name="profile"
+				name="settings"
 				options={{
-					title: "Profile",
+					title: intl.formatMessage({ id: "tabbar_settings" }),
 					tabBarIcon: ({ color }) => (
 						<Icon
 							size={ICON_SIZE}
-							name="settings"
+							name={UI_ICONS.tabbar_settings}
 							color={color}
 						/>
 					)

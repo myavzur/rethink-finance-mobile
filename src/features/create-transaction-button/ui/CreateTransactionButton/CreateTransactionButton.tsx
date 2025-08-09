@@ -9,6 +9,7 @@ import { useTheme } from "@/entities/themes/lib/hooks";
 import { Icon } from "@/shared/ui";
 
 import { useStyles } from "./CreateTransactionButton.styles";
+import { UI_ICONS } from "@/shared/const";
 
 export const CreateTransactionButton: FC = () => {
 	const theme = useTheme();
@@ -28,7 +29,7 @@ export const CreateTransactionButton: FC = () => {
 			>
 				<Icon
 					size={28}
-					name="plus-circle"
+					name={UI_ICONS.tabbar_big_circle_button}
 					color={theme.colors.background}
 				/>
 			</TouchableOpacity>

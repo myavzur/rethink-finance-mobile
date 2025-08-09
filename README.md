@@ -3,13 +3,14 @@
 - - [x] Make repositories for Category and Transaction
 - [x] Configure Prettier
 - [x] Configure Eslint
-- [ ] Configure Storybook
 - [ ] Configure Jest
   - [ ] Setup tests
   - [ ] Write <Amount /> tests
   - [ ] Write formatCreatedAt tests
   - [ ] Write <TransactionList /> tests
   - [ ] Write <TransactionCard /> tests
+- [ ] Auto-creating Transactions by Voice (with auto-creating Categories if needed)
+- [ ] Auto-creating Transactions by Screenshot from Bank's application (with auto-creating Categories if needed)
 - [ ] Keep doing things
 
 # Welcome to your Expo app 👋

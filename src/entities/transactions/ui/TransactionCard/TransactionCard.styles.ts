@@ -13,7 +13,7 @@ export const useStyles = (highlightColor: IHighlightColor) =>
 			card: {
 				flexDirection: "row",
 				alignItems: "center",
-				// paddingHorizontal: Gaps.g15,
+				paddingHorizontal: Gaps.g10,
 				paddingVertical: Gaps.g10,
 				gap: Gaps.g10,
 				fontSize: Font.size.s12,

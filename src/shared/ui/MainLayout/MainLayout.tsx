@@ -1,10 +1,18 @@
-import type { FC, PropsWithChildren } from "react";
+import type { FC } from "react";
 import { View } from "react-native";
 
 import { useStyles } from "./MainLayout.styles";
 
-export const MainLayout: FC<PropsWithChildren> = ({ children }) => {
-	const styles = useStyles();
+interface MainLayoutProps {
+	withPaddingBottomForTabbar?: boolean;
+	children?: React.ReactNode;
+}
+
+export const MainLayout: FC<MainLayoutProps> = ({
+	children,
+	withPaddingBottomForTabbar = false
+}) => {
+	const styles = useStyles(withPaddingBottomForTabbar);
 
 	return <View style={styles.layout}>{children}</View>;
 };

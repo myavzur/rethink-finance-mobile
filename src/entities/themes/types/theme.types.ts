@@ -5,6 +5,8 @@ export interface ColorPalette {
 	background: string;
 	"text-on-background": string;
 	"text-on-background-secondary": string;
+	inputPlaceholder: string;
+	inputBorder: string;
 
 	utility: {
 		error: string;
