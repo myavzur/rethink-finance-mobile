@@ -1,6 +1,6 @@
 import { useLiveQuery } from "drizzle-orm/expo-sqlite";
 import { type FC, useMemo } from "react";
-import { useIntl } from "react-intl";
+import { useIntl } from "@/shared/lib/hooks";
 import { FlatList } from "react-native";
 
 import { groupTransactionsByDate } from "@/entities/transactions/lib/utils";

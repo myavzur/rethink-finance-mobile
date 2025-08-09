@@ -8,7 +8,7 @@ import {
 	transactionRepository
 } from "@/shared/database/repositories";
 import { Button, MainLayout } from "@/shared/ui";
-import { useIntl } from "react-intl";
+import { useIntl } from "@/shared/lib/hooks";
 import { Currency, TransactionType } from "@/shared/database/schema";
 
 export default function Route() {

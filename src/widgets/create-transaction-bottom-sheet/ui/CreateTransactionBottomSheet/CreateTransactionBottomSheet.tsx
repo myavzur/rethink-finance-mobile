@@ -1,7 +1,7 @@
 import { type BottomSheetModal, useBottomSheetModal } from "@gorhom/bottom-sheet";
 import { forwardRef } from "react";
 import { Controller } from "react-hook-form";
-import { useIntl } from "react-intl";
+import { useIntl } from "@/shared/lib/hooks";
 import { Text, TouchableOpacity, View } from "react-native";
 
 import { useTransactionForm } from "@/widgets/create-transaction-bottom-sheet/lib/hooks";

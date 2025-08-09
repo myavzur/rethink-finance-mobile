@@ -27,6 +27,7 @@ export const Gaps = {
 	g30: 30,
 	mainLayoutHorizontal: 20,
 	mainLayoutVertical: 15,
+	mainLayoutHeaderGap: 15,
 	"latest-categories-list": 20,
 	"category-and-transaction-list": 6,
 	"accordion-header": 10

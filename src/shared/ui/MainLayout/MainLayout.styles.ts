@@ -1,9 +1,9 @@
 import { useWindowDimensions } from "react-native";
 
 import { useThemeStyles } from "@/entities/themes/lib/hooks";
+import { getStatusBarHeight } from "@/entities/transactions/lib/utils";
 
 import { Gaps } from "@/shared/const";
-import { getStatusBarHeight } from "@/entities/transactions/lib/utils";
 
 export const useStyles = (withPaddingBottomForTabbar: boolean) => {
 	const dimensions = useWindowDimensions();
@@ -13,7 +13,7 @@ export const useStyles = (withPaddingBottomForTabbar: boolean) => {
 			minHeight: dimensions.height,
 			marginTop: getStatusBarHeight(),
 			paddingHorizontal: Gaps.mainLayoutHorizontal,
-			paddingBottom: withPaddingBottomForTabbar ? 110 : 0,
+			paddingBottom: withPaddingBottomForTabbar ? 200 : Gaps.mainLayoutVertical,
 			backgroundColor: theme.colors.background
 		}
 	}));

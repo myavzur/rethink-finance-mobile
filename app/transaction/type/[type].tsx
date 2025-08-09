@@ -1,22 +1,18 @@
 import { useLocalSearchParams } from "expo-router";
 import { useMemo } from "react";
-import { useIntl } from "react-intl";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, View } from "react-native";
 
 import { TransactionKeyboard } from "@/widgets/transaction-keyboard/ui";
 
 import { useThemeStyles } from "@/entities/themes/lib/hooks";
 
-import { Font, Gaps } from "@/shared/const";
+import { Gaps } from "@/shared/const";
 import { type ITransactionType, TransactionType } from "@/shared/database/schema";
-import { MainLayout, TextField } from "@/shared/ui";
+import { MainLayout, PageHeader, TextField } from "@/shared/ui";
+import { useIntl } from "@/shared/lib/hooks";
 
 export const useStyles = () =>
 	useThemeStyles(() => ({
-		header: {
-			fontSize: Font.size.s16,
-			fontWeight: Font.weight.semiBold
-		},
 		fields: {
 			flexDirection: "column",
 			gap: 12
@@ -32,20 +28,21 @@ export default function Route() {
 	const params = useLocalSearchParams<{ type: ITransactionType }>();
 
 	const pageTitle = useMemo(() => {
-		if (params.type === TransactionType.INCOME) return "Новый доход";
-		return "Новый расход";
-	}, [params.type]);
+		if (params.type === TransactionType.INCOME) return intl.formatMessage({ id: "income" });
+		return intl.formatMessage({ id: "expense" });
+	}, [params.type, intl]);
 
 	const handleCreateTransaction = () => {
 		console.log("Done!");
 	};
 
 	return (
-		<MainLayout>
+		<MainLayout withPaddingBottomForTabbar={false}>
 			<ScrollView>
-				<Text style={styles.header}>{pageTitle}</Text>
+				<PageHeader title={pageTitle} />
+
 				<View style={styles.fields}>
-					<TextField label={"Комментарий"} />
+					<TextField label={intl.formatMessage({ id: "comment" })} />
 				</View>
 			</ScrollView>
 

@@ -10,7 +10,7 @@ interface MainLayoutProps {
 
 export const MainLayout: FC<MainLayoutProps> = ({
 	children,
-	withPaddingBottomForTabbar = false
+	withPaddingBottomForTabbar = true
 }) => {
 	const styles = useStyles(withPaddingBottomForTabbar);
 

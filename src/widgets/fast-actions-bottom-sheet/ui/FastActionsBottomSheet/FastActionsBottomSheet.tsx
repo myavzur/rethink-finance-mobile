@@ -9,8 +9,10 @@ import { StyledBottomSheetModal } from "@/shared/ui";
 
 import { FastAction } from "../FastAction/FastAction";
 import { styles } from "./FastActionsBottomSheet.styles";
+import { useIntl } from "@/shared/lib/hooks";
 
 export const FastActionsBottomSheet = forwardRef<BottomSheetModal>((props, ref) => {
+	const intl = useIntl();
 	const router = useRouter();
 
 	const closeBottomSheet = useCallback(() => {
@@ -49,28 +51,28 @@ export const FastActionsBottomSheet = forwardRef<BottomSheetModal>((props, ref) 
 					<FastAction
 						highlightColor="EMERALD_GREEN"
 						icon={UI_ICONS.transaction_income}
-						label="Записать доход"
+						label={intl.formatMessage({ id: "add_income" })}
 						onPress={handleCreateIncome}
 					/>
 
 					<FastAction
 						highlightColor="SUNSET_ORANGE"
 						icon={UI_ICONS.transaction_expense}
-						label="Записать расход"
+						label={intl.formatMessage({ id: "add_expense" })}
 						onPress={handleCreateExpense}
 					/>
 
 					<FastAction
 						highlightColor="ASH_GRAY"
 						icon={UI_ICONS.transactions_by_voice}
-						label="Записать голосом"
+						label={intl.formatMessage({ id: "add_transactions_by_voice" })}
 						onPress={handleCreateByVoice}
 					/>
 
 					<FastAction
 						highlightColor="ASH_GRAY"
 						icon={UI_ICONS.transactions_by_screenshot}
-						label="Записать из скриншота"
+						label={intl.formatMessage({ id: "add_transactions_by_screenshot" })}
 						onPress={handleCreateByVoice}
 					/>
 

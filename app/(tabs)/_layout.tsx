@@ -7,7 +7,7 @@ import { useTheme } from "@/entities/themes/lib/hooks";
 
 import { Icon } from "@/shared/ui";
 import { UI_ICONS } from "@/shared/const";
-import { useIntl } from "react-intl";
+import { useIntl } from "@/shared/lib/hooks";
 
 const ICON_SIZE = 23;
 

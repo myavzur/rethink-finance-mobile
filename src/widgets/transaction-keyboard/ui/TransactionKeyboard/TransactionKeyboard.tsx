@@ -7,14 +7,16 @@ import { TextField } from "@/shared/ui";
 
 import type { TransactionKeyboardProps } from "./TransactionKeyboard.props";
 import { styles } from "./TransactionKeyboard.styles";
+import { useIntl } from "@/shared/lib/hooks";
 
 export const TransactionKeyboard: FC<TransactionKeyboardProps> = ({}) => {
+	const intl = useIntl();
 	const [expression, setExpression] = useState("");
 
 	return (
 		<View style={styles.group}>
 			<TextField
-				label={"Сумма"}
+				label={intl.formatMessage({ id: "amount" })}
 				value={expression}
 				showSoftInputOnFocus={false}
 				editable={false}

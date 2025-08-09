@@ -18,10 +18,6 @@ import { Icon } from "@/shared/ui";
 import type { TextFieldProps } from "./TextField.props";
 import { useStyles } from "./TextField.styles";
 
-
-
-
-
 export const TextField: FC<TextFieldProps> = ({
 	endIcon,
 	label,
@@ -47,8 +43,8 @@ export const TextField: FC<TextFieldProps> = ({
 
 		if (isFocused) {
 			return {
-				border: theme.colors["text-on-background"],
-				label: theme.colors["text-on-background"]
+				border: "#969696",
+				label: "#969696"
 			};
 		}
 
