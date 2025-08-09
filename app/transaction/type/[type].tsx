@@ -32,8 +32,8 @@ export default function Route() {
 		return intl.formatMessage({ id: "expense" });
 	}, [params.type, intl]);
 
-	const handleCreateTransaction = () => {
-		console.log("Done!");
+	const handleCreateTransaction = (amount: number) => {
+		console.log(amount);
 	};
 
 	return (

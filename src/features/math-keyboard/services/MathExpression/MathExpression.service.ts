@@ -1,5 +1,6 @@
 import { type IMathOperator } from "@/features/math-keyboard/lib/utils";
 import { CharValidatorService } from "@/features/math-keyboard/services";
+import * as mathjs from "mathjs";
 
 export class MathExpressionService {
 	private readonly charValidatorService = new CharValidatorService();
@@ -76,4 +77,11 @@ export class MathExpressionService {
 	public deleteLastChar = (expression: string) => {
 		return expression.slice(0, -1);
 	};
+
+	public evaluate = (expression: string) => {
+		const answer = mathjs.evaluate(expression);
+		const answerPrecise = mathjs.format(answer, {precision: 14});
+		return parseFloat(answerPrecise);
+	}
 }
+

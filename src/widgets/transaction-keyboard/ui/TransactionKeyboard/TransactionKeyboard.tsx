@@ -9,7 +9,7 @@ import type { TransactionKeyboardProps } from "./TransactionKeyboard.props";
 import { styles } from "./TransactionKeyboard.styles";
 import { useIntl } from "@/shared/lib/hooks";
 
-export const TransactionKeyboard: FC<TransactionKeyboardProps> = ({}) => {
+export const TransactionKeyboard: FC<TransactionKeyboardProps> = ({ onDone }) => {
 	const intl = useIntl();
 	const [expression, setExpression] = useState("");
 
@@ -22,7 +22,7 @@ export const TransactionKeyboard: FC<TransactionKeyboardProps> = ({}) => {
 				editable={false}
 			/>
 
-			<MathKeyboard onExpressionChange={setExpression} />
+			<MathKeyboard onExpressionChange={setExpression} onDone={onDone} />
 		</View>
 	);
 };

@@ -23,7 +23,7 @@ import { useStyles } from "./MathKeyboard.styles";
 
 const mathExpressionService = new MathExpressionService();
 
-const MathKeyboardComponent: FC<MathKeyboardProps> = ({ onExpressionChange }) => {
+const MathKeyboardComponent: FC<MathKeyboardProps> = ({ onExpressionChange, onDone }) => {
 	const styles = useStyles();
 	const [expression, setExpression] = useState("");
 
@@ -66,7 +66,17 @@ const MathKeyboardComponent: FC<MathKeyboardProps> = ({ onExpressionChange }) =>
 				break;
 			}
 			case MathAction.DONE: {
-				console.log("done");
+				setExpression((prevExpression) => {
+					if (prevExpression.trim() === "") return prevExpression;
+
+					const answer = mathExpressionService.evaluate(prevExpression);
+					onDone(answer);
+
+					const nextExpression = String(answer);
+					onExpressionChange(nextExpression);
+
+					return nextExpression;
+				});
 				break;
 			}
 			default: {

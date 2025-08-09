@@ -1,3 +1,3 @@
 export interface TransactionKeyboardProps {
-	onDone: () => void;
+	onDone: (amount: number) => void;
 }
