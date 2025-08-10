@@ -75,13 +75,6 @@ export const FastActionsBottomSheet = forwardRef<BottomSheetModal>((props, ref) 
 						label={intl.formatMessage({ id: "add_transactions_by_screenshot" })}
 						onPress={handleCreateByVoice}
 					/>
-
-					<View style={styles.placeholder}>
-						<Image
-							style={styles.sticker}
-							source={require("./cat-sticker.png")}
-						/>
-					</View>
 				</View>
 			</StyledBottomSheetModal>
 		</>

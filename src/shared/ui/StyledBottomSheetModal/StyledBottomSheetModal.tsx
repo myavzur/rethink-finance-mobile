@@ -46,7 +46,7 @@ export const StyledBottomSheetModal = forwardRef<
 				backgroundStyle={styles.sheetBackground}
 				handleIndicatorStyle={styles.sheetHandleIndicator}
 			>
-				<BottomSheetView style={styles.content} >{props.children}</BottomSheetView>
+				<BottomSheetView style={styles.content}>{props.children}</BottomSheetView>
 			</BottomSheetModal>
 		</Portal>
 	);
