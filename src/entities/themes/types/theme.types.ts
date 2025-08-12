@@ -1,5 +1,5 @@
 type PrimaryShades = 900;
-type AccentShades = 1000 | "glassed-1000";
+type AccentShades = 1000 | 900 | "glassed-1000";
 
 export interface ColorPalette {
 	background: string;

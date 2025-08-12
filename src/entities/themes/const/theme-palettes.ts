@@ -15,6 +15,7 @@ export const ThemePalettes: IThemePalettes = {
 		},
 		accent: {
 			1000: "#7A9E7E",
+			900: "#67866a",
 			"glassed-1000": "#F2F7F2"
 		}
 	},
@@ -32,6 +33,7 @@ export const ThemePalettes: IThemePalettes = {
 		},
 		accent: {
 			1000: "#7A9E7E",
+			900: "#67866a",
 			"glassed-1000": "#444644"
 		}
 	}

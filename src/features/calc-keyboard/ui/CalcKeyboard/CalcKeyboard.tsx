@@ -18,12 +18,12 @@ import {
 } from "../../lib/utils";
 import { MathExpressionService } from "../../services";
 import { KeyboardButton } from "../KeyboardButton";
-import type { MathKeyboardProps } from "./MathKeyboard.props";
-import { useStyles } from "./MathKeyboard.styles";
+import type { CalcKeyboardProps } from "./CalcKeyboard.props";
+import { useStyles } from "./CalcKeyboard.styles";
 
 const mathExpressionService = new MathExpressionService();
 
-const MathKeyboardComponent: FC<MathKeyboardProps> = ({ onExpressionChange, onDone }) => {
+const CalcKeyboardComponent: FC<CalcKeyboardProps> = ({ onExpressionChange, onDone }) => {
 	const styles = useStyles();
 	const [expression, setExpression] = useState("");
 
@@ -191,4 +191,4 @@ const MathKeyboardComponent: FC<MathKeyboardProps> = ({ onExpressionChange, onDo
 	);
 };
 
-export const MathKeyboard = memo(MathKeyboardComponent);
+export const CalcKeyboard = memo(CalcKeyboardComponent);

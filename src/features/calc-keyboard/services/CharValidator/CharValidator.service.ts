@@ -1,4 +1,4 @@
-import { type IMathOperator, MathOperator } from "@/features/math-keyboard/lib/utils";
+import { type IMathOperator, MathOperator } from "@/features/calc-keyboard/lib/utils";
 
 export class CharValidatorService {
 	// For O(1) search

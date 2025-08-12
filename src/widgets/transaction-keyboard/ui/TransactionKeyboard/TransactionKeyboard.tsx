@@ -1,7 +1,7 @@
 import { type FC, useState } from "react";
 import { View } from "react-native";
 
-import { MathKeyboard } from "@/features/math-keyboard/ui";
+import { CalcKeyboard } from "@/features/calc-keyboard/ui";
 
 import { TextField } from "@/shared/ui";
 
@@ -22,7 +22,7 @@ export const TransactionKeyboard: FC<TransactionKeyboardProps> = ({ onDone }) =>
 				editable={false}
 			/>
 
-			<MathKeyboard onExpressionChange={setExpression} onDone={onDone} />
+			<CalcKeyboard onExpressionChange={setExpression} onDone={onDone} />
 		</View>
 	);
 };

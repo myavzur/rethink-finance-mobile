@@ -23,7 +23,7 @@ import {
 
 import type { CreateTransactionBottomSheetProps } from "./CreateTransactionBottomSheet.props.";
 import { useStyles } from "./CreateTransactionBottomSheet.styles";
-import { MathKeyboard } from "@/features/math-keyboard/ui";
+import { CalcKeyboard } from "@/features/calc-keyboard/ui";
 
 export const CreateTransactionBottomSheet = forwardRef<
 	BottomSheetModal,
@@ -139,7 +139,7 @@ export const CreateTransactionBottomSheet = forwardRef<
 			</View>
 
 			{/*<View style={styles.submitButtons}>*/}
-			{/*	<MathKeyboard />*/}
+			{/*	<CalcKeyboard />*/}
 			{/*</View>*/}
 		</StyledBottomSheetModal>
 	);

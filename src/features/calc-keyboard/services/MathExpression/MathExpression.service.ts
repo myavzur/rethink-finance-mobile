@@ -1,7 +1,7 @@
 import * as mathjs from "mathjs";
 
-import { type IMathOperator } from "@/features/math-keyboard/lib/utils";
-import { CharValidatorService } from "@/features/math-keyboard/services";
+import { type IMathOperator } from "@/features/calc-keyboard/lib/utils";
+import { CharValidatorService } from "@/features/calc-keyboard/services";
 
 export class MathExpressionService {
 	private readonly charValidatorService = new CharValidatorService();

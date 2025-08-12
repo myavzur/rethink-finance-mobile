@@ -1,4 +1,4 @@
-import { type IMathOperator, MathOperator } from "@/features/math-keyboard/lib/utils";
+import { type IMathOperator, MathOperator } from "@/features/calc-keyboard/lib/utils";
 import { MathExpressionService } from "./MathExpression.service";
 
 describe("Сервис MathExpression", () => {
