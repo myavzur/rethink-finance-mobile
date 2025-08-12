@@ -11,6 +11,7 @@
     "start:vpn": "npm run drizzle:migrate && expo start --tunnel",
     "code:format": "prettier --write \"src/**/*.{ts,tsx}\" \"app/**/*.{ts,tsx}\"",
     "code:lint": "expo lint",
+    "build:android": "eas build -p android",
     "test": "jest --watchAll",
     "test:once": "jest --watchAll=false"
   },

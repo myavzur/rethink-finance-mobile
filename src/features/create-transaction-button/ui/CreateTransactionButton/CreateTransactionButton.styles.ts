@@ -11,7 +11,7 @@ export const useStyles = () =>
 			backgroundColor: theme.colors.accent[1000],
 			...borderStyle(5, theme.colors.background)
 		},
-		button_pressed: {
-			backgroundColor: theme.colors.accent[1000]
+		button_active: {
+			backgroundColor: theme.colors.accent[900]
 		}
 	}));
