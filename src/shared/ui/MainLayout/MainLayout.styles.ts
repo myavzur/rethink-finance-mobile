@@ -10,6 +10,7 @@ export const useStyles = (withPaddingBottomForTabbar: boolean) => {
 
 	return useThemeStyles((theme) => ({
 		layout: {
+			position: "relative",
 			minHeight: dimensions.height,
 			marginTop: getStatusBarHeight(),
 			paddingHorizontal: Gaps.mainLayoutHorizontal,

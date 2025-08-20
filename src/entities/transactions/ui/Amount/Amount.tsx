@@ -1,9 +1,10 @@
 import { type FC, useMemo } from "react";
 import { Text } from "react-native";
 
+import { TransactionType } from "@/shared/database/schema";
+
 import type { AmountProps } from "./Amount.props";
 import { styles } from "./Amount.styles";
-import { TransactionType } from "@/shared/database/schema";
 
 export const Amount: FC<AmountProps> = ({
 	amount_value,
@@ -19,6 +20,8 @@ export const Amount: FC<AmountProps> = ({
 	});
 
 	const amountPrefix = useMemo(() => {
+		if (amount_value === 0) return null;
+
 		if (type === TransactionType.INCOME) {
 			return "+";
 		}

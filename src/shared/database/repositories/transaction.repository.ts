@@ -34,7 +34,8 @@ class TransactionRepository {
 		BETWEEN
 		${startDate}
 		AND
-		${endDate}`;
+		${endDate}
+		`;
 
 		return databaseRepository.db.query.transactions.findMany({
 			with: {
@@ -45,7 +46,7 @@ class TransactionRepository {
 		});
 	};
 
-	create = async (transaction: Partial<Transaction>) => {
+	create = async (transaction: typeof transactions.$inferInsert) => {
 		try {
 			return await databaseRepository.db.insert(transactions).values({
 				...(transaction as Transaction)

@@ -20,7 +20,7 @@ export default function Layout() {
 					<AppI18nProvider>
 						<Stack
 							screenOptions={{
-								headerShown: false
+								headerShown: false,
 							}}
 						/>
 					</AppI18nProvider>

@@ -1,8 +1,7 @@
-import { useRouter } from "expo-router";
 import { type FC } from "react";
 import { Text, View } from "react-native";
 
-import type { Transaction, TransactionWithCategory } from "@/shared/database/schema";
+import type { TransactionWithCategory } from "@/shared/database/schema";
 
 import { TransactionCard } from "../TransactionCard";
 import type { TransactionGroupProps } from "./TransactionGroup.props";
@@ -14,7 +13,6 @@ export const TransactionGroup: FC<TransactionGroupProps> = ({
 	transactions,
 	onTransactionPress
 }) => {
-	const router = useRouter();
 	const styles = useStyles();
 
 	const handleTransactionPress = (transaction: TransactionWithCategory) => {
