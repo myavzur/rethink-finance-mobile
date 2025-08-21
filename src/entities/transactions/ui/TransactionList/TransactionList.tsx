@@ -38,12 +38,13 @@ export const TransactionList: FC<TransactionListProps> = ({
 			showsHorizontalScrollIndicator={false}
 			contentContainerStyle={{ gap: 15 }}
 			data={transactionGroups}
-			keyExtractor={([key]) => key}
-			renderItem={(item) => {
-				const [date, group] = item.item;
+			keyExtractor={([date]) => date}
+			renderItem={({ item }) => {
+				const [date, group] = item;
 
 				return (
 					<TransactionGroup
+						key={date}
 						date={date}
 						subtitleElement={
 							<Amount

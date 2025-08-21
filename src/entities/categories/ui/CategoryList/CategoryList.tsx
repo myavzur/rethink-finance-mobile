@@ -4,14 +4,17 @@ import { FlatList, Text, View } from "react-native";
 
 import { CategoryCard } from "@/entities/categories/ui/CategoryCard/CategoryCard";
 
+import { Gaps } from "@/shared/const";
 import { categoryRepository } from "@/shared/database/repositories";
-import type { Category } from "@/shared/database/schema";
 
 import type { CategoryListProps } from "./CategoryList.props";
 import { useStyles } from "./CategoryList.styles";
-import { Gaps } from "@/shared/const";
 
-export const CategoryList: FC<CategoryListProps> = ({ withHeader, onSelectCategory }) => {
+export const CategoryList: FC<CategoryListProps> = ({
+	withHeader,
+	onSelectCategory,
+	selectedCategoryId
+}) => {
 	const styles = useStyles();
 
 	const { data: categories } = useLiveQuery(categoryRepository.getAll());
@@ -31,12 +34,18 @@ export const CategoryList: FC<CategoryListProps> = ({ withHeader, onSelectCatego
 				contentContainerStyle={{ gap: Gaps["category-and-transaction-list"] }}
 				data={categories}
 				keyExtractor={(category) => category.id.toString()}
-				renderItem={(category) => (
-					<CategoryCard
-						onPress={() => onSelectCategory(category.item)}
-						category={category.item}
-					/>
-				)}
+				renderItem={({ item }) => {
+					const isActive = selectedCategoryId === item.id;
+
+					return (
+						<CategoryCard
+							key={item.id}
+							category={item}
+							onPress={onSelectCategory}
+							isActive={isActive}
+						/>
+					);
+				}}
 			/>
 		</View>
 	);

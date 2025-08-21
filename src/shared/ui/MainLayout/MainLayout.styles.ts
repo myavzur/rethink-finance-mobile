@@ -14,7 +14,7 @@ export const useStyles = (withPaddingBottomForTabbar: boolean) => {
 			minHeight: dimensions.height,
 			marginTop: getStatusBarHeight(),
 			paddingHorizontal: Gaps.mainLayoutHorizontal,
-			paddingBottom: withPaddingBottomForTabbar ? 200 : Gaps.mainLayoutVertical,
+			paddingBottom: withPaddingBottomForTabbar ? 110 : Gaps.mainLayoutVertical,
 			backgroundColor: theme.colors.background
 		}
 	}));

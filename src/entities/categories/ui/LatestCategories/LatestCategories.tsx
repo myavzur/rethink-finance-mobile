@@ -4,12 +4,14 @@ import { FlatList, TouchableOpacity } from "react-native";
 
 import { CategoryIcon } from "@/entities/categories/ui";
 
+import { Gaps } from "@/shared/const";
 import { categoryRepository } from "@/shared/database/repositories";
 
 import type { LatestCategoriesProps } from "./LatestCategories.props";
-import { Gaps } from "@/shared/const";
 
-export const LatestCategories: FC<LatestCategoriesProps> = ({ onSelectCategory }) => {
+export const LatestCategories: FC<LatestCategoriesProps> = ({
+	onSelectCategory
+}) => {
 	const { data: categories } = useLiveQuery(categoryRepository.getAll());
 
 	return (
@@ -20,15 +22,20 @@ export const LatestCategories: FC<LatestCategoriesProps> = ({ onSelectCategory }
 			horizontal={true}
 			data={categories}
 			keyExtractor={(category) => category.id.toString()}
-			renderItem={(category) => (
-				<TouchableOpacity onPress={() => onSelectCategory(category.item)}>
-					<CategoryIcon
-						size="medium"
-						iconName={category.item.icon_name}
-						highlightColor={category.item.highlight_color}
-					/>
-				</TouchableOpacity>
-			)}
+			renderItem={({ item }) => {
+				return (
+					<TouchableOpacity
+						key={item.id}
+						onPress={() => onSelectCategory(item)}
+					>
+						<CategoryIcon
+							size="medium"
+							iconName={item.icon_name}
+							highlightColor={item.highlight_color}
+						/>
+					</TouchableOpacity>
+				);
+			}}
 		/>
 	);
 };

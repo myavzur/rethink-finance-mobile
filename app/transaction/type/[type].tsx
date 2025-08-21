@@ -1,6 +1,6 @@
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useCallback, useMemo, useState } from "react";
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 import { TransactionKeyboard } from "@/widgets/transaction-keyboard/ui";
 
@@ -18,19 +18,15 @@ import {
 import { useIntl } from "@/shared/lib/hooks";
 import { MainLayout, PageHeader } from "@/shared/ui";
 
-export const useStyles = (keyboardHeight: number) => {
-	const OFFSET_HEIGHT = 80;
-
+export const useStyles = () => {
 	return useThemeStyles((theme) => ({
-		content: {
-			paddingBottom: keyboardHeight + OFFSET_HEIGHT
-		},
 		fields: {
 			flexDirection: "column",
 			gap: 12
 		},
 		keyboard: {
 			// backgroundColor: theme.colors.background,
+			display: "none",
 			position: "absolute",
 			width: "100%",
 			left: Gaps.mainLayoutHorizontal,
@@ -48,7 +44,7 @@ export default function Route() {
 	const router = useRouter();
 	const params = useLocalSearchParams<{ type: ITransactionType }>();
 	const intl = useIntl();
-	const styles = useStyles(200);
+	const styles = useStyles();
 
 	const pageTitle = useMemo(() => {
 		if (params.type === TransactionType.INCOME)
@@ -56,10 +52,10 @@ export default function Route() {
 		return intl.formatMessage({ id: "expense" });
 	}, [params.type, intl]);
 
-	const [selectedCategoryId, setSelectedCategoryId] = useState<Category["id"]>(1);
+	const [selectedCategoryId, setSelectedCategoryId] = useState<Category["id"]>();
 	const hasSelectedCategoryId = typeof selectedCategoryId === "number";
 
-	const [isAlreadyCreating, setIsAlreadyCreating] = useState(false);
+	const [isCreatingTransaction, setIsCreatingTransaction] = useState(false);
 
 	const handleSelectCategory = useCallback(
 		(category: Category) => {
@@ -69,38 +65,54 @@ export default function Route() {
 	);
 
 	const handleCreateTransaction = async (amount: number) => {
-		if (isAlreadyCreating) return;
+		if (isCreatingTransaction) return;
+		if (!hasSelectedCategoryId) return;
 
-		setIsAlreadyCreating(true);
+		setIsCreatingTransaction(true);
 
 		await transactionRepository.create({
 			amount_value: amount,
 			amount_currency: Currency.RUB,
 			type: params.type,
-			category_id: 1
+			category_id: selectedCategoryId
 		});
 
-		setIsAlreadyCreating(false);
+		setIsCreatingTransaction(false);
 		router.push("/");
 	};
 
 	return (
 		<MainLayout withPaddingBottomForTabbar={false}>
-			<View style={styles.content}>
-				<PageHeader title={isAlreadyCreating ? "Создаем..." : pageTitle} />
+			<View
+				style={
+					StyleSheet.create({
+						view: {
+							paddingBottom: hasSelectedCategoryId ? 500 : 0
+						}
+					}).view
+				}
+			>
+				<PageHeader title={isCreatingTransaction ? "Создаем..." : pageTitle} />
 
 				<View>
 					<CategoryList
 						withHeader={false}
 						onSelectCategory={handleSelectCategory}
+						selectedCategoryId={selectedCategoryId}
 					/>
 				</View>
 			</View>
 
 			<View
+				onLayout={(event) => {
+					console.log("keyboard height", event.nativeEvent.layout.height);
+				}}
 				style={[styles.keyboard, hasSelectedCategoryId && styles.keyboard_visible]}
 			>
-				<TransactionKeyboard onDone={handleCreateTransaction} />
+				<TransactionKeyboard
+					isLoading={isCreatingTransaction}
+					onDone={handleCreateTransaction}
+				/>
 			</View>
 		</MainLayout>
 	);

@@ -23,7 +23,6 @@ export const TransactionGroup: FC<TransactionGroupProps> = ({
 		<View>
 			<View style={styles.header}>
 				<Text style={styles.date}>{date}</Text>
-
 				<Text style={styles.amount}>{subtitleElement}</Text>
 			</View>
 

@@ -2,5 +2,6 @@ import type { Category } from "@/shared/database/schema";
 
 export interface CategoryCardProps {
 	category: Category;
-	onPress: () => void;
+	onPress: (category: Category) => void;
+	isActive?: boolean;
 }

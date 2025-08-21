@@ -1,5 +1,5 @@
-import { type FC, memo, useState } from "react";
-import { View } from "react-native";
+import React, { type FC, memo, useRef, useState } from "react";
+import { ActivityIndicator, View } from "react-native";
 
 import { Icon } from "@/shared/ui";
 
@@ -23,73 +23,59 @@ import { useStyles } from "./CalcKeyboard.styles";
 
 const mathExpressionService = new MathExpressionService();
 
-const CalcKeyboardComponent: FC<CalcKeyboardProps> = ({ onExpressionChange, onDone }) => {
+const CalcKeyboardComponent: FC<CalcKeyboardProps> = ({
+	onExpressionChange,
+	isLoading,
+	onDone
+}) => {
 	const styles = useStyles();
-	const [expression, setExpression] = useState("");
+	const expressionRef = useRef<string>("");
 
 	const handleAction = (action: IMathAction) => {
+		const prevExpression = expressionRef.current;
+
 		switch (action.type) {
 			case MathAction.DIGIT: {
-				setExpression((prevExpression) => {
-					const nextExpression = mathExpressionService.tryInsertDigit(
-						prevExpression,
-						action.payload.digit
-					);
-					onExpressionChange(nextExpression);
-					return nextExpression;
-				});
+				expressionRef.current = mathExpressionService.tryInsertDigit(
+					prevExpression,
+					action.payload.digit
+				);
 				break;
 			}
 			case MathAction.BACKSPACE: {
-				setExpression((prevExpression) => {
-					const nextExpression =
-						mathExpressionService.deleteLastChar(prevExpression);
-					onExpressionChange(nextExpression);
-					return nextExpression;
-				});
+				expressionRef.current = mathExpressionService.deleteLastChar(prevExpression);
 				break;
 			}
 			case MathAction.DECIMAL: {
-				setExpression((prevExpression) => {
-					const nextExpression = mathExpressionService.tryInsertSeparator(
-						prevExpression,
-						action.payload.separator
-					);
-					onExpressionChange(nextExpression);
-					return nextExpression;
-				});
+				expressionRef.current = mathExpressionService.tryInsertSeparator(
+					prevExpression,
+					action.payload.separator
+				);
 				break;
 			}
 			case MathAction.CLEAR: {
-				setExpression("");
-				onExpressionChange("");
+				expressionRef.current = "";
 				break;
 			}
 			case MathAction.DONE: {
-				setExpression((prevExpression) => {
-					if (prevExpression.trim() === "") return prevExpression;
+				if (prevExpression.trim() === "") return prevExpression;
 
-					const answer = mathExpressionService.evaluate(prevExpression);
-					onDone(answer);
+				const answer = mathExpressionService.evaluate(prevExpression);
 
-					const nextExpression = String(answer);
-					onExpressionChange(nextExpression);
+				onDone(answer);
+				expressionRef.current = String(answer);
 
-					return nextExpression;
-				});
 				break;
 			}
 			default: {
-				setExpression((prevExpression) => {
-					const nextExpression = mathExpressionService.tryInsertOrReplaceOperator(
-						prevExpression,
-						action.payload.operator
-					);
-					onExpressionChange(nextExpression);
-					return nextExpression;
-				});
+				expressionRef.current = mathExpressionService.tryInsertOrReplaceOperator(
+					prevExpression,
+					action.payload.operator
+				);
 			}
 		}
+
+		onExpressionChange(expressionRef.current);
 	};
 
 	return (
@@ -184,7 +170,7 @@ const CalcKeyboardComponent: FC<CalcKeyboardProps> = ({ onExpressionChange, onDo
 					kind={"primary"}
 					takes={2}
 				>
-					<Icon name="check" />
+					{isLoading ? <ActivityIndicator size="small" /> : <Icon name="check" />}
 				</KeyboardButton>
 			</View>
 		</View>
