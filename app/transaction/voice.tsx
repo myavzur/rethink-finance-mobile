@@ -8,6 +8,7 @@ import {
 import { useEffect } from "react";
 import { Alert, StyleSheet } from "react-native";
 
+import { assistantService } from "@/shared/services";
 import { Button, MainLayout, PageHeader } from "@/shared/ui";
 
 export default function Route() {
@@ -22,6 +23,12 @@ export default function Route() {
 	const stopRecording = async () => {
 		// The recording will be available on `audioRecorder.uri`.
 		await audioRecorder.stop();
+
+		if (!audioRecorder.uri) return;
+
+		const transactions = await assistantService.getTransactionsFromAudio(
+			audioRecorder.uri
+		);
 	};
 
 	useEffect(() => {
